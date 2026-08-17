@@ -1,0 +1,61 @@
+/* ==========================================================================
+   MOOFIN - PROPUESTA COMERCIAL & LANDING PAGE
+   Hoja de estilos personalizada
+   ========================================================================== */
+
+/* Configuración tipográfica y base */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #0B1120;
+    color: #F8FAFC;
+}
+
+h1, h2, h3, h4, h5, h6, .font-heading {
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Interlineado óptimo y legible para lectura de propuestas y presentaciones */
+p, li {
+    line-height: 1.8;
+}
+
+/* Contenedores de diapositivas */
+.slide-container {
+    min-height: calc(100vh - 80px);
+}
+
+/* Efectos de brillo personalizados (fallback si no se usa Tailwind) */
+.glow-teal {
+    box-shadow: 0 0 25px -5px rgba(0, 201, 167, 0.3);
+}
+
+.glow-blue {
+    box-shadow: 0 0 25px -5px rgba(56, 189, 248, 0.3);
+}
+
+.glow-gold {
+    box-shadow: 0 0 25px -5px rgba(245, 158, 11, 0.3);
+}
+
+/* Transiciones suaves */
+.transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Personalización de scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0B1120;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #1E293B;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #00C9A7;
+}

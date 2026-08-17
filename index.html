@@ -3,7 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Propuesta Comercial - Moofin Agent</title>
+    <title>Propuesta Comercial - Moofin Agent | IA de Ventas 24/7</title>
+    
+    <!-- Meta SEO & Open Graph -->
+    <meta name="description" content="Propuesta Comercial Moofin Agent: Agente conversacional de ventas con Inteligencia Artificial 24/7 integrado con WhatsApp, Instagram y Web.">
+    <meta name="author" content="Moofin">
+    <meta name="theme-color" content="#0B1120">
+    <meta property="og:title" content="Propuesta Comercial - Moofin Agent">
+    <meta property="og:description" content="Sistema de Automatización y Agente de Ventas con IA 24/7 conectado a tu catálogo real.">
+    <meta property="og:image" content="assets/logo.png">
+    <meta property="og:type" content="website">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/logo.png">
     
     <!-- Google Fonts: Montserrat & Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,57 +25,15 @@
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
-    <!-- Tailwind CSS CDN -->
+    <!-- Tailwind CSS CDN & Custom Config -->
+    <script src="js/tailwind-config.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        heading: ['Montserrat', 'sans-serif'],
-                    },
-                    colors: {
-                        brand: {
-                            dark: '#0B1120',
-                            navy: '#1E293B',
-                            teal: '#00C9A7',
-                            tealDark: '#009B82',
-                            tealLight: '#E6FFFA',
-                            blue: '#38BDF8',
-                            blueDark: '#0284C7',
-                            gold: '#F59E0B',
-                            red: '#EF4444',
-                            green: '#10B981'
-                        }
-                    },
-                    boxShadow: {
-                        'teal-glow': '0 0 25px -5px rgba(0, 201, 167, 0.3)',
-                        'blue-glow': '0 0 25px -5px rgba(56, 189, 248, 0.3)',
-                        'gold-glow': '0 0 25px -5px rgba(245, 158, 11, 0.3)'
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0B1120;
-            color: #F8FAFC;
-        }
-        h1, h2, h3, h4, .font-heading {
-            font-family: 'Montserrat', sans-serif;
-        }
-        /* Interlineado cómodo y óptimo para lectura de presentaciones */
-        p, li {
-            line-height: 1.8;
-        }
-        .slide-container {
-            min-height: calc(100vh - 80px);
-        }
-    </style>
+
+    <!-- Custom Modular CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+
+    <!-- Main Logic Script (Deferred) -->
+    <script src="js/main.js" defer></script>
 </head>
 <body class="bg-slate-950 text-slate-100 antialiased selection:bg-teal-500 selection:text-slate-950">
 
@@ -71,17 +41,12 @@
     <header class="sticky top-0 z-50 bg-slate-900/90 backdrop-blur-md border-b border-slate-800 px-4 py-3 sm:px-8">
         <div class="max-w-7xl mx-auto flex items-center justify-between">
             <!-- Moofin Logo Brand Header -->
-            <a href="#slide-1" onclick="goToSlide(0)" class="flex items-center gap-3 group">
-                
-                <!-- ================================================================= -->
-                <!-- [PEGA AQUÍ TU ENLACE DE LOGO PARA LA BARRA SUPERIOR]              -->
-                <!-- Reemplaza el src con la URL directa de tu imagen/logo             -->
-                <!-- ================================================================= -->
+            <a href="#slide-1" onclick="goToSlide(0)" class="flex items-center gap-3 group" aria-label="Ir al inicio - Moofin">
                 <img 
-                    src="https://drive.google.com/file/d/17jybSovLQ2APm37y9-DQwsdRLynl8g5O/view?usp=drive_link" 
+                    src="assets/logo.png" 
                     alt="Moofin Logo" 
-                    class="h-9 w-auto object-contain transition-transform group-hover:scale-105"
-                    onerror="this.onerror=null; this.src='https://placehold.co/160x50/00C9A7/0B1120?text=MOOFIN';"
+                    class="h-8 sm:h-9 w-auto object-contain transition-transform group-hover:scale-105"
+                    onerror="this.onerror=null; this.src='assets/moofin-web-png.png';"
                 />
 
                 <div class="flex flex-col">
@@ -92,18 +57,18 @@
             </a>
 
             <!-- Slide Jump Pills (Desktop) -->
-            <nav class="hidden md:flex items-center gap-1.5 bg-slate-950/80 p-1.5 rounded-full border border-slate-800/80">
-                <button onclick="goToSlide(0)" class="nav-pill px-3.5 py-1.5 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800 transition-all">Inicio</button>
-                <button onclick="goToSlide(1)" class="nav-pill px-3.5 py-1.5 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800 transition-all">Proceso</button>
-                <button onclick="goToSlide(2)" class="nav-pill px-3.5 py-1.5 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800 transition-all">Comparativa</button>
-                <button onclick="goToSlide(3)" class="nav-pill px-3.5 py-1.5 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800 transition-all">Casos de Éxito</button>
-                <button onclick="goToSlide(4)" class="nav-pill px-3.5 py-1.5 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800 transition-all">Planes</button>
-                <button onclick="goToSlide(5)" class="nav-pill px-3.5 py-1.5 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800 transition-all">FAQ</button>
+            <nav class="hidden md:flex items-center gap-1.5 bg-slate-950/80 p-1.5 rounded-full border border-slate-800/80" aria-label="Navegación de diapositivas">
+                <button type="button" onclick="goToSlide(0)" class="nav-pill px-3.5 py-1.5 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800 transition-all">Inicio</button>
+                <button type="button" onclick="goToSlide(1)" class="nav-pill px-3.5 py-1.5 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800 transition-all">Proceso</button>
+                <button type="button" onclick="goToSlide(2)" class="nav-pill px-3.5 py-1.5 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800 transition-all">Comparativa</button>
+                <button type="button" onclick="goToSlide(3)" class="nav-pill px-3.5 py-1.5 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800 transition-all">Casos de Éxito</button>
+                <button type="button" onclick="goToSlide(4)" class="nav-pill px-3.5 py-1.5 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800 transition-all">Planes</button>
+                <button type="button" onclick="goToSlide(5)" class="nav-pill px-3.5 py-1.5 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800 transition-all">FAQ</button>
             </nav>
 
             <!-- Action Button -->
-            <a href="#slide-5" onclick="goToSlide(4)" class="inline-flex items-center gap-2 bg-gradient-to-r from-teal-500 to-cyan-500 text-slate-950 font-bold text-xs sm:text-sm px-4 py-2.5 rounded-full hover:opacity-90 transition-all shadow-teal-glow">
-                <i class="fa-solid fa-rocket"></i>
+            <a href="#slide-5" onclick="goToSlide(4)" class="inline-flex items-center gap-2 bg-gradient-to-r from-teal-500 to-cyan-500 text-slate-950 font-bold text-xs sm:text-sm px-4 py-2.5 rounded-full hover:opacity-90 transition-all shadow-teal-glow" aria-label="Ver Planes comerciales">
+                <i class="fa-solid fa-rocket" aria-hidden="true"></i>
                 <span>Ver Planes</span>
             </a>
         </div>
@@ -113,26 +78,21 @@
     <main class="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8 space-y-16 pb-32">
 
         <!-- SLIDE 1: PORTADA PRINCIPAL -->
-        <section id="slide-1" class="slide-container flex flex-col justify-center items-center text-center py-10 relative overflow-hidden">
+        <section id="slide-1" class="slide-container flex flex-col justify-center items-center text-center py-10 relative overflow-hidden" aria-label="Portada Principal">
             <!-- Ambient Glow Background -->
-            <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-teal-500/15 blur-[120px] rounded-full pointer-events-none"></div>
-            <div class="absolute bottom-0 right-10 w-80 h-80 bg-blue-500/10 blur-[100px] rounded-full pointer-events-none"></div>
+            <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-teal-500/15 blur-[120px] rounded-full pointer-events-none" aria-hidden="true"></div>
+            <div class="absolute bottom-0 right-10 w-80 h-80 bg-blue-500/10 blur-[100px] rounded-full pointer-events-none" aria-hidden="true"></div>
 
             <!-- Centered Moofin Logo Branding Box -->
             <div class="mb-8 p-6 sm:p-8 rounded-3xl bg-slate-900/90 border border-teal-500/30 shadow-teal-glow max-w-xl w-full flex flex-col items-center justify-center gap-4">
-                
-                <!-- ================================================================= -->
-                <!-- [PEGA AQUÍ TU ENLACE DE LOGO PARA LA PORTADA PRINCIPAL]           -->
-                <!-- Reemplaza el src de la imagen con la URL directa de tu logo        -->
-                <!-- ================================================================= -->
                 <img 
-                    src="https://placehold.co/280x90/00C9A7/0B1120?text=MOOFIN" 
+                    src="assets/logo.png" 
                     alt="Logo Moofin" 
                     class="h-16 sm:h-20 w-auto object-contain drop-shadow-lg"
-                    onerror="this.onerror=null; this.src='https://placehold.co/280x90/00C9A7/0B1120?text=MOOFIN';"
+                    onerror="this.onerror=null; this.src='assets/moofin-web-png.png';"
                 />
 
-                <div class="h-0.5 w-24 bg-gradient-to-r from-transparent via-teal-400 to-transparent my-1"></div>
+                <div class="h-0.5 w-24 bg-gradient-to-r from-transparent via-teal-400 to-transparent my-1" aria-hidden="true"></div>
                 <span class="text-xs sm:text-sm font-semibold text-teal-300 tracking-wider uppercase">
                     AGENTE CONVERSACIONAL DE VENTAS CON IA
                 </span>
@@ -169,7 +129,7 @@
 
             <!-- Intro Highlight Banner -->
             <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 sm:p-5 max-w-3xl flex items-center gap-4 text-left shadow-lg">
-                <div class="h-12 w-12 rounded-xl bg-teal-500/20 text-teal-400 flex items-center justify-center shrink-0 text-xl">
+                <div class="h-12 w-12 rounded-xl bg-teal-500/20 text-teal-400 flex items-center justify-center shrink-0 text-xl" aria-hidden="true">
                     <i class="fa-solid fa-comments"></i>
                 </div>
                 <p class="text-sm text-slate-300 leading-relaxed">
@@ -179,7 +139,7 @@
         </section>
 
         <!-- SLIDE 2: FLUJO OPERATIVO EN 4 PASOS -->
-        <section id="slide-2" class="slide-container flex flex-col justify-center py-10">
+        <section id="slide-2" class="slide-container flex flex-col justify-center py-10" aria-label="Flujo Operativo">
             <div class="text-center max-w-3xl mx-auto mb-12">
                 <span class="text-teal-400 font-bold text-xs tracking-widest uppercase bg-teal-500/10 px-3 py-1 rounded-full border border-teal-500/20 mb-3 inline-block">Proceso Continuo</span>
                 <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-white mb-4">¿Cómo trabaja tu agente en 4 pasos?</h2>
@@ -195,7 +155,7 @@
                     <div>
                         <div class="flex items-center justify-between mb-4">
                             <span class="h-10 w-10 rounded-xl bg-teal-500 text-slate-950 font-heading font-black text-sm flex items-center justify-center shadow-md">01</span>
-                            <i class="fa-brands fa-whatsapp text-2xl text-teal-400"></i>
+                            <i class="fa-brands fa-whatsapp text-2xl text-teal-400" aria-hidden="true"></i>
                         </div>
                         <h3 class="font-heading text-xl font-bold text-white mb-3">El cliente escribe</h3>
                         <p class="text-slate-300 text-sm leading-relaxed mb-4">
@@ -204,7 +164,7 @@
                     </div>
                     <div class="pt-4 border-t border-slate-800/80">
                         <span class="text-xs font-semibold text-teal-400 flex items-center gap-1.5">
-                            <i class="fa-solid fa-check-circle"></i>
+                            <i class="fa-solid fa-check-circle" aria-hidden="true"></i>
                             Canales Integrados
                         </span>
                     </div>
@@ -215,7 +175,7 @@
                     <div>
                         <div class="flex items-center justify-between mb-4">
                             <span class="h-10 w-10 rounded-xl bg-cyan-400 text-slate-950 font-heading font-black text-sm flex items-center justify-center shadow-md">02</span>
-                            <i class="fa-solid fa-brain text-2xl text-cyan-400"></i>
+                            <i class="fa-solid fa-brain text-2xl text-cyan-400" aria-hidden="true"></i>
                         </div>
                         <h3 class="font-heading text-xl font-bold text-white mb-3">La IA interpreta</h3>
                         <p class="text-slate-300 text-sm leading-relaxed mb-4">
@@ -224,7 +184,7 @@
                     </div>
                     <div class="pt-4 border-t border-slate-800/80">
                         <span class="text-xs font-semibold text-cyan-400 flex items-center gap-1.5">
-                            <i class="fa-solid fa-check-circle"></i>
+                            <i class="fa-solid fa-check-circle" aria-hidden="true"></i>
                             Comprensión Humana
                         </span>
                     </div>
@@ -235,7 +195,7 @@
                     <div>
                         <div class="flex items-center justify-between mb-4">
                             <span class="h-10 w-10 rounded-xl bg-blue-400 text-slate-950 font-heading font-black text-sm flex items-center justify-center shadow-md">03</span>
-                            <i class="fa-solid fa-database text-2xl text-blue-400"></i>
+                            <i class="fa-solid fa-database text-2xl text-blue-400" aria-hidden="true"></i>
                         </div>
                         <h3 class="font-heading text-xl font-bold text-white mb-3">Consulta el negocio</h3>
                         <p class="text-slate-300 text-sm leading-relaxed mb-4">
@@ -244,7 +204,7 @@
                     </div>
                     <div class="pt-4 border-t border-slate-800/80">
                         <span class="text-xs font-semibold text-blue-400 flex items-center gap-1.5">
-                            <i class="fa-solid fa-check-circle"></i>
+                            <i class="fa-solid fa-check-circle" aria-hidden="true"></i>
                             Conexión Sheets/DB
                         </span>
                     </div>
@@ -255,7 +215,7 @@
                     <div>
                         <div class="flex items-center justify-between mb-4">
                             <span class="h-10 w-10 rounded-xl bg-emerald-400 text-slate-950 font-heading font-black text-sm flex items-center justify-center shadow-md">04</span>
-                            <i class="fa-solid fa-user-check text-2xl text-emerald-400"></i>
+                            <i class="fa-solid fa-user-check text-2xl text-emerald-400" aria-hidden="true"></i>
                         </div>
                         <h3 class="font-heading text-xl font-bold text-white mb-3">Responde o escala</h3>
                         <p class="text-slate-300 text-sm leading-relaxed mb-4">
@@ -264,7 +224,7 @@
                     </div>
                     <div class="pt-4 border-t border-slate-800/80">
                         <span class="text-xs font-semibold text-emerald-400 flex items-center gap-1.5">
-                            <i class="fa-solid fa-check-circle"></i>
+                            <i class="fa-solid fa-check-circle" aria-hidden="true"></i>
                             Cierre Eficiente
                         </span>
                     </div>
@@ -273,7 +233,7 @@
         </section>
 
         <!-- SLIDE 3: COMPARATIVA OPERATIVA -->
-        <section id="slide-3" class="slide-container flex flex-col justify-center py-10">
+        <section id="slide-3" class="slide-container flex flex-col justify-center py-10" aria-label="Comparativa Operativa">
             <div class="text-center max-w-3xl mx-auto mb-12">
                 <span class="text-cyan-400 font-bold text-xs tracking-widest uppercase bg-cyan-500/10 px-3 py-1 rounded-full border border-cyan-500/20 mb-3 inline-block">Impacto Operativo</span>
                 <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-white mb-4">Evoluciona tu Modelo Tradicional</h2>
@@ -287,7 +247,7 @@
                 <div class="bg-gradient-to-br from-slate-900 via-rose-950/20 to-slate-900 rounded-3xl p-6 sm:p-8 border border-rose-500/30 shadow-xl relative overflow-hidden">
                     <div class="flex items-center gap-3 mb-6 pb-4 border-b border-rose-500/20">
                         <div class="h-10 w-10 rounded-xl bg-rose-500/20 text-rose-400 flex items-center justify-center text-lg shrink-0">
-                            <i class="fa-solid fa-xmark"></i>
+                            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
                         </div>
                         <div>
                             <h3 class="font-heading text-xl font-bold text-white">Sin Moofin</h3>
@@ -297,19 +257,19 @@
 
                     <ul class="space-y-4">
                         <li class="flex items-start gap-3 text-slate-300 text-sm sm:text-base leading-relaxed">
-                            <i class="fa-solid fa-circle-xmark text-rose-500 mt-1 shrink-0"></i>
+                            <i class="fa-solid fa-circle-xmark text-rose-500 mt-1 shrink-0" aria-hidden="true"></i>
                             <span><strong class="text-white">Horario acotado:</strong> Atención suspendida fuera de jornada laboral y fines de semana.</span>
                         </li>
                         <li class="flex items-start gap-3 text-slate-300 text-sm sm:text-base leading-relaxed">
-                            <i class="fa-solid fa-circle-xmark text-rose-500 mt-1 shrink-0"></i>
+                            <i class="fa-solid fa-circle-xmark text-rose-500 mt-1 shrink-0" aria-hidden="true"></i>
                             <span><strong class="text-white">Acumulación de mensajes:</strong> Cientos de chats pendientes los lunes por la mañana.</span>
                         </li>
                         <li class="flex items-start gap-3 text-slate-300 text-sm sm:text-base leading-relaxed">
-                            <i class="fa-solid fa-circle-xmark text-rose-500 mt-1 shrink-0"></i>
+                            <i class="fa-solid fa-circle-xmark text-rose-500 mt-1 shrink-0" aria-hidden="true"></i>
                             <span><strong class="text-white">Enfriamiento de prospectos:</strong> La demora en responder hace que el cliente consulte a la competencia.</span>
                         </li>
                         <li class="flex items-start gap-3 text-slate-300 text-sm sm:text-base leading-relaxed">
-                            <i class="fa-solid fa-circle-xmark text-rose-500 mt-1 shrink-0"></i>
+                            <i class="fa-solid fa-circle-xmark text-rose-500 mt-1 shrink-0" aria-hidden="true"></i>
                             <span><strong class="text-white">Carga repetitiva:</strong> Desgaste del equipo copiando y pegando catálogos manualmente.</span>
                         </li>
                     </ul>
@@ -319,7 +279,7 @@
                 <div class="bg-gradient-to-br from-slate-900 via-teal-950/30 to-slate-900 rounded-3xl p-6 sm:p-8 border border-teal-500/50 shadow-teal-glow relative overflow-hidden">
                     <div class="flex items-center gap-3 mb-6 pb-4 border-b border-teal-500/20">
                         <div class="h-10 w-10 rounded-xl bg-teal-500 text-slate-950 flex items-center justify-center text-lg shrink-0 font-bold">
-                            <i class="fa-solid fa-check"></i>
+                            <i class="fa-solid fa-check" aria-hidden="true"></i>
                         </div>
                         <div>
                             <h3 class="font-heading text-xl font-bold text-white">Con Moofin</h3>
@@ -329,19 +289,19 @@
 
                     <ul class="space-y-4">
                         <li class="flex items-start gap-3 text-slate-200 text-sm sm:text-base leading-relaxed">
-                            <i class="fa-solid fa-circle-check text-teal-400 mt-1 shrink-0"></i>
+                            <i class="fa-solid fa-circle-check text-teal-400 mt-1 shrink-0" aria-hidden="true"></i>
                             <span><strong class="text-white">Cobertura total 24/7/365:</strong> Tu canal comercial permanece activo vendiendo sin pausa.</span>
                         </li>
                         <li class="flex items-start gap-3 text-slate-200 text-sm sm:text-base leading-relaxed">
-                            <i class="fa-solid fa-circle-check text-teal-400 mt-1 shrink-0"></i>
+                            <i class="fa-solid fa-circle-check text-teal-400 mt-1 shrink-0" aria-hidden="true"></i>
                             <span><strong class="text-white">Respuestas en &lt; 5 segundos:</strong> Inmediatez total para retener la atención del prospecto.</span>
                         </li>
                         <li class="flex items-start gap-3 text-slate-200 text-sm sm:text-base leading-relaxed">
-                            <i class="fa-solid fa-circle-check text-teal-400 mt-1 shrink-0"></i>
+                            <i class="fa-solid fa-circle-check text-teal-400 mt-1 shrink-0" aria-hidden="true"></i>
                             <span><strong class="text-white">Liberación del 70%+ del volumen:</strong> La IA absorbe las consultas frecuentes automáticamente.</span>
                         </li>
                         <li class="flex items-start gap-3 text-slate-200 text-sm sm:text-base leading-relaxed">
-                            <i class="fa-solid fa-circle-check text-teal-400 mt-1 shrink-0"></i>
+                            <i class="fa-solid fa-circle-check text-teal-400 mt-1 shrink-0" aria-hidden="true"></i>
                             <span><strong class="text-white">Foco en el cierre:</strong> El equipo humano interviene solo cuando el chat está listo para cobrar.</span>
                         </li>
                     </ul>
@@ -350,7 +310,7 @@
         </section>
 
         <!-- SLIDE 4: DIFERENCIADORES Y CASOS DE ÉXITO -->
-        <section id="slide-4" class="slide-container flex flex-col justify-center py-10">
+        <section id="slide-4" class="slide-container flex flex-col justify-center py-10" aria-label="Diferenciadores y Casos de Éxito">
             <div class="text-center max-w-3xl mx-auto mb-12">
                 <span class="text-blue-400 font-bold text-xs tracking-widest uppercase bg-blue-500/10 px-3 py-1 rounded-full border border-blue-500/20 mb-3 inline-block">Garantía & Resultados</span>
                 <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-white mb-4">Diferenciadores y Casos Reales</h2>
@@ -363,7 +323,7 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
                 <div class="bg-gradient-to-r from-slate-900 to-slate-800 p-5 rounded-2xl border-l-4 border-blue-400 flex items-center gap-4">
                     <div class="h-10 w-10 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center shrink-0">
-                        <i class="fa-solid fa-file-signature"></i>
+                        <i class="fa-solid fa-file-signature" aria-hidden="true"></i>
                     </div>
                     <div>
                         <h4 class="font-heading font-bold text-white text-base">Sin Permanencia</h4>
@@ -373,7 +333,7 @@
 
                 <div class="bg-gradient-to-r from-slate-900 to-slate-800 p-5 rounded-2xl border-l-4 border-teal-400 flex items-center gap-4">
                     <div class="h-10 w-10 rounded-xl bg-teal-500/20 text-teal-400 flex items-center justify-center shrink-0">
-                        <i class="fa-solid fa-calculator"></i>
+                        <i class="fa-solid fa-calculator" aria-hidden="true"></i>
                     </div>
                     <div>
                         <h4 class="font-heading font-bold text-white text-base">Factura Predecible</h4>
@@ -383,7 +343,7 @@
 
                 <div class="bg-gradient-to-r from-slate-900 to-slate-800 p-5 rounded-2xl border-l-4 border-amber-400 flex items-center gap-4">
                     <div class="h-10 w-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center shrink-0">
-                        <i class="fa-solid fa-bullseye"></i>
+                        <i class="fa-solid fa-bullseye" aria-hidden="true"></i>
                     </div>
                     <div>
                         <h4 class="font-heading font-bold text-white text-base">Foco en Ventas</h4>
@@ -411,7 +371,7 @@
                         </p>
                     </div>
                     <div class="flex items-center gap-3 pt-4 border-t border-slate-800 text-xs text-slate-400 font-medium">
-                        <i class="fa-solid fa-quote-left text-teal-400 text-lg"></i>
+                        <i class="fa-solid fa-quote-left text-teal-400 text-lg" aria-hidden="true"></i>
                         <span>Atención de catálogo 100% automatizada</span>
                     </div>
                 </div>
@@ -433,15 +393,15 @@
                         </p>
                     </div>
                     <div class="flex items-center gap-3 pt-4 border-t border-slate-800 text-xs text-slate-400 font-medium">
-                        <i class="fa-solid fa-quote-left text-blue-400 text-lg"></i>
+                        <i class="fa-solid fa-quote-left text-blue-400 text-lg" aria-hidden="true"></i>
                         <span>Reducción dramática de carga manual</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- SLIDE 5: PLANES E INVERSIÓN (ONLY PRO & BUSINESS) -->
-        <section id="slide-5" class="slide-container flex flex-col justify-center py-10">
+        <!-- SLIDE 5: PLANES E INVERSIÓN (PRO & BUSINESS) -->
+        <section id="slide-5" class="slide-container flex flex-col justify-center py-10" aria-label="Planes e Inversión">
             <div class="text-center max-w-3xl mx-auto mb-10">
                 <span class="text-emerald-400 font-bold text-xs tracking-widest uppercase bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20 mb-3 inline-block">Estructura Comercial</span>
                 <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-white mb-4">Planes e Inversión</h2>
@@ -450,11 +410,11 @@
                 </p>
 
                 <!-- Billing Cycle Toggle (Monthly vs Annual) -->
-                <div class="mt-6 inline-flex items-center gap-3 bg-slate-900 p-1.5 rounded-full border border-slate-800">
-                    <button id="btn-monthly" onclick="setBilling('monthly')" class="px-4 py-2 rounded-full text-xs font-bold transition-all bg-slate-800 text-white">
+                <div class="mt-6 inline-flex items-center gap-3 bg-slate-900 p-1.5 rounded-full border border-slate-800" role="group" aria-label="Selector de modalidad de pago">
+                    <button type="button" id="btn-monthly" onclick="setBilling('monthly')" class="px-4 py-2 rounded-full text-xs font-bold transition-all bg-slate-800 text-white">
                         Pago Mensual
                     </button>
-                    <button id="btn-annual" onclick="setBilling('annual')" class="px-4 py-2 rounded-full text-xs font-bold transition-all bg-gradient-to-r from-teal-500 to-emerald-400 text-slate-950 shadow-md">
+                    <button type="button" id="btn-annual" onclick="setBilling('annual')" class="px-4 py-2 rounded-full text-xs font-bold transition-all bg-gradient-to-r from-teal-500 to-emerald-400 text-slate-950 shadow-md">
                         Pago Anual <span class="bg-slate-950 text-teal-300 text-[10px] px-2 py-0.5 rounded-full ml-1 font-extrabold">SETUP GRATIS</span>
                     </button>
                 </div>
@@ -463,9 +423,9 @@
             <!-- PROMO BANNER destacada para Setup GRATIS -->
             <div class="mb-10 bg-gradient-to-r from-amber-500/20 via-amber-500/10 to-amber-500/20 border-2 border-amber-500/60 rounded-2xl p-4 sm:p-5 text-center shadow-gold-glow relative overflow-hidden">
                 <div class="flex items-center justify-center gap-2 text-amber-400 font-heading font-black text-sm sm:text-base">
-                    <i class="fa-solid fa-star text-amber-400"></i>
+                    <i class="fa-solid fa-star text-amber-400" aria-hidden="true"></i>
                     <span>¡PROMOCIÓN ESPECIAL DE LANZAMIENTO!</span>
-                    <i class="fa-solid fa-star text-amber-400"></i>
+                    <i class="fa-solid fa-star text-amber-400" aria-hidden="true"></i>
                 </div>
                 <p class="text-slate-200 text-xs sm:text-sm mt-1 leading-relaxed">
                     Al contratar cualquiera de nuestros planes en la modalidad de <strong class="text-white">Pago Anual por adelantado</strong>, el costo de configuración e implementación (<span class="line-through text-slate-400">$299 USD</span>) queda totalmente <strong class="text-teal-300 font-bold">100% GRATUITO</strong>.
@@ -502,32 +462,32 @@
                             </span>
                         </div>
 
-                        <div class="h-px w-full bg-slate-800 mb-6"></div>
+                        <div class="h-px w-full bg-slate-800 mb-6" aria-hidden="true"></div>
 
                         <!-- Feature List -->
                         <ul class="space-y-3.5 text-sm text-slate-300 mb-8">
                             <li class="flex items-center gap-3">
-                                <i class="fa-solid fa-check text-teal-400 text-base shrink-0"></i>
+                                <i class="fa-solid fa-check text-teal-400 text-base shrink-0" aria-hidden="true"></i>
                                 <span><strong class="text-white">2 Canales incluidos</strong> (WhatsApp + Instagram / Web)</span>
                             </li>
                             <li class="flex items-center gap-3">
-                                <i class="fa-solid fa-check text-teal-400 text-base shrink-0"></i>
+                                <i class="fa-solid fa-check text-teal-400 text-base shrink-0" aria-hidden="true"></i>
                                 <span><strong class="text-white">3.000 conversaciones</strong> al mes</span>
                             </li>
                             <li class="flex items-center gap-3">
-                                <i class="fa-solid fa-check text-teal-400 text-base shrink-0"></i>
+                                <i class="fa-solid fa-check text-teal-400 text-base shrink-0" aria-hidden="true"></i>
                                 <span>Motor IA <strong class="text-white">GPT-4.1-mini avanzado</strong></span>
                             </li>
                             <li class="flex items-center gap-3">
-                                <i class="fa-solid fa-check text-teal-400 text-base shrink-0"></i>
+                                <i class="fa-solid fa-check text-teal-400 text-base shrink-0" aria-hidden="true"></i>
                                 <span>Conexión con <strong class="text-white">Google Sheets</strong> o Base de Datos simple</span>
                             </li>
                             <li class="flex items-center gap-3">
-                                <i class="fa-solid fa-check text-teal-400 text-base shrink-0"></i>
+                                <i class="fa-solid fa-check text-teal-400 text-base shrink-0" aria-hidden="true"></i>
                                 <span>1 Herramienta personalizada de automatización</span>
                             </li>
                             <li class="flex items-center gap-3">
-                                <i class="fa-solid fa-check text-teal-400 text-base shrink-0"></i>
+                                <i class="fa-solid fa-check text-teal-400 text-base shrink-0" aria-hidden="true"></i>
                                 <span>Soporte prioritario por WhatsApp + Email</span>
                             </li>
                         </ul>
@@ -560,32 +520,32 @@
                             </span>
                         </div>
 
-                        <div class="h-px w-full bg-slate-800 mb-6"></div>
+                        <div class="h-px w-full bg-slate-800 mb-6" aria-hidden="true"></div>
 
                         <!-- Feature List -->
                         <ul class="space-y-3.5 text-sm text-slate-300 mb-8">
                             <li class="flex items-center gap-3">
-                                <i class="fa-solid fa-check text-blue-400 text-base shrink-0"></i>
+                                <i class="fa-solid fa-check text-blue-400 text-base shrink-0" aria-hidden="true"></i>
                                 <span><strong class="text-white">Canales Ilimitados</strong> (WhatsApp, Instagram, Web)</span>
                             </li>
                             <li class="flex items-center gap-3">
-                                <i class="fa-solid fa-check text-blue-400 text-base shrink-0"></i>
+                                <i class="fa-solid fa-check text-blue-400 text-base shrink-0" aria-hidden="true"></i>
                                 <span>Volumen de conversaciones <strong class="text-white">a la medida</strong></span>
                             </li>
                             <li class="flex items-center gap-3">
-                                <i class="fa-solid fa-check text-blue-400 text-base shrink-0"></i>
+                                <i class="fa-solid fa-check text-blue-400 text-base shrink-0" aria-hidden="true"></i>
                                 <span>Motores IA de alta potencia (<strong class="text-white">Claude 3.5 / GPT-4</strong>)</span>
                             </li>
                             <li class="flex items-center gap-3">
-                                <i class="fa-solid fa-check text-blue-400 text-base shrink-0"></i>
+                                <i class="fa-solid fa-check text-blue-400 text-base shrink-0" aria-hidden="true"></i>
                                 <span>Integración personalizada con <strong class="text-white">CRM / ERP / API Custom</strong></span>
                             </li>
                             <li class="flex items-center gap-3">
-                                <i class="fa-solid fa-check text-blue-400 text-base shrink-0"></i>
+                                <i class="fa-solid fa-check text-blue-400 text-base shrink-0" aria-hidden="true"></i>
                                 <span>Herramientas de automatización a medida sin límite</span>
                             </li>
                             <li class="flex items-center gap-3">
-                                <i class="fa-solid fa-check text-blue-400 text-base shrink-0"></i>
+                                <i class="fa-solid fa-check text-blue-400 text-base shrink-0" aria-hidden="true"></i>
                                 <span>Canal dedicado para soporte técnico con SLA</span>
                             </li>
                         </ul>
@@ -599,7 +559,7 @@
         </section>
 
         <!-- SLIDE 6: PREGUNTAS FRECUENTES Y CTA -->
-        <section id="slide-6" class="slide-container flex flex-col justify-center py-10">
+        <section id="slide-6" class="slide-container flex flex-col justify-center py-10" aria-label="Preguntas Frecuentes">
             <div class="text-center max-w-3xl mx-auto mb-10">
                 <span class="text-teal-400 font-bold text-xs tracking-widest uppercase bg-teal-500/10 px-3 py-1 rounded-full border border-teal-500/20 mb-3 inline-block">Resolución de Dudas</span>
                 <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-white mb-4">Preguntas Frecuentes</h2>
@@ -611,9 +571,9 @@
             <!-- FAQ Accordion -->
             <div class="max-w-3xl mx-auto w-full space-y-4 mb-12">
                 <div class="faq-item bg-slate-900 rounded-2xl border border-slate-800 overflow-hidden">
-                    <button onclick="toggleFaq(this)" class="w-full p-5 text-left font-heading font-bold text-base text-white flex items-center justify-between gap-4 hover:text-teal-400 transition-colors">
+                    <button type="button" onclick="toggleFaq(this)" aria-expanded="false" class="w-full p-5 text-left font-heading font-bold text-base text-white flex items-center justify-between gap-4 hover:text-teal-400 transition-colors">
                         <span>¿Es un chatbot tradicional o un agente?</span>
-                        <i class="fa-solid fa-chevron-down text-teal-400 transition-transform"></i>
+                        <i class="fa-solid fa-chevron-down text-teal-400 transition-transform" aria-hidden="true"></i>
                     </button>
                     <div class="faq-answer hidden px-5 pb-5 text-sm text-slate-300 leading-relaxed border-t border-slate-800/60 pt-3">
                         Es un agente conversacional con IA capacitado con el contexto de tu marca. Comprende lenguaje natural y atiende las inquietudes como un especialista humano de tu equipo comercial.
@@ -621,9 +581,9 @@
                 </div>
 
                 <div class="faq-item bg-slate-900 rounded-2xl border border-slate-800 overflow-hidden">
-                    <button onclick="toggleFaq(this)" class="w-full p-5 text-left font-heading font-bold text-base text-white flex items-center justify-between gap-4 hover:text-teal-400 transition-colors">
+                    <button type="button" onclick="toggleFaq(this)" aria-expanded="false" class="w-full p-5 text-left font-heading font-bold text-base text-white flex items-center justify-between gap-4 hover:text-teal-400 transition-colors">
                         <span>¿Cuánto tarda la implementación?</span>
-                        <i class="fa-solid fa-chevron-down text-teal-400 transition-transform"></i>
+                        <i class="fa-solid fa-chevron-down text-teal-400 transition-transform" aria-hidden="true"></i>
                     </button>
                     <div class="faq-answer hidden px-5 pb-5 text-sm text-slate-300 leading-relaxed border-t border-slate-800/60 pt-3">
                         Aproximadamente 72 horas hábiles una vez entregados el catálogo de productos, las reglas de negocio y los accesos a los canales seleccionados.
@@ -631,9 +591,9 @@
                 </div>
 
                 <div class="faq-item bg-slate-900 rounded-2xl border border-slate-800 overflow-hidden">
-                    <button onclick="toggleFaq(this)" class="w-full p-5 text-left font-heading font-bold text-base text-white flex items-center justify-between gap-4 hover:text-teal-400 transition-colors">
+                    <button type="button" onclick="toggleFaq(this)" aria-expanded="false" class="w-full p-5 text-left font-heading font-bold text-base text-white flex items-center justify-between gap-4 hover:text-teal-400 transition-colors">
                         <span>¿Qué sucede si la IA no sabe responder una consulta?</span>
-                        <i class="fa-solid fa-chevron-down text-teal-400 transition-transform"></i>
+                        <i class="fa-solid fa-chevron-down text-teal-400 transition-transform" aria-hidden="true"></i>
                     </button>
                     <div class="faq-answer hidden px-5 pb-5 text-sm text-slate-300 leading-relaxed border-t border-slate-800/60 pt-3">
                         El sistema deriva la conversación de inmediato a tu equipo humano por WhatsApp o panel, adjuntando todo el contexto recopilado. La IA nunca inventa datos ni especula con precios.
@@ -641,9 +601,9 @@
                 </div>
 
                 <div class="faq-item bg-slate-900 rounded-2xl border border-slate-800 overflow-hidden">
-                    <button onclick="toggleFaq(this)" class="w-full p-5 text-left font-heading font-bold text-base text-white flex items-center justify-between gap-4 hover:text-teal-400 transition-colors">
+                    <button type="button" onclick="toggleFaq(this)" aria-expanded="false" class="w-full p-5 text-left font-heading font-bold text-base text-white flex items-center justify-between gap-4 hover:text-teal-400 transition-colors">
                         <span>¿Cómo funciona la promoción del Setup GRATIS?</span>
-                        <i class="fa-solid fa-chevron-down text-teal-400 transition-transform"></i>
+                        <i class="fa-solid fa-chevron-down text-teal-400 transition-transform" aria-hidden="true"></i>
                     </button>
                     <div class="faq-answer hidden px-5 pb-5 text-sm text-slate-300 leading-relaxed border-t border-slate-800/60 pt-3">
                         Al contratar cualquier plan abonando la cuota anual completa por adelantado, la tarifa de configuración e implementación inicial ($299 USD) queda totalmente bonificada (100% GRATIS).
@@ -660,8 +620,8 @@
                     Coordinemos una prueba personalizada demostrativa con tu catálogo real.
                 </p>
                 <div class="flex flex-wrap justify-center gap-4">
-                    <a href="https://wa.me/" target="_blank" class="inline-flex items-center gap-2 bg-slate-950 text-teal-400 font-heading font-extrabold text-sm px-6 py-3.5 rounded-full hover:bg-slate-900 transition-all shadow-lg">
-                        <i class="fa-brands fa-whatsapp text-lg"></i>
+                    <a href="https://wa.me/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-slate-950 text-teal-400 font-heading font-extrabold text-sm px-6 py-3.5 rounded-full hover:bg-slate-900 transition-all shadow-lg">
+                        <i class="fa-brands fa-whatsapp text-lg" aria-hidden="true"></i>
                         <span>Contactar por WhatsApp</span>
                     </a>
                 </div>
@@ -670,115 +630,33 @@
 
     </main>
 
+    <!-- FOOTER -->
+    <footer class="border-t border-slate-800/80 bg-slate-950 py-8 px-4 text-center text-slate-400 text-xs">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-2">
+                <img src="assets/logo.png" alt="Moofin" class="h-6 w-auto object-contain opacity-80">
+                <span>&copy; 2026 Moofin. Todos los derechos reservados.</span>
+            </div>
+            <p class="text-slate-300">Agentes conversacionales e Inteligencia Artificial para ventas 24/7.</p>
+        </div>
+    </footer>
+
     <!-- SLIDE CONTROL BAR (Sticky Bottom Controls) -->
-    <div class="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 bg-slate-900/95 backdrop-blur-md border border-slate-800 px-5 py-2.5 rounded-full shadow-2xl flex items-center gap-6 text-xs text-slate-300">
-        <button onclick="prevSlide()" class="hover:text-teal-400 transition-colors flex items-center gap-1 font-bold">
-            <i class="fa-solid fa-arrow-left"></i>
+    <nav class="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 bg-slate-900/95 backdrop-blur-md border border-slate-800 px-5 py-2.5 rounded-full shadow-2xl flex items-center gap-6 text-xs text-slate-300" aria-label="Controles de diapositivas">
+        <button type="button" onclick="prevSlide()" class="hover:text-teal-400 transition-colors flex items-center gap-1 font-bold" aria-label="Diapositiva anterior">
+            <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
             <span class="hidden sm:inline">Anterior</span>
         </button>
 
-        <span class="font-mono text-teal-400 font-bold">
+        <span class="font-mono text-teal-400 font-bold" aria-live="polite">
             Diapositiva <span id="current-slide-num">1</span> / 6
         </span>
 
-        <button onclick="nextSlide()" class="hover:text-teal-400 transition-colors flex items-center gap-1 font-bold">
+        <button type="button" onclick="nextSlide()" class="hover:text-teal-400 transition-colors flex items-center gap-1 font-bold" aria-label="Diapositiva siguiente">
             <span class="hidden sm:inline">Siguiente</span>
-            <i class="fa-solid fa-arrow-right"></i>
+            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
         </button>
-    </div>
+    </nav>
 
-    <!-- JAVASCRIPT SLIDE & UI LOGIC -->
-    <script>
-        let currentSlide = 0;
-        const totalSlides = 6;
-        let currentBilling = 'monthly';
-
-        function goToSlide(index) {
-            if (index < 0) index = 0;
-            if (index >= totalSlides) index = totalSlides - 1;
-            currentSlide = index;
-            
-            const slideElement = document.getElementById(`slide-${index + 1}`);
-            if (slideElement) {
-                slideElement.scrollIntoView({ behavior: 'smooth' });
-            }
-
-            document.getElementById('current-slide-num').innerText = currentSlide + 1;
-            updatePillNav();
-        }
-
-        function nextSlide() {
-            if (currentSlide < totalSlides - 1) {
-                goToSlide(currentSlide + 1);
-            }
-        }
-
-        function prevSlide() {
-            if (currentSlide > 0) {
-                goToSlide(currentSlide - 1);
-            }
-        }
-
-        function updatePillNav() {
-            const pills = document.querySelectorAll('.nav-pill');
-            pills.forEach((pill, idx) => {
-                if (idx === currentSlide) {
-                    pill.classList.add('bg-teal-500', 'text-slate-950', 'font-bold');
-                    pill.classList.remove('text-slate-300', 'hover:bg-slate-800');
-                } else {
-                    pill.classList.remove('bg-teal-500', 'text-slate-950', 'font-bold');
-                    pill.classList.add('text-slate-300', 'hover:bg-slate-800');
-                }
-            });
-        }
-
-        function setBilling(mode) {
-            currentBilling = mode;
-            const btnMonthly = document.getElementById('btn-monthly');
-            const btnAnnual = document.getElementById('btn-annual');
-            const setupProPrice = document.getElementById('setup-pro-price');
-            const setupBusPrice = document.getElementById('setup-business-price');
-
-            if (mode === 'annual') {
-                btnAnnual.className = 'px-4 py-2 rounded-full text-xs font-bold transition-all bg-gradient-to-r from-teal-500 to-emerald-400 text-slate-950 shadow-md';
-                btnMonthly.className = 'px-4 py-2 rounded-full text-xs font-bold transition-all text-slate-400 hover:text-white';
-                
-                setupProPrice.innerHTML = '<span class="line-through text-slate-500 mr-1.5">$299</span> <strong class="text-teal-300">¡0$ GRATIS!</strong>';
-                setupBusPrice.innerHTML = '<strong class="text-teal-300">¡GRATIS en Pago Anual!</strong>';
-            } else {
-                btnMonthly.className = 'px-4 py-2 rounded-full text-xs font-bold transition-all bg-slate-800 text-white';
-                btnAnnual.className = 'px-4 py-2 rounded-full text-xs font-bold transition-all text-slate-400 hover:text-white';
-
-                setupProPrice.innerText = '$299 USD';
-                setupBusPrice.innerText = 'A Consultar';
-            }
-        }
-
-        function toggleFaq(button) {
-            const faqItem = button.parentElement;
-            const answer = faqItem.querySelector('.faq-answer');
-            const icon = button.querySelector('i');
-
-            if (answer.classList.contains('hidden')) {
-                answer.classList.remove('hidden');
-                icon.style.transform = 'rotate(180deg)';
-            } else {
-                answer.classList.add('hidden');
-                icon.style.transform = 'rotate(0deg)';
-            }
-        }
-
-        // Key bindings for slide presentation
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowRight' || e.key === 'PageDown') {
-                nextSlide();
-            } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
-                prevSlide();
-            }
-        });
-
-        // Initialize pill highlight
-        updatePillNav();
-    </script>
 </body>
 </html>
