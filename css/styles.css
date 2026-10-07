@@ -72,8 +72,8 @@ html, body {
   content: '';
   position: absolute;
   inset: -150%;
-  background: conic-gradient(from 0deg, transparent 0deg 300deg, #00e0ba 330deg, #ffffff 360deg);
-  animation: rotateShimmer 5s linear infinite;
+  background: conic-gradient(from 0deg, transparent 0deg 280deg, rgba(255, 255, 255, 0.4) 320deg, #ffffff 360deg);
+  animation: rotateShimmer 4s linear infinite;
   z-index: 0;
 }
 
@@ -148,16 +148,11 @@ html, body {
 .floating-chat-bubble {
   position: absolute;
   pointer-events: none;
-  z-index: 10;
-  opacity: 0.28;
-  filter: drop-shadow(0 4px 12px rgba(0, 224, 186, 0.3));
-  animation: floatBubble 7s ease-in-out infinite alternate;
+  z-index: 5;
+  opacity: 0.35;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.08));
+  animation: floatBubble 6s ease-in-out infinite alternate;
 }
-
-.floating-chat-bubble:nth-child(2) { animation-delay: 1.2s; animation-duration: 8.5s; opacity: 0.22; }
-.floating-chat-bubble:nth-child(3) { animation-delay: 2.5s; animation-duration: 6.8s; opacity: 0.32; }
-.floating-chat-bubble:nth-child(4) { animation-delay: 3.8s; animation-duration: 9.2s; opacity: 0.2; }
-.floating-chat-bubble:nth-child(5) { animation-delay: 0.8s; animation-duration: 7.6s; opacity: 0.26; }
 
 @keyframes floatBubble {
   0% {
@@ -278,6 +273,25 @@ html, body {
   background: #021f1a;
   color: #ffffff;
   box-shadow: 0 4px 12px rgba(2, 31, 26, 0.2);
+}
+
+/* ==================== FONDO FUCSIA PARA PLANES Y FAQ ==================== */
+.fuchsia-full-bg {
+  background: linear-gradient(180deg, #be185d 0%, #9d174d 50%, #831843 100%);
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+}
+.fuchsia-full-bg h2, 
+.fuchsia-full-bg h3,
+.fuchsia-full-bg p {
+  color: #ffffff;
+}
+.fuchsia-full-bg .bg-white h3 {
+  color: #0f172a;
+}
+.fuchsia-full-bg .bg-white p {
+  color: #64748b;
 }
 
 /* ==================== PREGUNTAS FRECUENTES ESTILO TARJETA MODERNA ==================== */
