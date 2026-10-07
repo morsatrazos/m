@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Moofin | Sistema autónomo de IA para empresas</title>
-  <meta name="description" content="Comprueba con un clic o tap cómo responde el agente a las situaciones reales de tu negocio. Agentes de IA para WhatsApp, catálogo, stock y citas en Venezuela y Latinoamérica.">
+  <meta name="description" content="Comprueba cómo responde el agente a situaciones reales de tu negocio. Agentes de IA para WhatsApp, catálogo, stock y citas en Venezuela y Latinoamérica.">
   <meta name="keywords" content="chatbot whatsapp venezuela, agente ia empresas, agendamiento citas whatsapp, automatizar catálogo whatsapp, ia para negocios">
   <link rel="canonical" href="https://www.moofin.com.ve/">
   
-  <!-- Open Graph / Meta Compartir -->
+  <!-- Open Graph -->
   <meta property="og:title" content="Moofin | Sistema autónomo de IA para empresas">
   <meta property="og:description" content="Automatiza WhatsApp, catálogo y agendamiento de citas sin tareas repetitivas.">
   <meta property="og:url" content="https://www.moofin.com.ve/">
@@ -49,7 +49,6 @@
             brand: '#00e0ba',
             'brand-dark': '#00b899',
             'brand-deep': '#004d40',
-            surface: '#021815',
             darktext: '#04221e',
           },
           fontFamily: {
@@ -69,7 +68,6 @@
       font-family: 'Plus Jakarta Sans', sans-serif;
     }
 
-    /* Fondo dinámico y degradado turquesa */
     .turquoise-canvas {
       position: fixed;
       top: 0;
@@ -78,49 +76,44 @@
       height: 100vh;
       z-index: -1;
       pointer-events: none;
-      background: radial-gradient(circle at 50% 15%, #25ffd7 0%, #00e0ba 50%, #00bfa0 100%);
+      background: radial-gradient(circle at 50% 15%, #2effda 0%, #00e0ba 50%, #00bfa0 100%);
     }
 
-    /* Pestañas limpias para los casos de uso */
+    /* Pestañas 100% redondeadas */
     .tab-btn {
-      transition: all 0.2s ease;
+      transition: all 0.25s ease;
       background: rgba(255, 255, 255, 0.45);
       color: #03362e;
-      border: 1px solid rgba(255, 255, 255, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.7);
     }
     .tab-btn:hover {
-      background: rgba(255, 255, 255, 0.7);
+      background: rgba(255, 255, 255, 0.75);
       transform: translateY(-1px);
     }
     .tab-btn.active {
       background: #04221e;
       color: #ffffff;
       border-color: #04221e;
-      box-shadow: 0 4px 14px rgba(4, 34, 30, 0.2);
+      box-shadow: 0 4px 14px rgba(4, 34, 30, 0.25);
     }
 
-    /* Scrollbar personalizada */
-    ::-webkit-scrollbar {
-      width: 8px;
+    /* Scroll interno del chat */
+    .chat-scroll::-webkit-scrollbar {
+      width: 5px;
     }
-    ::-webkit-scrollbar-track {
-      background: #00bfa0;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #04221e;
-      border-radius: 4px;
+    .chat-scroll::-webkit-scrollbar-thumb {
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
     }
   </style>
 </head>
 <body class="relative min-h-screen">
 
-  <!-- Canvas con partículas sutiles de luz -->
   <canvas id="ambient-canvas" class="turquoise-canvas"></canvas>
 
   <!-- NAVBAR -->
   <header class="w-full py-6 px-6 sm:px-12 flex items-center justify-between relative z-50">
     <div class="flex items-center gap-4">
-      <!-- Logo Moofin escalado 50% más grande (h-28 / 114px aprox) -->
       <a href="/" class="block transition-transform hover:scale-105">
         <img 
           src="https://xclczvqoggvuuzaualbs.supabase.co/storage/v1/object/public/content-media/White-Moofin.png" 
@@ -152,98 +145,115 @@
   <!-- HERO SECTION -->
   <main class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 pt-6 pb-20 text-center">
     
-    <!-- Título y Subtítulo directos al grano -->
-    <h1 class="text-4xl sm:text-6xl font-extrabold text-darktext tracking-tight max-w-3xl mx-auto leading-tight sm:leading-none mb-5">
+    <h1 class="text-4xl sm:text-6xl font-extrabold text-darktext tracking-tight max-w-3xl mx-auto leading-tight sm:leading-none mb-4">
       Sistema autónomo de IA para empresas
     </h1>
     
     <p class="text-lg sm:text-xl font-medium text-darktext/90 max-w-2xl mx-auto mb-10 leading-relaxed">
-      Comprueba con un clic o tap cómo responde el agente a las situaciones reales de tu negocio.
+      Comprueba cómo responde el agente a situaciones reales de tu negocio.
     </p>
 
-    <!-- SELECTOR DE CASOS DE USO (Directo, limpio, sin saturación) -->
+    <!-- SELECTOR DE CASOS DE USO CON BORDES 100% REDONDEADOS -->
     <div id="demo" class="w-full max-w-xl mx-auto mb-8">
-      <p class="text-xs font-bold tracking-wider text-darktext/70 uppercase mb-3 text-center">
-        Casos de uso — Haz clic para probar:
+      <p class="text-xs font-bold tracking-wider text-darktext/75 uppercase mb-3 text-center">
+        Selecciona un caso de uso para probar la interacción:
       </p>
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
-        <button class="tab-btn active py-2.5 px-3 rounded-xl text-xs sm:text-sm font-bold" onclick="selectScenario('cita', this)">
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+        <button class="tab-btn py-2.5 px-4 rounded-full text-xs sm:text-sm font-bold" onclick="selectScenario('cita', this)">
           Agendar Cita
         </button>
-        <button class="tab-btn py-2.5 px-3 rounded-xl text-xs sm:text-sm font-bold" onclick="selectScenario('stock', this)">
+        <button class="tab-btn py-2.5 px-4 rounded-full text-xs sm:text-sm font-bold" onclick="selectScenario('stock', this)">
           Consultar Stock
         </button>
-        <button class="tab-btn py-2.5 px-3 rounded-xl text-xs sm:text-sm font-bold" onclick="selectScenario('venta', this)">
+        <button class="tab-btn py-2.5 px-4 rounded-full text-xs sm:text-sm font-bold" onclick="selectScenario('venta', this)">
           Cierre de Venta
         </button>
-        <button class="tab-btn py-2.5 px-3 rounded-xl text-xs sm:text-sm font-bold" onclick="selectScenario('info', this)">
+        <button class="tab-btn py-2.5 px-4 rounded-full text-xs sm:text-sm font-bold" onclick="selectScenario('info', this)">
           Horarios & Info
         </button>
       </div>
     </div>
 
-    <!-- SIMULADOR LIMPIO DE WHATSAPP (Sin contenedor glass ni adornos recargados) -->
-    <div class="w-full max-w-sm mx-auto shadow-2xl rounded-[2.5rem] bg-[#0b141a] overflow-hidden border-4 border-darktext/20">
+    <!-- SIMULADOR BLANCO PURO (ESTILO WHATSAPP REAL) CON ALTURA FIJA ANTI-REBOTES -->
+    <div class="w-full max-w-sm mx-auto shadow-2xl rounded-[2.5rem] bg-white overflow-hidden border-4 border-white/80">
       
-      <!-- Barra superior de WhatsApp -->
-      <div class="bg-[#1f2c34] px-4 py-3.5 flex items-center justify-between text-white border-b border-white/5">
+      <!-- Barra superior oficial WhatsApp -->
+      <div class="bg-[#075E54] px-4 py-3.5 flex items-center justify-between text-white">
         <div class="flex items-center gap-3">
           <div class="relative">
-            <div class="w-9 h-9 rounded-full bg-brand flex items-center justify-center font-bold text-darktext text-sm">
+            <div class="w-9 h-9 rounded-full bg-brand flex items-center justify-center font-bold text-darktext text-sm shadow-inner">
               M
             </div>
-            <span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-400 border-2 border-[#1f2c34] rounded-full"></span>
+            <span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-400 border-2 border-[#075E54] rounded-full"></span>
           </div>
           <div class="text-left">
             <p class="font-semibold text-sm leading-tight text-white">Moofin Asistente</p>
-            <p class="text-[11px] text-emerald-400 font-medium">en línea</p>
+            <p class="text-[11px] text-emerald-200 font-medium">en línea</p>
           </div>
         </div>
-        <div class="flex items-center gap-3 text-slate-300">
+        <div class="flex items-center gap-3 text-white/80">
           <svg class="w-4 h-4 cursor-pointer hover:text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 4V3z"/></svg>
           <svg class="w-4 h-4 cursor-pointer hover:text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
         </div>
       </div>
 
-      <!-- Ventana de Chat -->
-      <div id="chat-box" class="p-4 space-y-3 bg-[#0b141a] min-h-[380px] max-h-[380px] overflow-y-auto flex flex-col justify-start text-left text-xs leading-relaxed">
-        <!-- Los mensajes se inyectan dinámicamente con JS -->
+      <!-- Ventana de Chat: Altura estrictamente fija de 390px -->
+      <div id="chat-box" class="chat-scroll p-4 space-y-2.5 bg-[#EFEAE2] h-[390px] overflow-y-auto flex flex-col justify-start text-left text-xs leading-relaxed">
+        <!-- Mensaje de bienvenida inicial -->
+        <div id="placeholder-msg" class="my-auto text-center px-4 py-6 bg-white/70 rounded-2xl border border-dashed border-slate-300">
+          <div class="w-10 h-10 rounded-full bg-brand/30 text-darktext flex items-center justify-center font-bold mx-auto mb-2 text-sm">
+            ☝️
+          </div>
+          <p class="font-bold text-slate-700 text-xs">Simulador listo</p>
+          <p class="text-slate-500 text-[11px] mt-1">Haz clic en cualquiera de los botones de arriba para iniciar la conversación en tiempo real.</p>
+        </div>
       </div>
 
-      <!-- Indicador de tipeo -->
-      <div id="typing-indicator" class="hidden px-4 py-2 bg-[#0b141a] text-slate-400 text-[11px] items-center gap-2 border-t border-white/5">
-        <span class="w-1.5 h-1.5 rounded-full bg-brand animate-ping"></span>
-        <span>Moofin está escribiendo...</span>
+      <!-- Indicador de tipeo con altura fija para evitar saltos bruscos -->
+      <div class="h-6 bg-[#EFEAE2] px-4 flex items-center">
+        <div id="typing-indicator" class="hidden text-slate-500 text-[11px] items-center gap-1.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#075E54] animate-bounce"></span>
+          <span class="w-1.5 h-1.5 rounded-full bg-[#075E54] animate-bounce [animation-delay:0.2s]"></span>
+          <span class="w-1.5 h-1.5 rounded-full bg-[#075E54] animate-bounce [animation-delay:0.4s]"></span>
+          <span class="ml-1 text-[10px] text-slate-600 font-medium">escribiendo...</span>
+        </div>
       </div>
 
-      <!-- Input inferior estético -->
-      <div class="bg-[#1f2c34] px-3 py-2.5 flex items-center gap-2 border-t border-white/5">
-        <div class="flex-1 bg-[#2a3942] rounded-full px-3 py-1.5 text-slate-400 text-xs flex items-center justify-between">
+      <!-- Input inferior clásico WhatsApp -->
+      <div class="bg-[#F0F2F5] px-3 py-2.5 flex items-center gap-2 border-t border-slate-200">
+        <div class="flex-1 bg-white rounded-full px-3 py-1.5 text-slate-400 text-xs flex items-center justify-between border border-slate-200 shadow-inner">
           <span>Escribe un mensaje...</span>
           <svg class="w-3.5 h-3.5 text-slate-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 100-2 1 1 0 000 2zm7-1a1 1 0 11-2 0 1 1 0 012 0zm-.464 5.535a1 1 0 10-1.415-1.414 3 3 0 01-4.242 0 1 1 0 00-1.415 1.414 5 5 0 007.072 0z" clip-rule="evenodd"/></svg>
         </div>
-        <div class="w-7 h-7 rounded-full bg-brand flex items-center justify-center text-darktext">
+        <div class="w-8 h-8 rounded-full bg-[#075E54] flex items-center justify-center text-white shadow">
           <svg class="w-3.5 h-3.5 transform rotate-45 -ml-0.5" fill="currentColor" viewBox="0 0 20 20"><path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"/></svg>
         </div>
       </div>
 
     </div>
 
-    <!-- CTA inmediato debajo del simulador -->
-    <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+    <!-- SECCIÓN DE ACCIÓN Y TIEMPO DE PUESTA EN MARCHA RESALTADO -->
+    <div class="mt-8 flex flex-col items-center justify-center gap-3">
+      <!-- Badge destacado -->
+      <div class="inline-flex items-center gap-2 bg-white/90 text-darktext border border-darktext/20 px-4 py-1.5 rounded-full shadow-sm text-xs font-bold">
+        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+        <span>⚡ Implementación lista en 48 - 72 horas</span>
+      </div>
+
+      <!-- CTA de conversión directa -->
       <a 
-        href="https://wa.me/584240000000?text=Hola,%20quiero%20probar%20un%20agente%20de%20Moofin%20para%20mi%20negocio" 
+        href="https://wa.me/584240000000?text=Hola,%20quiero%20solicitar%20un%20agente%20de%20Moofin%20para%20mi%20negocio" 
         target="_blank"
-        class="w-full sm:w-auto bg-darktext hover:bg-black text-white px-8 py-3.5 rounded-full font-bold text-sm shadow-xl transition-all hover:scale-105"
+        class="w-full sm:w-auto bg-darktext hover:bg-black text-white px-9 py-4 rounded-full font-extrabold text-sm sm:text-base shadow-xl transition-all hover:scale-105 flex items-center justify-center gap-2"
       >
-        Probar agente con mi negocio en WhatsApp
+        <span>Solicitar agente para mi negocio</span>
+        <svg class="w-4 h-4 text-brand" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
       </a>
-      <span class="text-xs font-semibold text-darktext/80">Implementación lista en 48-72 horas</span>
     </div>
 
   </main>
 
-  <!-- SECCIÓN: FILOSOFÍA Y METAS REALES -->
+  <!-- SECCIÓN: BENEFICIOS Y TAREAS MECÁNICAS -->
   <section id="beneficios" class="bg-darktext text-white py-20 px-6 relative z-10">
     <div class="max-w-5xl mx-auto">
       <div class="text-center max-w-2xl mx-auto mb-14">
@@ -256,10 +266,9 @@
         </p>
       </div>
 
-      <!-- 3 Bloques concretos (Máximo 2 líneas de texto) -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         
-        <div class="bg-surface/60 border border-white/10 p-6 rounded-2xl">
+        <div class="bg-slate-900/60 border border-white/10 p-6 rounded-2xl">
           <div class="w-10 h-10 rounded-xl bg-brand/20 text-brand flex items-center justify-center font-bold mb-4">
             01
           </div>
@@ -269,7 +278,7 @@
           </p>
         </div>
 
-        <div class="bg-surface/60 border border-white/10 p-6 rounded-2xl">
+        <div class="bg-slate-900/60 border border-white/10 p-6 rounded-2xl">
           <div class="w-10 h-10 rounded-xl bg-brand/20 text-brand flex items-center justify-center font-bold mb-4">
             02
           </div>
@@ -279,7 +288,7 @@
           </p>
         </div>
 
-        <div class="bg-surface/60 border border-white/10 p-6 rounded-2xl">
+        <div class="bg-slate-900/60 border border-white/10 p-6 rounded-2xl">
           <div class="w-10 h-10 rounded-xl bg-brand/20 text-brand flex items-center justify-center font-bold mb-4">
             03
           </div>
@@ -291,7 +300,6 @@
 
       </div>
 
-      <!-- Cintillo de métricas directas -->
       <div class="mt-14 grid grid-cols-3 border-t border-white/10 pt-8 text-center">
         <div>
           <p class="text-2xl sm:text-3xl font-extrabold text-brand">&lt; 3s</p>
@@ -309,7 +317,7 @@
     </div>
   </section>
 
-  <!-- SECCIÓN PLANES TRANSPARENTES -->
+  <!-- SECCIÓN PLANES -->
   <section id="planes" class="py-20 px-6 relative z-10 max-w-5xl mx-auto">
     <div class="text-center max-w-xl mx-auto mb-14">
       <span class="text-xs font-mono font-bold uppercase tracking-wider text-darktext/70">Inversión clara</span>
@@ -374,7 +382,7 @@
         </a>
       </div>
 
-      <!-- PLAN BUSINESS / CUSTOM -->
+      <!-- PLAN BUSINESS -->
       <div class="bg-white/80 rounded-3xl p-6 border border-darktext/10 shadow-lg flex flex-col justify-between">
         <div>
           <h3 class="text-base font-bold text-darktext">Business</h3>
@@ -447,9 +455,8 @@
     </div>
   </footer>
 
-  <!-- SCRIPT: SIMULADOR DE CHATS Y FONDO DINÁMICO -->
+  <!-- SCRIPT CON CONTROL MANUAL Y PAUSA DE LECTURA (1s MÁS) -->
   <script>
-    // Diálogos detallados con cierre real y agradecimiento
     const scenarios = {
       cita: [
         { sender: 'user', text: 'Buenas tardes, quisiera saber si tienen turno disponible para consulta odontológica esta semana.' },
@@ -507,17 +514,20 @@
         if (msg.sender === 'bot') {
           typingIndicator.classList.remove('hidden');
           typingIndicator.classList.add('flex');
+          // Espera 2.1 segundos de tipeo (1 segundo más de lectura pausada)
           currentTimeout = setTimeout(() => {
             typingIndicator.classList.add('hidden');
             typingIndicator.classList.remove('flex');
             appendMsg(msg);
             index++;
-            currentTimeout = setTimeout(step, 1400);
-          }, 1100);
+            // Pausa de 2.4 segundos antes de la siguiente réplica
+            currentTimeout = setTimeout(step, 2400);
+          }, 2100);
         } else {
           appendMsg(msg);
           index++;
-          currentTimeout = setTimeout(step, 900);
+          // Pausa de 1.8 segundos antes de que el bot empiece a escribir
+          currentTimeout = setTimeout(step, 1800);
         }
       }
 
@@ -529,9 +539,11 @@
       const div = document.createElement('div');
       
       if (msg.sender === 'user') {
-        div.className = 'ml-auto bg-[#005c4b] text-white p-2.5 rounded-xl rounded-tr-none max-w-[85%] shadow-sm animate-fade-in text-[11px] sm:text-xs';
+        // Globo de usuario estilo WhatsApp (Verde claro #D9FDD3)
+        div.className = 'ml-auto bg-[#D9FDD3] text-slate-800 p-2.5 rounded-2xl rounded-tr-none max-w-[85%] shadow-sm text-xs border border-[#c4e8be]';
       } else {
-        div.className = 'mr-auto bg-[#202c33] text-slate-100 p-2.5 rounded-xl rounded-tl-none max-w-[85%] shadow-sm animate-fade-in text-[11px] sm:text-xs border-l-2 border-brand';
+        // Globo de respuesta del bot estilo WhatsApp (Blanco #FFFFFF)
+        div.className = 'mr-auto bg-white text-slate-800 p-2.5 rounded-2xl rounded-tl-none max-w-[85%] shadow-sm text-xs border border-slate-200';
       }
       div.innerText = msg.text;
       chatBox.appendChild(div);
@@ -544,13 +556,11 @@
       renderScenario(key);
     }
 
-    // Inicializar primer escenario
+    // Inicializar sólo canvas; no arranca el chat en automático
     window.addEventListener('DOMContentLoaded', () => {
-      renderScenario('cita');
       initCanvas();
     });
 
-    // Fondo ambiental sutil de destellos
     function initCanvas() {
       const canvas = document.getElementById('ambient-canvas');
       const ctx = canvas.getContext('2d');
@@ -562,13 +572,13 @@
         h = canvas.height = window.innerHeight;
       });
 
-      const dots = Array.from({ length: 28 }, () => ({
+      const dots = Array.from({ length: 24 }, () => ({
         x: Math.random() * w,
         y: Math.random() * h,
         radius: Math.random() * 2 + 1,
-        vx: (Math.random() - 0.5) * 0.4,
-        vy: (Math.random() - 0.5) * 0.4,
-        alpha: Math.random() * 0.5 + 0.2
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        alpha: Math.random() * 0.4 + 0.2
       }));
 
       function render() {
