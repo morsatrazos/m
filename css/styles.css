@@ -1,4 +1,4 @@
-/* Bloqueo estricto de overflow horizontal */
+/* Bloqueo de overflow horizontal */
 html, body {
   max-width: 100%;
   overflow-x: hidden !important;
@@ -14,9 +14,9 @@ html, body {
   background: linear-gradient(
     180deg,
     #00e0ba 0%,
-    #15e8c4 32%,
-    #5df6de 60%,
-    #c4fcf3 82%,
+    #15e8c4 35%,
+    #5df6de 65%,
+    #c4fcf3 85%,
     #ffffff 100%
   );
   width: 100%;
@@ -52,12 +52,12 @@ html, body {
   font-weight: 700;
 }
 
-/* Filtro exacto para que el logo blanco tome el color petróleo #021f1a de los textos */
+/* Filtro exacto para igualar el logo al color oscuro de los textos (#021f1a) */
 .logo-dark-match {
   filter: brightness(0) saturate(100%) invert(8%) sepia(21%) saturate(2329%) hue-rotate(124deg) brightness(97%) contrast(98%);
 }
 
-/* Cápsula deslizante del Hero */
+/* Cápsula de botones */
 .pills-container {
   position: relative;
   background: #ffffff;
@@ -104,13 +104,14 @@ html, body {
   font-weight: 800;
 }
 
+/* Chasis del móvil más estilizado */
 .phone-shadow {
   box-shadow: 
-    0 25px 60px -15px rgba(0, 140, 116, 0.28),
-    0 10px 25px -10px rgba(0, 0, 0, 0.08);
+    0 30px 70px -15px rgba(0, 140, 116, 0.32),
+    0 12px 28px -10px rgba(0, 0, 0, 0.1);
 }
 
-/* ==================== CINTILLO LOGOS MARQUEE ==================== */
+/* ==================== CINTILLO LOGOS ==================== */
 .marquee-wrapper {
   overflow: hidden;
   position: relative;
@@ -136,10 +137,10 @@ html, body {
 }
 
 .client-logo {
-  height: 42px;
+  height: 44px;
   width: auto;
-  object-contain: contain;
-  filter: grayscale(100%) opacity(65%);
+  object-fit: contain;
+  filter: grayscale(100%) opacity(70%);
   transition: all 0.3s ease;
 }
 
@@ -148,35 +149,25 @@ html, body {
   transform: scale(1.08);
 }
 
-/* ==================== AMBIENTES TURQUESA Y FUCSIA ==================== */
-.glow-turq-bg {
-  position: absolute;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(0, 224, 186, 0.18) 0%, rgba(0, 224, 186, 0) 70%);
-  border-radius: 9999px;
-  pointer-events: none;
-}
-
-/* Difuminado Fucsia / Neón en Planes */
-.fuchsia-diffuse-bg {
+/* ==================== FONDO TURQUESA PARA DASHBOARD ==================== */
+.dashboard-turquoise-bg {
+  background: radial-gradient(110% 80% at 50% 0%, #00e0ba 0%, #17ebd7 30%, #ecfdfa 75%, #ffffff 100%);
   position: relative;
-  background: radial-gradient(100% 70% at 50% 10%, rgba(244, 63, 150, 0.12) 0%, rgba(217, 4, 142, 0.05) 50%, #ffffff 100%);
 }
 
-.fuchsia-orb {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 650px;
-  height: 380px;
-  background: radial-gradient(circle, rgba(236, 72, 153, 0.22) 0%, rgba(219, 39, 119, 0.08) 50%, transparent 75%);
-  filter: blur(40px);
-  pointer-events: none;
+/* Efecto de entrada animada para las tarjetas */
+.metric-card-animated {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease-out, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* ==================== BENTO GRID & ESTILOS DASHBOARD ==================== */
+.metric-card-animated.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Bento Grid */
 .bento-card {
   background: #ffffff;
   border: 1px solid rgba(0, 224, 186, 0.25);
@@ -194,6 +185,24 @@ html, body {
   background-color: #ffffff;
   border-color: #00e0ba;
   box-shadow: 0 4px 16px rgba(0, 224, 186, 0.2);
+}
+
+/* Difuminado Fucsia en Planes */
+.fuchsia-diffuse-bg {
+  position: relative;
+  background: radial-gradient(100% 70% at 50% 10%, rgba(244, 63, 150, 0.12) 0%, rgba(217, 4, 142, 0.05) 50%, #ffffff 100%);
+}
+
+.fuchsia-orb {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 650px;
+  height: 380px;
+  background: radial-gradient(circle, rgba(236, 72, 153, 0.22) 0%, rgba(219, 39, 119, 0.08) 50%, transparent 75%);
+  filter: blur(40px);
+  pointer-events: none;
 }
 
 .no-scrollbar::-webkit-scrollbar {

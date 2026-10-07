@@ -41,35 +41,47 @@
 </head>
 <body class="w-full">
 
-  <!-- ==================== 1. HERO SECTION ==================== -->
-  <section class="hero-turquoise-glow pt-6 pb-16 px-4">
+  <!-- ==================== 1. HERO SECTION (CENTRADOS Y JERARQUÍA OPTIMIZADA) ==================== -->
+  <section class="hero-turquoise-glow pt-6 pb-20 px-4">
     <div class="ambient-aurora"></div>
 
-    <header class="max-w-4xl mx-auto flex items-center justify-between relative z-10 mb-8 sm:mb-12">
-      <a href="/" class="block transition-transform hover:scale-105 active:scale-95">
-        <!-- Logo teñido exactamente al color oscuro de las letras (#021f1a) -->
-        <img 
-          src="https://xclczvqoggvuuzaualbs.supabase.co/storage/v1/object/public/content-media/White-Moofin.png" 
-          alt="Moofin" 
-          class="h-16 sm:h-20 w-auto object-contain logo-dark-match transition-all"
-        >
-      </a>
-
+    <!-- Botón Ver Planes flotante a la derecha -->
+    <div class="max-w-5xl mx-auto flex justify-end relative z-20 mb-4 sm:mb-6">
       <a 
         href="#planes" 
-        class="bg-[#021f1a] hover:bg-black text-white text-xs sm:text-sm font-extrabold px-6 py-3 rounded-full shadow-md transition-all active:scale-95 flex items-center gap-1.5"
+        class="bg-[#021f1a] hover:bg-black text-white text-xs sm:text-sm font-extrabold px-6 py-2.5 rounded-full shadow-md transition-all active:scale-95 flex items-center gap-1.5"
       >
         <span>Ver Planes</span>
         <svg class="w-3.5 h-3.5 text-[#00e0ba]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
       </a>
-    </header>
+    </div>
 
+    <!-- BLOQUE CENTRAL: LOGO -> ENCABEZADO -> SUBTÍTULO -> PÍLDORAS -->
     <div class="max-w-3xl mx-auto text-center relative z-10">
-      <h1 class="hero-title text-3xl sm:text-5xl lg:text-6xl tracking-tight leading-[1.12] mb-6">
+      
+      <!-- 1. Logo Moofin en el centro superior -->
+      <div class="flex justify-center mb-6">
+        <a href="/" class="block transition-transform hover:scale-105 active:scale-95">
+          <img 
+            src="https://xclczvqoggvuuzaualbs.supabase.co/storage/v1/object/public/content-media/White-Moofin.png" 
+            alt="Moofin" 
+            class="h-20 sm:h-24 w-auto object-contain logo-dark-match transition-all"
+          >
+        </a>
+      </div>
+
+      <!-- 2. Encabezado principal -->
+      <h1 class="hero-title text-4xl sm:text-6xl lg:text-7xl tracking-tight leading-[1.08] mb-4">
         IA conversacional para empresas ágiles
       </h1>
 
-      <div class="w-full flex justify-center mb-5">
+      <!-- 3. Subtítulo directamente debajo del encabezado -->
+      <p class="hero-subtitle text-base sm:text-xl max-w-xl mx-auto mb-7 leading-relaxed">
+        Comprueba cómo responde la IA a situaciones reales de tu negocio.
+      </p>
+
+      <!-- 4. Píldora de acciones con cápsula interactiva -->
+      <div class="w-full flex justify-center mb-10">
         <div class="pills-container inline-flex max-w-full overflow-x-auto no-scrollbar gap-1" id="pills-wrapper">
           <div id="tab-bubble"></div>
           <button class="pill-item active text-xs sm:text-sm" onclick="selectScenario('cita', this)">Agendar Cita</button>
@@ -78,20 +90,17 @@
           <button class="pill-item text-xs sm:text-sm" onclick="selectScenario('info', this)">Horarios & Info</button>
         </div>
       </div>
-
-      <p class="hero-subtitle text-sm sm:text-base max-w-md mx-auto mb-10 leading-relaxed">
-        Comprueba cómo responde la IA a situaciones reales de tu negocio.
-      </p>
     </div>
 
-    <!-- MOCKUP DEL TELÉFONO -->
-    <div class="w-full max-w-[340px] sm:max-w-[360px] mx-auto relative z-20">
-      <div class="phone-shadow rounded-[2.6rem] bg-[#111b21] p-2.5 border-4 border-white">
-        <div class="rounded-[2.1rem] overflow-hidden bg-[#efeae2] flex flex-col h-[400px]">
+    <!-- MOCKUP DEL SMARTPHONE MÁS ALTO (h-[520px]) -->
+    <div class="w-full max-w-[360px] sm:max-w-[390px] mx-auto relative z-20">
+      <div class="phone-shadow rounded-[3rem] bg-[#111b21] p-3 border-4 border-white">
+        <div class="rounded-[2.4rem] overflow-hidden bg-[#efeae2] flex flex-col h-[520px]">
           
-          <div class="bg-[#075e54] px-4 py-3 flex items-center justify-between text-white shrink-0">
-            <div class="flex items-center gap-2.5">
-              <div class="w-8 h-8 rounded-full bg-[#00e0ba] text-[#003830] font-black text-xs flex items-center justify-center">
+          <!-- Cabecera de WhatsApp -->
+          <div class="bg-[#075e54] px-4 py-3.5 flex items-center justify-between text-white shrink-0">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full bg-[#00e0ba] text-[#003830] font-black text-xs flex items-center justify-center">
                 M
               </div>
               <div class="text-left">
@@ -104,8 +113,10 @@
             </div>
           </div>
 
-          <div id="chat-box" class="p-3.5 space-y-2.5 overflow-y-auto flex-1 flex flex-col justify-start text-left text-xs leading-relaxed"></div>
+          <!-- Ventana de Chat alta y espaciosa -->
+          <div id="chat-box" class="p-4 space-y-3 overflow-y-auto flex-1 flex flex-col justify-start text-left text-xs leading-relaxed"></div>
 
+          <!-- Indicador de tipeo -->
           <div class="h-6 bg-[#efeae2] px-4 flex items-center shrink-0">
             <div id="typing-indicator" class="hidden text-slate-500 text-[10px] items-center gap-1.5">
               <span class="w-1.5 h-1.5 rounded-full bg-[#075e54] animate-bounce"></span>
@@ -115,12 +126,13 @@
             </div>
           </div>
 
-          <div class="bg-[#f0f2f5] px-3 py-2 flex items-center gap-2 border-t border-slate-200 shrink-0">
-            <div class="flex-1 bg-white rounded-full px-3 py-1.5 text-slate-400 text-xs flex items-center justify-between border border-slate-200">
+          <!-- Barra de mensaje inferior -->
+          <div class="bg-[#f0f2f5] px-3.5 py-2.5 flex items-center gap-2 border-t border-slate-200 shrink-0">
+            <div class="flex-1 bg-white rounded-full px-4 py-2 text-slate-400 text-xs flex items-center justify-between border border-slate-200">
               <span>Mensaje...</span>
             </div>
-            <div class="w-7 h-7 rounded-full bg-[#075e54] flex items-center justify-center text-white">
-              <svg class="w-3 h-3 transform rotate-45 -ml-0.5" fill="currentColor" viewBox="0 0 20 20"><path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"/></svg>
+            <div class="w-8 h-8 rounded-full bg-[#075e54] flex items-center justify-center text-white">
+              <svg class="w-3.5 h-3.5 transform rotate-45 -ml-0.5" fill="currentColor" viewBox="0 0 20 20"><path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"/></svg>
             </div>
           </div>
 
@@ -147,7 +159,7 @@
     </div>
   </section>
 
-  <!-- ==================== 2. CINTILLO DE CLIENTES (MARQUEE INFINITO CON TUS LOGOS) ==================== -->
+  <!-- ==================== 2. CINTILLO DE CLIENTES (LOGO SERVIMÁS ACTUALIZADO) ==================== -->
   <section class="py-12 bg-white border-b border-slate-100 overflow-hidden relative">
     <div class="max-w-5xl mx-auto px-4 text-center">
       <p class="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-8">
@@ -156,8 +168,7 @@
 
       <div class="marquee-wrapper py-2">
         <div class="marquee-content items-center">
-          <!-- Bloque de logos 1 -->
-          <img src="https://xclczvqoggvuuzaualbs.supabase.co/storage/v1/object/public/content-media/servimas.png" alt="CC Servimás" class="client-logo">
+          <img src="https://xclczvqoggvuuzaualbs.supabase.co/storage/v1/object/public/content-media/Sevimas-logo-black-letras.png" alt="CC Servimás" class="client-logo">
           <img src="https://xclczvqoggvuuzaualbs.supabase.co/storage/v1/object/public/content-media/karina.png" alt="Hotel Kariña" class="client-logo">
           <img src="https://xclczvqoggvuuzaualbs.supabase.co/storage/v1/object/public/content-media/alejandria.png" alt="Alejandría" class="client-logo">
           <img src="https://xclczvqoggvuuzaualbs.supabase.co/storage/v1/object/public/content-media/camoderna.png" alt="Clínica Automotriz Moderna" class="client-logo">
@@ -165,8 +176,8 @@
           <img src="https://xclczvqoggvuuzaualbs.supabase.co/storage/v1/object/public/content-media/vimoca.png" alt="Vimoca" class="client-logo">
           <img src="https://xclczvqoggvuuzaualbs.supabase.co/storage/v1/object/public/content-media/infinityart3d.png" alt="Infinity Art 3D" class="client-logo">
 
-          <!-- Bloque duplicado para bucle visual continuo -->
-          <img src="https://xclczvqoggvuuzaualbs.supabase.co/storage/v1/object/public/content-media/servimas.png" alt="CC Servimás" class="client-logo">
+          <!-- Duplicado continuo -->
+          <img src="https://xclczvqoggvuuzaualbs.supabase.co/storage/v1/object/public/content-media/Sevimas-logo-black-letras.png" alt="CC Servimás" class="client-logo">
           <img src="https://xclczvqoggvuuzaualbs.supabase.co/storage/v1/object/public/content-media/karina.png" alt="Hotel Kariña" class="client-logo">
           <img src="https://xclczvqoggvuuzaualbs.supabase.co/storage/v1/object/public/content-media/alejandria.png" alt="Alejandría" class="client-logo">
           <img src="https://xclczvqoggvuuzaualbs.supabase.co/storage/v1/object/public/content-media/camoderna.png" alt="Clínica Automotriz Moderna" class="client-logo">
@@ -178,64 +189,61 @@
     </div>
   </section>
 
-  <!-- ==================== 3. CONTROL EN TIEMPO REAL (DASHBOARD E INBOX) ==================== -->
-  <section id="dashboard" class="py-24 px-4 bg-slate-50 relative overflow-hidden">
-    <!-- Aura turquesa ambiental de fondo -->
-    <div class="glow-turq-bg top-0 right-0 -translate-y-1/2 translate-x-1/3"></div>
-    <div class="glow-turq-bg bottom-0 left-0 translate-y-1/3 -translate-x-1/3"></div>
-
+  <!-- ==================== 3. DASHBOARD CON FONDO TURQUESA Y TÍTULO MASIVO ==================== -->
+  <section id="dashboard" class="py-24 px-4 dashboard-turquoise-bg border-b border-slate-100 overflow-hidden">
     <div class="max-w-5xl mx-auto relative z-10">
       
-      <div class="text-center max-w-2xl mx-auto mb-14">
-        <span class="text-xs font-bold font-mono uppercase tracking-wider text-[#008770] bg-[#00e0ba]/20 border border-[#00e0ba]/40 px-3.5 py-1.5 rounded-full">
+      <!-- TÍTULO DE MÁXIMO TAMAÑO (IGUAL AL PRINCIPAL) -->
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs font-bold font-mono uppercase tracking-wider text-[#008770] bg-white/80 border border-[#00e0ba]/50 px-4 py-1.5 rounded-full shadow-sm">
           Control Total en Tiempo Real
         </span>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-[#021f1a] mt-3 tracking-tight">
+        <h2 class="text-4xl sm:text-6xl font-extrabold text-[#021f1a] mt-4 tracking-tight leading-[1.1]">
           Tú tienes el control absoluto de cada conversación
         </h2>
-        <p class="text-sm sm:text-base text-slate-600 mt-2 font-medium">
+        <p class="text-base sm:text-lg text-[#053b32] mt-3 font-semibold max-w-xl mx-auto">
           Supervisa chats en vivo, consulta historiales y mide la procedencia exacta de tus prospectos en un solo lugar.
         </p>
       </div>
 
-      <!-- Tarjetas de métricas interactivas con acentos turquesa -->
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+      <!-- Tarjetas con animación al hacer scroll -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8" id="metrics-grid">
         
-        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm hover:border-[#00e0ba] transition-all">
+        <div class="metric-card-animated bg-white p-5 rounded-2xl border border-slate-200/90 shadow-md hover:border-[#00e0ba] transition-all">
           <p class="text-xs font-semibold text-slate-500">Chats atendidos hoy</p>
           <div class="flex items-baseline gap-2 mt-2">
-            <span class="text-3xl font-black text-[#021f1a]">142</span>
+            <span class="text-3xl sm:text-4xl font-black text-[#021f1a] counter-val" data-target="142">0</span>
             <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-1.5 py-0.5 rounded">+18%</span>
           </div>
           <span class="text-[11px] text-slate-400 font-medium">2.480 este mes</span>
         </div>
 
-        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm hover:border-[#00e0ba] transition-all">
+        <div class="metric-card-animated bg-white p-5 rounded-2xl border border-slate-200/90 shadow-md hover:border-[#00e0ba] transition-all" style="transition-delay: 100ms;">
           <p class="text-xs font-semibold text-slate-500">Tiempo de respuesta</p>
           <div class="flex items-baseline gap-2 mt-2">
-            <span class="text-3xl font-black text-[#008770]">1.8s</span>
+            <span class="text-3xl sm:text-4xl font-black text-[#008770] counter-val" data-target="1.8" data-decimal="1">0.0</span><span class="text-lg font-black text-[#008770]">s</span>
             <span class="text-xs font-bold text-[#008770] bg-[#00e0ba]/15 px-1.5 py-0.5 rounded">Récord</span>
           </div>
           <span class="text-[11px] text-slate-400 font-medium">99.8% dentro del objetivo</span>
         </div>
 
-        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm hover:border-[#00e0ba] transition-all">
+        <div class="metric-card-animated bg-white p-5 rounded-2xl border border-slate-200/90 shadow-md hover:border-[#00e0ba] transition-all" style="transition-delay: 200ms;">
           <p class="text-xs font-semibold text-slate-500">Horas delegadas a IA</p>
           <div class="flex items-baseline gap-2 mt-2">
-            <span class="text-3xl font-black text-[#021f1a]">38 hrs</span>
-            <span class="text-xs font-bold text-slate-500">este mes</span>
+            <span class="text-3xl sm:text-4xl font-black text-[#021f1a] counter-val" data-target="38">0</span><span class="text-lg font-black text-[#021f1a]"> hrs</span>
+            <span class="text-xs font-bold text-slate-500">mes</span>
           </div>
-          <span class="text-[11px] text-slate-400 font-medium">Cero respuestas mecánicas</span>
+          <span class="text-[11px] text-slate-400 font-medium">Cero respuestas a mano</span>
         </div>
 
-        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm hover:border-[#00e0ba] transition-all">
+        <div class="metric-card-animated bg-white p-5 rounded-2xl border border-slate-200/90 shadow-md hover:border-[#00e0ba] transition-all" style="transition-delay: 300ms;">
           <p class="text-xs font-semibold text-slate-500">Canal de origen</p>
           <div class="mt-2 space-y-1">
             <div class="flex justify-between text-xs font-bold text-slate-700">
-              <span>WhatsApp</span> <span class="text-[#008770]">68%</span>
+              <span>WhatsApp</span> <span class="text-[#008770] counter-val" data-target="68">0</span>%
             </div>
-            <div class="w-full bg-slate-100 rounded-full h-1.5 overflow-hidden">
-              <div class="bg-[#00e0ba] h-1.5 rounded-full" style="width: 68%"></div>
+            <div class="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
+              <div id="channel-progress" class="bg-[#00e0ba] h-2 rounded-full transition-all duration-1000 ease-out" style="width: 0%"></div>
             </div>
             <div class="flex justify-between text-[10px] text-slate-400 pt-0.5">
               <span>Instagram (24%)</span>
@@ -246,14 +254,14 @@
 
       </div>
 
-      <!-- Unified Inbox Mockup -->
-      <div class="bg-white rounded-3xl border border-slate-200/90 shadow-xl overflow-hidden">
+      <!-- Mockup del Unified Inbox -->
+      <div class="bg-white rounded-3xl border border-slate-200/90 shadow-2xl overflow-hidden">
         <div class="bg-slate-900 text-white px-6 py-4 flex flex-wrap items-center justify-between gap-4 border-b border-slate-800">
           <div class="flex items-center gap-3">
             <div class="w-3 h-3 rounded-full bg-rose-500"></div>
             <div class="w-3 h-3 rounded-full bg-amber-500"></div>
             <div class="w-3 h-3 rounded-full bg-emerald-500"></div>
-            <span class="text-xs font-mono text-slate-400 ml-2">Moofin Unified Inbox • Panel en vivo</span>
+            <span class="text-xs font-mono text-slate-400 ml-2">Moofin Unified Inbox • Panel de Control</span>
           </div>
           <div class="flex items-center gap-2 text-xs">
             <span class="w-2 h-2 rounded-full bg-[#00e0ba] animate-ping"></span>
@@ -330,7 +338,7 @@
     </div>
   </section>
 
-  <!-- ==================== 4. ADIÓS AL DESGASTE MANUAL (BENTO GRID CREATIVO) ==================== -->
+  <!-- ==================== 4. BENTO GRID: ADIÓS AL DESGASTE MANUAL ==================== -->
   <section id="beneficios" class="py-24 px-4 bg-white relative">
     <div class="max-w-5xl mx-auto">
       
@@ -338,7 +346,7 @@
         <span class="text-xs font-bold font-mono uppercase tracking-wider text-[#008770] bg-[#00e0ba]/20 border border-[#00e0ba]/40 px-3.5 py-1.5 rounded-full">
           Adiós al Desgaste Manual
         </span>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-[#021f1a] mt-3 tracking-tight">
+        <h2 class="text-3xl sm:text-5xl font-extrabold text-[#021f1a] mt-3 tracking-tight">
           Si es repetitivo, no lo hagas tú: que lo haga la IA
         </h2>
         <p class="text-sm sm:text-base text-slate-600 mt-2 font-medium">
@@ -346,14 +354,12 @@
         </p>
       </div>
 
-      <!-- ARQUITECTURA BENTO GRID (Cero cartas genéricas) -->
       <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
         
-        <!-- MÓDULO 1: Agendamiento de Citas (7 columnas) -->
         <div class="md:col-span-7 bento-card p-7 rounded-[2rem] flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between mb-4">
-              <span class="text-xs font-bold uppercase tracking-wider text-[#008770]">Sincronización 100% Autónoma</span>
+              <span class="text-xs font-bold uppercase tracking-wider text-[#008770]">Sincronización Autónoma</span>
               <span class="text-[10px] font-mono bg-emerald-50 text-emerald-700 px-2.5 py-1 rounded-full font-bold">Google Calendar Live</span>
             </div>
             <h3 class="text-xl font-extrabold text-[#021f1a] mb-2">Agendamiento de Citas y Turnos</h3>
@@ -362,7 +368,6 @@
             </p>
           </div>
 
-          <!-- Componente visual interactivo de cita confirmada -->
           <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-4 flex items-center justify-between">
             <div class="flex items-center gap-3">
               <div class="w-10 h-10 rounded-xl bg-[#00e0ba]/20 text-[#008770] flex items-center justify-center font-black text-sm">
@@ -377,7 +382,6 @@
           </div>
         </div>
 
-        <!-- MÓDULO 2: Catálogo y Stock en tiempo real (5 columnas) -->
         <div class="md:col-span-5 bento-card p-7 rounded-[2rem] flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between mb-4">
@@ -390,7 +394,6 @@
             </p>
           </div>
 
-          <!-- Micro visual de stock en tiempo real -->
           <div class="space-y-2 bg-slate-50 p-3.5 rounded-2xl border border-slate-200/80">
             <div class="flex justify-between items-center text-xs">
               <span class="font-bold text-slate-700">Runner Pro Negro (Talla 41)</span>
@@ -403,7 +406,6 @@
           </div>
         </div>
 
-        <!-- MÓDULO 3: Filtro Listo para Cobrar (12 columnas) -->
         <div class="md:col-span-12 bento-card p-7 sm:p-8 rounded-[2rem] flex flex-col md:flex-row items-center justify-between gap-6">
           <div class="max-w-xl">
             <span class="text-xs font-bold uppercase tracking-wider text-[#008770] block mb-2">Cierre de Venta Impecable</span>
@@ -413,7 +415,6 @@
             </p>
           </div>
 
-          <!-- Visual del flujo de derivación -->
           <div class="flex items-center gap-3 bg-slate-50 p-4 rounded-2xl border border-slate-200/80 shrink-0">
             <div class="text-center px-3">
               <p class="text-[10px] font-bold text-slate-400 uppercase">Paso 1</p>
@@ -433,29 +434,11 @@
         </div>
 
       </div>
-
-      <!-- Métricas finales de impacto -->
-      <div class="mt-16 grid grid-cols-3 border-t border-slate-100 pt-8 text-center">
-        <div>
-          <p class="text-2xl sm:text-3xl font-black text-[#008770]">&lt; 3s</p>
-          <p class="text-xs text-slate-500 font-semibold mt-1">Tiempo de respuesta</p>
-        </div>
-        <div>
-          <p class="text-2xl sm:text-3xl font-black text-[#021f1a]">24/7</p>
-          <p class="text-xs text-slate-500 font-semibold mt-1">Atención continua</p>
-        </div>
-        <div>
-          <p class="text-2xl sm:text-3xl font-black text-[#008770]">100%</p>
-          <p class="text-xs text-slate-500 font-semibold mt-1">Datos y stock real</p>
-        </div>
-      </div>
-
     </div>
   </section>
 
-  <!-- ==================== 5. PLANES CON DIFUMINADO FUCSIA AMBIENTAL ==================== -->
+  <!-- ==================== 5. PLANES CON DIFUMINADO FUCSIA ==================== -->
   <section id="planes" class="py-24 px-4 fuchsia-diffuse-bg border-t border-slate-100">
-    <!-- Haz de luz fucsia difuminado de fondo -->
     <div class="fuchsia-orb"></div>
 
     <div class="max-w-5xl mx-auto relative z-10">
@@ -496,7 +479,7 @@
           </a>
         </div>
 
-        <!-- Plan Pro ($149) RECOMENDADO -->
+        <!-- Plan Pro ($149) -->
         <div class="bg-[#0b141a] rounded-3xl p-7 border-2 border-[#00e0ba] shadow-2xl text-white flex flex-col justify-between relative transform md:-translate-y-2">
           <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[#00e0ba] text-[#003830] text-[10px] font-black tracking-wider uppercase py-1 px-4 rounded-full shadow">
             Recomendado

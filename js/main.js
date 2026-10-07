@@ -104,7 +104,7 @@ function selectScenario(key, btn) {
   renderScenario(key);
 }
 
-// ==================== SIMULADOR INBOX DASHBOARD ====================
+// ==================== SIMULADOR INBOX ====================
 const inboxChats = [
   {
     name: 'Carlos Mendoza',
@@ -164,12 +164,65 @@ function loadInboxChat(index, element) {
   });
 }
 
+// ==================== ANIMACIÓN DE MÉTRICAS EN SCROLL ====================
+let metricsAnimated = false;
+
+function initMetricsAnimation() {
+  const metricsSection = document.getElementById('metrics-grid');
+  if (!metricsSection) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !metricsAnimated) {
+        metricsAnimated = true;
+        
+        // Revelar tarjetas
+        document.querySelectorAll('.metric-card-animated').forEach(card => {
+          card.classList.add('visible');
+        });
+
+        // Barra de progreso canal
+        const progressBar = document.getElementById('channel-progress');
+        if (progressBar) progressBar.style.width = '68%';
+
+        // Contadores numéricos progresivos
+        document.querySelectorAll('.counter-val').forEach(counter => {
+          const target = parseFloat(counter.getAttribute('data-target'));
+          const isDecimal = counter.getAttribute('data-decimal') === '1';
+          const duration = 1200;
+          const startTime = performance.now();
+
+          function updateCounter(currentTime) {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            // Easing suave outQuart
+            const ease = 1 - Math.pow(1 - progress, 4);
+            const currentVal = progress * target;
+
+            counter.innerText = isDecimal ? currentVal.toFixed(1) : Math.floor(currentVal);
+
+            if (progress < 1) {
+              requestAnimationFrame(updateCounter);
+            } else {
+              counter.innerText = isDecimal ? target.toFixed(1) : target;
+            }
+          }
+          requestAnimationFrame(updateCounter);
+        });
+      }
+    });
+  }, { threshold: 0.25 });
+
+  observer.observe(metricsSection);
+}
+
 // ==================== INICIALIZACIÓN ====================
 window.addEventListener('DOMContentLoaded', () => {
   const activeBtn = document.querySelector('.pill-item.active');
   updateBubble(activeBtn);
   renderScenario('cita');
   loadInboxChat(0);
+  initMetricsAnimation();
 });
 
 window.addEventListener('resize', () => {
