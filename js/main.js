@@ -219,7 +219,7 @@ function initMetricsAnimation() {
 const pricingData = {
   monthly: {
     starter: { price: '$49', period: '/mes USD', note: '+ Setup inicial de $99 USD' },
-    pro: { price: '$149', period: '/mes USD', note: '+ Setup inicial de $199 USD' },
+    pro: { price: '$149', period: '/mes USD', note: '+ Setup inicial de $249 USD' },
     business: { price: '$299', period: '/mes USD', note: '+ Setup inicial de $599 USD' }
   },
   annual: {
