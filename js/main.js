@@ -195,9 +195,8 @@ function initMetricsAnimation() {
           function updateCounter(currentTime) {
             const elapsed = currentTime - startTime;
             const progress = Math.min(elapsed / duration, 1);
-            // Easing suave outQuart
             const ease = 1 - Math.pow(1 - progress, 4);
-            const currentVal = progress * target;
+            const currentVal = ease * target;
 
             counter.innerText = isDecimal ? currentVal.toFixed(1) : Math.floor(currentVal);
 
@@ -214,6 +213,38 @@ function initMetricsAnimation() {
   }, { threshold: 0.25 });
 
   observer.observe(metricsSection);
+}
+
+// ==================== TOGGLE DE PRECIOS MENSUAL / ANUAL ====================
+const pricingData = {
+  monthly: {
+    starter: { price: '$49', period: '/mes USD', note: '+ Setup inicial de $99 USD' },
+    pro: { price: '$149', period: '/mes USD', note: '+ Setup inicial de $199 USD' },
+    business: { price: '$299', period: '/mes USD', note: '+ Setup inicial de $599 USD' }
+  },
+  annual: {
+    starter: { price: '$40', period: '/mes USD ($490 al año)', note: '2 meses gratis • Setup bonificado' },
+    pro: { price: '$124', period: '/mes USD ($1.490 al año)', note: '2 meses gratis • Setup bonificado' },
+    business: { price: '$249', period: '/mes USD ($2.990 al año)', note: '2 meses gratis • Setup bonificado' }
+  }
+};
+
+function setBillingPeriod(period, btn) {
+  document.querySelectorAll('.billing-toggle-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  const data = pricingData[period];
+  document.getElementById('price-starter').innerText = data.starter.price;
+  document.getElementById('period-starter').innerText = data.starter.period;
+  document.getElementById('note-starter').innerText = data.starter.note;
+
+  document.getElementById('price-pro').innerText = data.pro.price;
+  document.getElementById('period-pro').innerText = data.pro.period;
+  document.getElementById('note-pro').innerText = data.pro.note;
+
+  document.getElementById('price-business').innerText = data.business.price;
+  document.getElementById('period-business').innerText = data.business.period;
+  document.getElementById('note-business').innerText = data.business.note;
 }
 
 // ==================== INICIALIZACIÓN ====================
