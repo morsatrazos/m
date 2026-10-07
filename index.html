@@ -78,9 +78,9 @@
         Comprueba cómo responde la IA a situaciones reales de tu negocio.
       </p>
 
-      <!-- 4. Píldora de acciones con cápsula interactiva -->
+      <!-- 4. Píldora de acciones con cápsula interactiva y shimmer-border -->
       <div class="w-full flex justify-center">
-        <div class="pills-container inline-flex max-w-full overflow-x-auto no-scrollbar gap-1" id="pills-wrapper">
+        <div class="pills-container shimmer-border inline-flex max-w-full overflow-x-auto no-scrollbar gap-1" id="pills-wrapper">
           <div id="tab-bubble"></div>
           <button class="pill-item active text-xs sm:text-sm" onclick="selectScenario('cita', this)">Agendar Cita</button>
           <button class="pill-item text-xs sm:text-sm" onclick="selectScenario('stock', this)">Consultar Stock</button>
@@ -89,21 +89,43 @@
         </div>
       </div>
 
-      <!-- Micro-texto sutil de indicación visual -->
-      <p class="text-[11px] font-bold text-[#04332b]/75 uppercase tracking-wider text-center mt-2 mb-8">
-        👆 Haz clic en una opción para ver la respuesta automática en tiempo real
+      <!-- Micro-texto sutil con punto pulsante tecnológico -->
+      <p class="text-[11px] font-bold text-[#04332b]/80 uppercase tracking-wider text-center mt-2.5 mb-8 flex items-center justify-center gap-1.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-[#021f1a] animate-pulse"></span>
+        <span>Haz clic en una opción para ver la respuesta en tiempo real</span>
       </p>
     </div>
 
-    <!-- CONTENEDOR DEL SMARTPHONE CON MARCAS DE AGUA Y PANTALLA DE 590px -->
-    <div class="relative max-w-4xl mx-auto">
-      <!-- Marcas de agua tenues de burbujas de conversación y mensaje SVG -->
-      <div class="chat-watermarks rounded-3xl" aria-hidden="true">
-        <svg class="hidden sm:block absolute top-10 left-6 w-20 h-20 text-[#021f1a]" fill="currentColor" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-3 9H7V9h10v2zm-4 3H7v-2h6v2zm4-6H7V6h10v2z"/></svg>
-        <svg class="hidden sm:block absolute bottom-24 right-8 w-24 h-24 text-[#021f1a]" fill="currentColor" viewBox="0 0 24 24"><path d="M21 6h-2v9H6v2c0 .55.45 1 1 1h11l4 4V7c0-.55-.45-1-1-1zm-4 6V3c0-.55-.45-1-1-1H3c-.55 0-1 .45-1 1v14l4-4h10c.55 0 1-.45 1-1z"/></svg>
-      </div>
+    <!-- CONTENEDOR DEL SMARTPHONE CON BURBUJAS FLOTANTES TRASERAS Y PANTALLA DE 590px -->
+    <div class="w-full max-w-[360px] sm:max-w-[390px] mx-auto relative">
+      
+      <!-- 1. Burbuja flotante superior izquierda -->
+      <svg class="floating-chat-bubble top-10 -left-12 w-16 h-16 text-[#021f1a]" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-3 9H7V9h10v2zm-4 3H7v-2h6v2zm4-6H7V6h10v2z"/>
+      </svg>
 
-      <div class="w-full max-w-[360px] sm:max-w-[390px] mx-auto relative z-20">
+      <!-- 2. Burbuja flotante superior derecha -->
+      <svg class="floating-chat-bubble top-36 -right-14 w-20 h-20 text-[#008770]" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M21 6h-2v9H6v2c0 .55.45 1 1 1h11l4 4V7c0-.55-.45-1-1-1zm-4 6V3c0-.55-.45-1-1-1H3c-.55 0-1 .45-1 1v14l4-4h10c.55 0 1-.45 1-1z"/>
+      </svg>
+
+      <!-- 3. Burbuja flotante inferior izquierda media -->
+      <svg class="floating-chat-bubble bottom-28 -left-16 w-20 h-20 text-[#008770]" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 3c5.5 0 10 3.58 10 8s-4.5 8-10 8c-1.24 0-2.43-.18-3.53-.5C5.55 21 2 21 2 21c2.33-2.33 2.7-3.9 2.75-4.5C3.05 15.07 2 13.13 2 11c0-4.42 4.5-8 10-8zm-4 9h2v-2H8v2zm4 0h2v-2h-2v2zm4 0h2v-2h-2v2z"/>
+      </svg>
+
+      <!-- 4. Burbuja flotante 2/3 derecha -->
+      <svg class="floating-chat-bubble top-2/3 -right-10 w-14 h-14 text-[#021f1a]" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM9 11H7V9h2v2zm4 0h-2V9h2v2zm4 0h-2V9h2v2z"/>
+      </svg>
+
+      <!-- 5. Burbuja flotante inferior izquierda baja -->
+      <svg class="floating-chat-bubble bottom-10 -left-8 w-12 h-12 text-[#021f1a]" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4V6c0-1.1-.9-2-2-2z"/>
+      </svg>
+
+      <!-- Chasis del Smartphone -->
+      <div class="relative z-20">
         <div class="phone-shadow rounded-[3rem] bg-[#111b21] p-3 border-4 border-white">
           <div class="rounded-[2.4rem] overflow-hidden bg-[#efeae2] flex flex-col h-[590px]">
             
@@ -364,22 +386,22 @@
         </p>
       </div>
 
-      <!-- Comparativa Minimalista de Alto Contraste -->
-      <div class="divide-y divide-teal-900/10 border-y border-teal-900/10">
+      <!-- Comparativa Minimalista de Alto Contraste con glow-border-card -->
+      <div class="space-y-5">
         
         <!-- 1. Respuesta -->
-        <div class="py-8 grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6 items-center">
+        <div class="glow-border-card bg-white/80 backdrop-blur-sm rounded-3xl p-6 grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6 items-center">
           <div class="md:col-span-3">
             <span class="text-xs font-mono font-extrabold uppercase tracking-widest text-[#008770] block">01 / Respuesta</span>
             <h3 class="text-lg font-extrabold text-[#021f1a] mt-0.5">Velocidad de Atención</h3>
           </div>
-          <div class="md:col-span-4 bg-white/90 rounded-2xl p-4 border border-slate-200/80 shadow-sm">
+          <div class="md:col-span-4 bg-white rounded-2xl p-4 border border-slate-200/80 shadow-sm">
             <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-1">Antes</span>
             <p class="text-xs sm:text-sm font-semibold text-slate-500 line-through decoration-rose-400/70">
               Horas de espera y prospectos fríos
             </p>
           </div>
-          <div class="md:col-span-5 bg-[#00e0ba] text-[#021f1a] rounded-2xl p-4 shadow-md flex items-center justify-between gap-3 border border-white/50">
+          <div class="md:col-span-5 glow-border-card bg-[#00e0ba] text-[#021f1a] rounded-2xl p-4 flex items-center justify-between gap-3">
             <div>
               <span class="text-[10px] font-extrabold uppercase tracking-wider text-[#043b31] block mb-1">Con Moofin</span>
               <p class="text-xs sm:text-sm font-black text-[#021f1a]">
@@ -391,18 +413,18 @@
         </div>
 
         <!-- 2. Operación -->
-        <div class="py-8 grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6 items-center">
+        <div class="glow-border-card bg-white/80 backdrop-blur-sm rounded-3xl p-6 grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6 items-center">
           <div class="md:col-span-3">
             <span class="text-xs font-mono font-extrabold uppercase tracking-widest text-[#008770] block">02 / Operación</span>
             <h3 class="text-lg font-extrabold text-[#021f1a] mt-0.5">Carga de Trabajo</h3>
           </div>
-          <div class="md:col-span-4 bg-white/90 rounded-2xl p-4 border border-slate-200/80 shadow-sm">
+          <div class="md:col-span-4 bg-white rounded-2xl p-4 border border-slate-200/80 shadow-sm">
             <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-1">Antes</span>
             <p class="text-xs sm:text-sm font-semibold text-slate-500 line-through decoration-rose-400/70">
               Equipo colapsado respondiendo precios y tallas
             </p>
           </div>
-          <div class="md:col-span-5 bg-[#00e0ba] text-[#021f1a] rounded-2xl p-4 shadow-md flex items-center justify-between gap-3 border border-white/50">
+          <div class="md:col-span-5 glow-border-card bg-[#00e0ba] text-[#021f1a] rounded-2xl p-4 flex items-center justify-between gap-3">
             <div>
               <span class="text-[10px] font-extrabold uppercase tracking-wider text-[#043b31] block mb-1">Con Moofin</span>
               <p class="text-xs sm:text-sm font-black text-[#021f1a]">
@@ -414,18 +436,18 @@
         </div>
 
         <!-- 3. Conversión -->
-        <div class="py-8 grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6 items-center">
+        <div class="glow-border-card bg-white/80 backdrop-blur-sm rounded-3xl p-6 grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6 items-center">
           <div class="md:col-span-3">
             <span class="text-xs font-mono font-extrabold uppercase tracking-widest text-[#008770] block">03 / Conversión</span>
             <h3 class="text-lg font-extrabold text-[#021f1a] mt-0.5">Cierre Comercial</h3>
           </div>
-          <div class="md:col-span-4 bg-white/90 rounded-2xl p-4 border border-slate-200/80 shadow-sm">
+          <div class="md:col-span-4 bg-white rounded-2xl p-4 border border-slate-200/80 shadow-sm">
             <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-1">Antes</span>
             <p class="text-xs sm:text-sm font-semibold text-slate-500 line-through decoration-rose-400/70">
               Citas perdidas por falta de agenda
             </p>
           </div>
-          <div class="md:col-span-5 bg-[#00e0ba] text-[#021f1a] rounded-2xl p-4 shadow-md flex items-center justify-between gap-3 border border-white/50">
+          <div class="md:col-span-5 glow-border-card bg-[#00e0ba] text-[#021f1a] rounded-2xl p-4 flex items-center justify-between gap-3">
             <div>
               <span class="text-[10px] font-extrabold uppercase tracking-wider text-[#043b31] block mb-1">Con Moofin</span>
               <p class="text-xs sm:text-sm font-black text-[#021f1a]">
@@ -563,58 +585,60 @@
     </div>
   </section>
 
-  <!-- ==================== 6. PREGUNTAS FRECUENTES (TARJETAS MODERNAS INTERACTIVAS) ==================== -->
-  <section id="faq" class="py-20 px-4 bg-white max-w-3xl mx-auto">
-    <h2 class="text-3xl sm:text-4xl font-extrabold text-[#021f1a] text-center mb-12 tracking-tight">Preguntas Frecuentes</h2>
-    
-    <div class="space-y-4">
-      <details class="border-2 border-slate-200/90 rounded-2xl p-5 hover:border-[#00e0ba] transition-all bg-white shadow-sm">
-        <summary class="text-base sm:text-lg font-extrabold text-[#021f1a] flex justify-between items-center cursor-pointer list-none gap-4">
-          <span>¿Es un chatbot de botones o responde con lenguaje natural?</span>
-          <span class="w-8 h-8 rounded-full bg-[#e8faf6] text-[#008770] flex items-center justify-center shrink-0">
-            <svg class="w-4 h-4 transition-transform duration-200 stroke-[3]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
-          </span>
-        </summary>
-        <p class="text-xs sm:text-sm text-slate-600 mt-3 leading-relaxed">
-          Comprende lenguaje coloquial, audios, fotos y preguntas abiertas. Responde como un humano capacitado siguiendo únicamente las políticas y datos reales de tu negocio.
-        </p>
-      </details>
+  <!-- ==================== 6. PREGUNTAS FRECUENTES (FONDO TURQUESA DEGRADADO) ==================== -->
+  <section id="faq" class="py-20 px-4 bg-gradient-to-b from-white via-[#dcf7f1] to-white">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-[#021f1a] text-center mb-12 tracking-tight">Preguntas Frecuentes</h2>
+      
+      <div class="space-y-4">
+        <details class="border-2 border-slate-200/90 rounded-2xl p-5 hover:border-[#00e0ba] transition-all bg-white shadow-sm">
+          <summary class="text-base sm:text-lg font-extrabold text-[#021f1a] flex justify-between items-center cursor-pointer list-none gap-4">
+            <span>¿Es un chatbot de botones o responde con lenguaje natural?</span>
+            <span class="w-8 h-8 rounded-full bg-[#e8faf6] text-[#008770] flex items-center justify-center shrink-0">
+              <svg class="w-4 h-4 transition-transform duration-200 stroke-[3]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+            </span>
+          </summary>
+          <p class="text-xs sm:text-sm text-slate-600 mt-3 leading-relaxed">
+            Comprende lenguaje coloquial, audios, fotos y preguntas abiertas. Responde como un humano capacitado siguiendo únicamente las políticas y datos reales de tu negocio.
+          </p>
+        </details>
 
-      <details class="border-2 border-slate-200/90 rounded-2xl p-5 hover:border-[#00e0ba] transition-all bg-white shadow-sm">
-        <summary class="text-base sm:text-lg font-extrabold text-[#021f1a] flex justify-between items-center cursor-pointer list-none gap-4">
-          <span>¿Qué pasa si el cliente pide algo que el agente no sabe?</span>
-          <span class="w-8 h-8 rounded-full bg-[#e8faf6] text-[#008770] flex items-center justify-center shrink-0">
-            <svg class="w-4 h-4 transition-transform duration-200 stroke-[3]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
-          </span>
-        </summary>
-        <p class="text-xs sm:text-sm text-slate-600 mt-3 leading-relaxed">
-          Nunca inventa datos. Si la consulta se sale del manual o del stock, avisa al usuario amablemente y transfiere la conversación en segundos a un asesor humano de tu equipo con todo el resumen del chat.
-        </p>
-      </details>
+        <details class="border-2 border-slate-200/90 rounded-2xl p-5 hover:border-[#00e0ba] transition-all bg-white shadow-sm">
+          <summary class="text-base sm:text-lg font-extrabold text-[#021f1a] flex justify-between items-center cursor-pointer list-none gap-4">
+            <span>¿Qué pasa si el cliente pide algo que el agente no sabe?</span>
+            <span class="w-8 h-8 rounded-full bg-[#e8faf6] text-[#008770] flex items-center justify-center shrink-0">
+              <svg class="w-4 h-4 transition-transform duration-200 stroke-[3]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+            </span>
+          </summary>
+          <p class="text-xs sm:text-sm text-slate-600 mt-3 leading-relaxed">
+            Nunca inventa datos. Si la consulta se sale del manual o del stock, avisa al usuario amablemente y transfiere la conversación en segundos a un asesor humano de tu equipo con todo el resumen del chat.
+          </p>
+        </details>
 
-      <details class="border-2 border-slate-200/90 rounded-2xl p-5 hover:border-[#00e0ba] transition-all bg-white shadow-sm">
-        <summary class="text-base sm:text-lg font-extrabold text-[#021f1a] flex justify-between items-center cursor-pointer list-none gap-4">
-          <span>¿Cuánto tarda la puesta en marcha?</span>
-          <span class="w-8 h-8 rounded-full bg-[#e8faf6] text-[#008770] flex items-center justify-center shrink-0">
-            <svg class="w-4 h-4 transition-transform duration-200 stroke-[3]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
-          </span>
-        </summary>
-        <p class="text-xs sm:text-sm text-slate-600 mt-3 leading-relaxed">
-          Una vez recibido tu catálogo o lista de preguntas frecuentes, configuramos y dejamos activo el agente en tu WhatsApp en un plazo de 48 a 72 horas hábiles.
-        </p>
-      </details>
+        <details class="border-2 border-slate-200/90 rounded-2xl p-5 hover:border-[#00e0ba] transition-all bg-white shadow-sm">
+          <summary class="text-base sm:text-lg font-extrabold text-[#021f1a] flex justify-between items-center cursor-pointer list-none gap-4">
+            <span>¿Cuánto tarda la puesta en marcha?</span>
+            <span class="w-8 h-8 rounded-full bg-[#e8faf6] text-[#008770] flex items-center justify-center shrink-0">
+              <svg class="w-4 h-4 transition-transform duration-200 stroke-[3]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+            </span>
+          </summary>
+          <p class="text-xs sm:text-sm text-slate-600 mt-3 leading-relaxed">
+            Una vez recibido tu catálogo o lista de preguntas frecuentes, configuramos y dejamos activo el agente en tu WhatsApp en un plazo de 48 a 72 horas hábiles.
+          </p>
+        </details>
 
-      <details class="border-2 border-slate-200/90 rounded-2xl p-5 hover:border-[#00e0ba] transition-all bg-white shadow-sm">
-        <summary class="text-base sm:text-lg font-extrabold text-[#021f1a] flex justify-between items-center cursor-pointer list-none gap-4">
-          <span>¿El servicio incluye el costo de los mensajes de WhatsApp?</span>
-          <span class="w-8 h-8 rounded-full bg-[#e8faf6] text-[#008770] flex items-center justify-center shrink-0">
-            <svg class="w-4 h-4 transition-transform duration-200 stroke-[3]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
-          </span>
-        </summary>
-        <p class="text-xs sm:text-sm text-slate-600 mt-3 leading-relaxed">
-          Moofin absorbe toda la infraestructura de Inteligencia Artificial, servidores y soporte continuo. Los centavos por ventana de conversación oficial de Meta (WhatsApp Cloud API) se abonan directamente con tu tarjeta en tu propio panel de Meta Business Manager, sin ningún recargo ni comisión por nuestra parte.
-        </p>
-      </details>
+        <details class="border-2 border-slate-200/90 rounded-2xl p-5 hover:border-[#00e0ba] transition-all bg-white shadow-sm">
+          <summary class="text-base sm:text-lg font-extrabold text-[#021f1a] flex justify-between items-center cursor-pointer list-none gap-4">
+            <span>¿El servicio incluye el costo de los mensajes de WhatsApp?</span>
+            <span class="w-8 h-8 rounded-full bg-[#e8faf6] text-[#008770] flex items-center justify-center shrink-0">
+              <svg class="w-4 h-4 transition-transform duration-200 stroke-[3]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+            </span>
+          </summary>
+          <p class="text-xs sm:text-sm text-slate-600 mt-3 leading-relaxed">
+            Moofin absorbe toda la infraestructura de Inteligencia Artificial, servidores y soporte continuo. Los centavos por ventana de conversación oficial de Meta (WhatsApp Cloud API) se abonan directamente con tu tarjeta en tu propio panel de Meta Business Manager, sin ningún recargo ni comisión por nuestra parte.
+          </p>
+        </details>
+      </div>
     </div>
   </section>
 
