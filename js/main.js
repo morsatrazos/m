@@ -104,66 +104,6 @@ function selectScenario(key, btn) {
   renderScenario(key);
 }
 
-// ==================== SIMULADOR INBOX ====================
-const inboxChats = [
-  {
-    name: 'Carlos Mendoza',
-    meta: 'Canal: WhatsApp • +58 414-1234567 • Atendido por IA',
-    badge: '✓ Agendado en Calendar',
-    messages: [
-      { sender: 'user', text: 'Buenas tardes, quisiera turno para consulta esta semana.' },
-      { sender: 'bot', text: '¡Buenas tardes! Tenemos jueves 3:30 PM o viernes 10:00 AM.' },
-      { sender: 'user', text: 'El jueves a las 3:30 PM me queda excelente. C.I. 18.452.120.' },
-      { sender: 'bot', text: '¡Listo, Carlos! Su cita quedó agendada y registrada en el sistema.' }
-    ]
-  },
-  {
-    name: 'María Valenzuela',
-    meta: 'Canal: Instagram Direct • @maria.val • Atendido por IA',
-    badge: '⚡ Listo para Cobro',
-    messages: [
-      { sender: 'user', text: 'Hola! Tienen disponible las Runner Pro en 38 negras?' },
-      { sender: 'bot', text: '¡Hola María! Sí, nos queda 1 par disponible en tienda. Precio: $45 con delivery gratis hoy.' },
-      { sender: 'user', text: 'Me las apartas por favor? Voy a pagar por Pago Móvil.' },
-      { sender: 'bot', text: '¡Apartadas! Ya te paso los datos bancarios y transfiero con despacho para tu dirección.' }
-    ]
-  },
-  {
-    name: 'Dr. Roberto Sosa',
-    meta: 'Canal: Web Widget • robertososa@gmail.com • Atendido por IA',
-    badge: '📄 Cotización enviada',
-    messages: [
-      { sender: 'user', text: 'Quisiera saber el precio para 2 sucursales de mi clínica.' },
-      { sender: 'bot', text: '¡Saludos Dr. Sosa! Para 2 sedes el Plan Pro multicanal incluye sincronización simultánea por $149/mes.' },
-      { sender: 'user', text: 'Excelente, ¿cómo coordinamos la configuración?' }
-    ]
-  }
-];
-
-function loadInboxChat(index, element) {
-  document.querySelectorAll('.inbox-card').forEach(c => c.classList.remove('active'));
-  if (element) element.classList.add('active');
-
-  const chat = inboxChats[index];
-  document.getElementById('inbox-chat-name').innerText = chat.name;
-  document.getElementById('inbox-chat-meta').innerText = chat.meta;
-  document.getElementById('inbox-chat-badge').innerText = chat.badge;
-
-  const container = document.getElementById('inbox-messages-container');
-  container.innerHTML = '';
-
-  chat.messages.forEach(m => {
-    const row = document.createElement('div');
-    if (m.sender === 'user') {
-      row.className = 'ml-auto bg-slate-100 text-slate-800 p-2.5 rounded-2xl rounded-tr-none max-w-[80%]';
-    } else {
-      row.className = 'mr-auto bg-[#00e0ba]/15 text-[#021f1a] p-2.5 rounded-2xl rounded-tl-none max-w-[80%] border border-[#00e0ba]/30 font-medium';
-    }
-    row.innerText = m.text;
-    container.appendChild(row);
-  });
-}
-
 // ==================== ANIMACIÓN DE MÉTRICAS EN SCROLL ====================
 let metricsAnimated = false;
 
@@ -265,47 +205,10 @@ window.addEventListener('DOMContentLoaded', () => {
   const activeBtn = document.querySelector('.pill-item.active');
   updateBubble(activeBtn);
   renderScenario('cita');
-  loadInboxChat(0);
   initMetricsAnimation();
 });
 
 window.addEventListener('resize', () => {
   const activeBtn = document.querySelector('.pill-item.active');
   updateBubble(activeBtn);
-});
-
-// Rotación automática entre los chats del inbox
-let currentInboxIndex = 0;
-let inboxAutoRotateTimer = null;
-let inboxResumeTimeout = null;
-
-function startInboxAutoRotate() {
-  if (inboxAutoRotateTimer) clearInterval(inboxAutoRotateTimer);
-  inboxAutoRotateTimer = setInterval(() => {
-    currentInboxIndex = (currentInboxIndex + 1) % inboxChats.length;
-    const targetCard = document.querySelectorAll('.inbox-card')[currentInboxIndex];
-    loadInboxChat(currentInboxIndex, targetCard);
-  }, 4500);
-}
-
-// Modificar loadInboxChat para actualizar el índice y pausar/reiniciar rotación al clic manual
-const originalLoadInboxChat = loadInboxChat;
-loadInboxChat = function(index, element) {
-  currentInboxIndex = index;
-  originalLoadInboxChat(index, element);
-};
-
-// Pausar rotación si el usuario interactúa manualmente
-document.querySelectorAll('.inbox-card').forEach((card, idx) => {
-  card.addEventListener('click', () => {
-    clearInterval(inboxAutoRotateTimer);
-    if (inboxResumeTimeout) clearTimeout(inboxResumeTimeout);
-    // Reinicia el ciclo 8 segundos después del clic manual
-    inboxResumeTimeout = setTimeout(startInboxAutoRotate, 8000);
-  });
-});
-
-// Iniciar rotación en la carga
-window.addEventListener('DOMContentLoaded', () => {
-  startInboxAutoRotate();
 });
