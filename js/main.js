@@ -1,158 +1,120 @@
-/**
- * ==========================================================================
- * MOOFIN - LÓGICA DE INTERACCIÓN Y NAVEGACIÓN
- * ==========================================================================
- */
+// Base de datos de flujos conversacionales
+const scenarios = {
+  cita: [
+    { sender: 'user', text: 'Buenas tardes, quisiera saber si tienen turno disponible para consulta odontológica esta semana.' },
+    { sender: 'bot', text: '¡Buenas tardes! Sí, tenemos disponibilidad con el especialista el jueves a las 3:30 PM o el viernes a las 10:00 AM. ¿Cuál le conviene mejor?' },
+    { sender: 'user', text: 'El jueves a las 3:30 PM me queda excelente.' },
+    { sender: 'bot', text: 'Perfecto. Por favor indíqueme su Nombre completo y cédula para formalizar la reserva.' },
+    { sender: 'user', text: 'Carlos Mendoza, C.I. 18.452.120.' },
+    { sender: 'bot', text: '¡Listo, Carlos! Su cita quedó agendada para el Jueves a las 3:30 PM.' },
+    { sender: 'user', text: 'Okay, muchísimas gracias.' },
+    { sender: 'bot', text: '¡A usted! Estamos a la orden, que tenga un excelente día.' }
+  ],
+  stock: [
+    { sender: 'user', text: 'Hola, ¿tienen disponible el calzado deportivo Runner Pro en talla 41?' },
+    { sender: 'bot', text: '¡Hola! Nos quedan 2 pares en talla 41 en color negro y 1 par en blanco. Su precio es de $45.' },
+    { sender: 'user', text: '¿Hacen entregas hoy mismo?' },
+    { sender: 'bot', text: 'Sí, contamos con delivery express para entrega el mismo día si confirma antes de las 4:00 PM.' },
+    { sender: 'user', text: 'Perfecto, me quedo con el par en color negro.' },
+    { sender: 'bot', text: '¡Excelente elección! Ya le transfiero con el área de despacho.' },
+    { sender: 'user', text: 'Listo, gracias por la rapidez.' },
+    { sender: 'bot', text: '¡Con todo gusto! Para servirle.' }
+  ],
+  venta: [
+    { sender: 'user', text: 'Hola, me interesa implementar el sistema de IA en mi clínica, ¿cómo se cobra?' },
+    { sender: 'bot', text: '¡Hola! Para clínicas recomendamos el Plan Pro de $149/mes con sincronización de citas. ¿Desea una demo guiada de 10 minutos?' },
+    { sender: 'user', text: 'Sí, me gustaría que me contacten hoy mismo.' },
+    { sender: 'bot', text: 'Entendido. Ya notificamos a nuestro equipo comercial para coordinar.' },
+    { sender: 'user', text: 'Excelente, muchas gracias.' },
+    { sender: 'bot', text: '¡Estamos para servirle! En breve le contactamos.' }
+  ],
+  info: [
+    { sender: 'user', text: 'Hola, ¿dónde están ubicados y cuál es el horario de atención?' },
+    { sender: 'bot', text: '¡Hola! Estamos en el CC Servimás, Nivel 1. De lunes a sábado de 8:30 AM a 6:00 PM corrido.' },
+    { sender: 'user', text: '¿Aceptan pagos por Pago Móvil a tasa oficial?' },
+    { sender: 'bot', text: 'Sí, aceptamos Pago Móvil a tasa oficial, divisas en efectivo y Zelle.' },
+    { sender: 'user', text: 'Buenísimo, paso por allá en un rato.' },
+    { sender: 'bot', text: '¡Será un placer recibirle! Le esperamos.' }
+  ]
+};
 
-let currentSlide = 0;
-const totalSlides = 6;
-let currentBilling = 'monthly';
+let currentTimeout = null;
 
-/**
- * Navega a una diapositiva específica por índice (0-5)
- * @param {number} index - Índice de la diapositiva
- */
-function goToSlide(index) {
-    if (index < 0) index = 0;
-    if (index >= totalSlides) index = totalSlides - 1;
-    currentSlide = index;
-
-    const slideElement = document.getElementById(`slide-${index + 1}`);
-    if (slideElement) {
-        slideElement.scrollIntoView({ behavior: 'smooth' });
-    }
-
-    const currentSlideNum = document.getElementById('current-slide-num');
-    if (currentSlideNum) {
-        currentSlideNum.innerText = currentSlide + 1;
-    }
-
-    updatePillNav();
+// Control de desplazamiento de la cápsula activa
+function updateBubble(targetBtn) {
+  const bubble = document.getElementById('tab-bubble');
+  if (!bubble || !targetBtn) return;
+  bubble.style.width = `${targetBtn.offsetWidth}px`;
+  bubble.style.left = `${targetBtn.offsetLeft}px`;
 }
 
-/**
- * Avanza a la siguiente diapositiva
- */
-function nextSlide() {
-    if (currentSlide < totalSlides - 1) {
-        goToSlide(currentSlide + 1);
-    }
-}
+// Renderizado del chat con tiempos de lectura realistas
+function renderScenario(key) {
+  if (currentTimeout) clearTimeout(currentTimeout);
+  const chatBox = document.getElementById('chat-box');
+  const typingIndicator = document.getElementById('typing-indicator');
+  if (!chatBox) return;
 
-/**
- * Retrocede a la diapositiva anterior
- */
-function prevSlide() {
-    if (currentSlide > 0) {
-        goToSlide(currentSlide - 1);
-    }
-}
+  chatBox.innerHTML = '';
+  const messages = scenarios[key];
+  let index = 0;
 
-/**
- * Actualiza el estado visual activo de las píldoras de navegación
- */
-function updatePillNav() {
-    const pills = document.querySelectorAll('.nav-pill');
-    pills.forEach((pill, idx) => {
-        if (idx === currentSlide) {
-            pill.classList.add('bg-teal-500', 'text-slate-950', 'font-bold');
-            pill.classList.remove('text-slate-300', 'hover:bg-slate-800');
-            pill.setAttribute('aria-current', 'page');
-        } else {
-            pill.classList.remove('bg-teal-500', 'text-slate-950', 'font-bold');
-            pill.classList.add('text-slate-300', 'hover:bg-slate-800');
-            pill.removeAttribute('aria-current');
-        }
-    });
-}
+  function step() {
+    if (index >= messages.length) return;
+    const msg = messages[index];
 
-/**
- * Cambia el tipo de facturación (mensual vs anual)
- * @param {'monthly' | 'annual'} mode - Modalidad de facturación seleccionada
- */
-function setBilling(mode) {
-    currentBilling = mode;
-    const btnMonthly = document.getElementById('btn-monthly');
-    const btnAnnual = document.getElementById('btn-annual');
-    const setupProPrice = document.getElementById('setup-pro-price');
-    const setupBusPrice = document.getElementById('setup-business-price');
-
-    if (!btnMonthly || !btnAnnual || !setupProPrice || !setupBusPrice) return;
-
-    if (mode === 'annual') {
-        btnAnnual.className = 'px-4 py-2 rounded-full text-xs font-bold transition-all bg-gradient-to-r from-teal-500 to-emerald-400 text-slate-950 shadow-md';
-        btnMonthly.className = 'px-4 py-2 rounded-full text-xs font-bold transition-all text-slate-400 hover:text-white';
-        
-        setupProPrice.innerHTML = '<span class="line-through text-slate-500 mr-1.5">$299</span> <strong class="text-teal-300">¡$0 GRATIS!</strong>';
-        setupBusPrice.innerHTML = '<strong class="text-teal-300">¡GRATIS en Pago Anual!</strong>';
+    if (msg.sender === 'bot') {
+      typingIndicator.classList.remove('hidden');
+      typingIndicator.classList.add('flex');
+      currentTimeout = setTimeout(() => {
+        typingIndicator.classList.add('hidden');
+        typingIndicator.classList.remove('flex');
+        appendMsg(msg);
+        index++;
+        currentTimeout = setTimeout(step, 2200);
+      }, 1600);
     } else {
-        btnMonthly.className = 'px-4 py-2 rounded-full text-xs font-bold transition-all bg-slate-800 text-white';
-        btnAnnual.className = 'px-4 py-2 rounded-full text-xs font-bold transition-all text-slate-400 hover:text-white';
-
-        setupProPrice.innerText = '$299 USD';
-        setupBusPrice.innerText = 'A Consultar';
+      appendMsg(msg);
+      index++;
+      currentTimeout = setTimeout(step, 1400);
     }
+  }
+
+  step();
 }
 
-/**
- * Alterna la apertura/cierre de una pregunta frecuente (acordeón)
- * @param {HTMLElement} button - Botón que activó el acordeón
- */
-function toggleFaq(button) {
-    const faqItem = button.parentElement;
-    if (!faqItem) return;
-
-    const answer = faqItem.querySelector('.faq-answer');
-    const icon = button.querySelector('i');
-    if (!answer || !icon) return;
-
-    const isExpanded = !answer.classList.contains('hidden');
-
-    if (isExpanded) {
-        answer.classList.add('hidden');
-        icon.style.transform = 'rotate(0deg)';
-        button.setAttribute('aria-expanded', 'false');
-    } else {
-        answer.classList.remove('hidden');
-        icon.style.transform = 'rotate(180deg)';
-        button.setAttribute('aria-expanded', 'true');
-    }
+function appendMsg(msg) {
+  const chatBox = document.getElementById('chat-box');
+  const div = document.createElement('div');
+  
+  if (msg.sender === 'user') {
+    div.className = 'ml-auto bg-[#d9fdd3] text-slate-800 p-2.5 rounded-2xl rounded-tr-none max-w-[85%] shadow-sm text-xs border border-[#c4e8be]';
+  } else {
+    div.className = 'mr-auto bg-white text-slate-800 p-2.5 rounded-2xl rounded-tl-none max-w-[85%] shadow-sm text-xs border border-slate-200';
+  }
+  div.innerText = msg.text;
+  chatBox.appendChild(div);
+  chatBox.scrollTop = chatBox.scrollHeight;
 }
 
-// Event Listeners y configuración inicial
-document.addEventListener('DOMContentLoaded', () => {
-    // Inicializar píldoras activas
-    updatePillNav();
+function selectScenario(key, btn) {
+  document.querySelectorAll('.pill-item').forEach(b => {
+    b.classList.remove('active');
+  });
+  btn.classList.add('active');
+  updateBubble(btn);
+  renderScenario(key);
+}
 
-    // Atajos de teclado para controlar diapositivas
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowRight' || e.key === 'PageDown') {
-            nextSlide();
-        } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
-            prevSlide();
-        }
-    });
+// Inicialización en DOM Ready
+window.addEventListener('DOMContentLoaded', () => {
+  const activeBtn = document.querySelector('.pill-item.active');
+  updateBubble(activeBtn);
+  renderScenario('cita');
+});
 
-    // Observer para actualizar el número de slide al hacer scroll manual
-    const slides = document.querySelectorAll('section[id^="slide-"]');
-    if ('IntersectionObserver' in window) {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const slideId = entry.target.id;
-                    const index = parseInt(slideId.replace('slide-', ''), 10) - 1;
-                    if (!isNaN(index) && index !== currentSlide) {
-                        currentSlide = index;
-                        const currentSlideNum = document.getElementById('current-slide-num');
-                        if (currentSlideNum) {
-                            currentSlideNum.innerText = currentSlide + 1;
-                        }
-                        updatePillNav();
-                    }
-                }
-            });
-        }, { threshold: 0.5 });
-
-        slides.forEach(slide => observer.observe(slide));
-    }
+// Reajuste en redimensión de pantalla
+window.addEventListener('resize', () => {
+  const activeBtn = document.querySelector('.pill-item.active');
+  updateBubble(activeBtn);
 });
