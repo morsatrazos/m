@@ -58,30 +58,32 @@
 
   <style>
     :root {
-      --primary: #00e0ba;
-      --primary-hover: #00ffd3;
-      --primary-dim: #00a88c;
-      --primary-glow: rgba(0, 224, 186, 0.35);
-      --primary-ghost: rgba(0, 224, 186, 0.08);
+      --primary-turquoise: #00e0ba;
+      --turquoise-deep: #00b899;
+      --turquoise-darker: #008f77;
+      --turquoise-soft: #d3faf2;
+      --turquoise-glow: rgba(0, 224, 186, 0.45);
+      --turquoise-sparkle: rgba(255, 255, 255, 0.85);
 
-      --bg-dark: #04090e;
-      --bg-surface: #08131d;
-      --bg-card: rgba(10, 24, 37, 0.75);
-      --bg-card-hover: rgba(14, 32, 49, 0.9);
+      --bg-gradient-top: #00e0ba;
+      --bg-gradient-mid: #02cca8;
+      --bg-gradient-bottom: #009980;
 
-      --border-subtle: rgba(0, 224, 186, 0.15);
-      --border-bright: rgba(0, 224, 186, 0.45);
+      --text-contrast-dark: #032b2f;
+      --text-muted-dark: #124e54;
+      --text-light: #ffffff;
 
-      --text-main: #f1f5f9;
-      --text-muted: #94a3b8;
-      --text-highlight: #00e0ba;
+      --glass-card: rgba(255, 255, 255, 0.22);
+      --glass-card-hover: rgba(255, 255, 255, 0.34);
+      --glass-solid: rgba(255, 255, 255, 0.92);
+      --glass-border: rgba(255, 255, 255, 0.4);
 
       --font-main: 'Plus Jakarta Sans', sans-serif;
       --font-mono: 'JetBrains Mono', monospace;
 
-      --radius-sm: 8px;
-      --radius-md: 16px;
-      --radius-lg: 24px;
+      --radius-sm: 10px;
+      --radius-md: 20px;
+      --radius-lg: 30px;
       --radius-pill: 9999px;
     }
 
@@ -93,19 +95,17 @@
 
     body {
       font-family: var(--font-main);
-      background-color: var(--bg-dark);
-      color: var(--text-main);
+      background: radial-gradient(circle at 50% 10%, #36ffd9 0%, #00e0ba 35%, #00ad90 75%, #007a65 100%);
+      background-attachment: fixed;
+      color: var(--text-contrast-dark);
       line-height: 1.6;
       overflow-x: hidden;
       position: relative;
-      background-image: 
-        radial-gradient(circle at 50% 0%, rgba(0, 224, 186, 0.12) 0%, transparent 60%),
-        linear-gradient(to bottom, #04090e, #050d15, #03070b);
-      background-attachment: fixed;
+      min-height: 100vh;
     }
 
-    /* Canvas interactivo de fondo cuántico / neural */
-    #neuralCanvas {
+    /* Canvas de lucecitas, destellos y partículas interactivas */
+    #sparkleCanvas {
       position: fixed;
       top: 0;
       left: 0;
@@ -113,7 +113,7 @@
       height: 100vh;
       pointer-events: none;
       z-index: 0;
-      opacity: 0.65;
+      opacity: 0.85;
     }
 
     .container {
@@ -122,46 +122,47 @@
       margin: 0 auto;
       padding: 0 1.5rem;
       position: relative;
-      z-index: 1;
+      z-index: 2;
     }
 
-    /* Navbar Glassmorphism Cyber */
+    /* Navbar turquesa translúcido con logo aumentado al 100% */
     .navbar {
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(4, 9, 14, 0.82);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border-subtle);
+      background: rgba(0, 185, 153, 0.45);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.35);
       transition: all 0.3s ease;
     }
     .navbar-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 74px;
+      min-height: 96px; /* Altura aumentada para el logo ampliado */
+      padding: 0.5rem 1.5rem;
     }
+    /* Logo 100% más grande: de 38px a 76px */
     .brand-logo {
-      height: 38px;
+      height: 76px;
       width: auto;
       display: block;
-      filter: drop-shadow(0 0 12px rgba(0, 224, 186, 0.3));
+      filter: drop-shadow(0 4px 16px rgba(0, 50, 43, 0.25));
       transition: transform 0.25s ease;
     }
     .brand-logo:hover {
-      transform: scale(1.03);
+      transform: scale(1.04);
     }
 
-    /* Botones de acción cyber */
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 0.5rem;
+      gap: 0.55rem;
       font-weight: 700;
-      font-size: 0.925rem;
-      padding: 0.75rem 1.6rem;
+      font-size: 0.95rem;
+      padding: 0.85rem 1.8rem;
       border-radius: var(--radius-pill);
       text-decoration: none;
       transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
@@ -169,265 +170,229 @@
       position: relative;
       outline: none;
     }
-    .btn-primary {
-      background: var(--primary);
-      color: #03141a;
-      box-shadow: 0 0 25px rgba(0, 224, 186, 0.45);
-      border: 1px solid #7effe6;
+    .btn-dark {
+      background: #04272b;
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 10px 25px -5px rgba(4, 39, 43, 0.4);
     }
-    .btn-primary:hover {
-      background: var(--primary-hover);
+    .btn-dark:hover {
+      background: #021a1d;
       transform: translateY(-2px);
-      box-shadow: 0 0 35px rgba(0, 224, 186, 0.75);
+      box-shadow: 0 14px 30px -4px rgba(4, 39, 43, 0.6);
+      color: var(--primary-turquoise);
     }
-    .btn-ghost {
-      background: rgba(0, 224, 186, 0.06);
-      color: #e2e8f0;
-      border: 1px solid var(--border-subtle);
+    .btn-white-glass {
+      background: rgba(255, 255, 255, 0.88);
+      color: #032b2f;
+      border: 1px solid rgba(255, 255, 255, 0.95);
+      box-shadow: 0 8px 20px rgba(0, 70, 60, 0.15);
       backdrop-filter: blur(8px);
     }
-    .btn-ghost:hover {
-      background: rgba(0, 224, 186, 0.12);
-      border-color: var(--primary);
-      color: #ffffff;
+    .btn-white-glass:hover {
+      background: #ffffff;
       transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(0, 70, 60, 0.25);
     }
 
-    /* Badges y chips de estado */
-    .badge-cyber {
+    /* Badges luminosos */
+    .badge-luminous {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      padding: 0.35rem 0.95rem;
-      background: rgba(0, 224, 186, 0.08);
-      border: 1px solid var(--border-bright);
-      color: var(--primary);
+      padding: 0.4rem 1.1rem;
+      background: rgba(255, 255, 255, 0.32);
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      color: #022326;
       border-radius: var(--radius-pill);
       font-family: var(--font-mono);
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      box-shadow: inset 0 0 12px rgba(0, 224, 186, 0.15);
-    }
-    .badge-pulse {
-      width: 7px;
-      height: 7px;
-      background: var(--primary);
-      border-radius: 50%;
-      box-shadow: 0 0 8px var(--primary);
-      animation: pulseGlow 1.8s infinite;
-    }
-
-    @keyframes pulseGlow {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(1.3); }
-    }
-
-    /* Hero */
-    .hero {
-      padding: 4.5rem 0 3.5rem;
-    }
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 3.5rem;
-      align-items: center;
-    }
-    .hero-content h1 {
-      font-size: 3.25rem;
-      line-height: 1.12;
+      font-size: 0.785rem;
       font-weight: 800;
-      letter-spacing: -0.03em;
-      margin: 1.25rem 0 1rem;
-      color: #ffffff;
-    }
-    .hero-content h1 .glow-text {
-      color: var(--primary);
-      text-shadow: 0 0 30px rgba(0, 224, 186, 0.5);
-    }
-    .hero-desc {
-      font-size: 1.125rem;
-      color: var(--text-muted);
-      margin-bottom: 2rem;
-      max-width: 530px;
-    }
-    .hero-actions {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      margin-bottom: 2.5rem;
-    }
-    .hero-stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.25rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid var(--border-subtle);
-    }
-    .stat-box {
-      font-family: var(--font-mono);
-    }
-    .stat-box strong {
-      display: block;
-      font-size: 1.45rem;
-      font-weight: 800;
-      color: var(--primary);
-      text-shadow: 0 0 15px rgba(0, 224, 186, 0.35);
-    }
-    .stat-box span {
-      font-size: 0.775rem;
-      color: var(--text-muted);
-      font-family: var(--font-main);
-    }
-
-    /* Simulador de WhatsApp Pro Cyber */
-    .simulator-container {
-      position: relative;
-    }
-    .simulator-label {
-      font-family: var(--font-mono);
-      font-size: 0.725rem;
-      font-weight: 700;
-      text-transform: uppercase;
       letter-spacing: 0.08em;
-      color: var(--primary);
-      margin-bottom: 0.65rem;
-      text-align: center;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.4rem;
-    }
-    .simulator-tabs {
-      display: flex;
-      gap: 0.5rem;
-      background: rgba(8, 20, 31, 0.85);
-      border: 1px solid var(--border-subtle);
-      padding: 4px;
-      border-radius: var(--radius-pill);
-      margin-bottom: 1.25rem;
+      text-transform: uppercase;
+      box-shadow: 0 4px 15px rgba(0, 80, 70, 0.12);
       backdrop-filter: blur(10px);
     }
-    .sim-tab-btn {
-      flex: 1;
-      background: transparent;
-      border: none;
-      color: var(--text-muted);
-      font-family: var(--font-main);
+    .badge-sparkle-dot {
+      width: 8px;
+      height: 8px;
+      background: #ffffff;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #ffffff, 0 0 18px #ffffff;
+      animation: pulseSparkle 1.6s infinite ease-in-out;
+    }
+
+    @keyframes pulseSparkle {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.45; transform: scale(1.4); }
+    }
+
+    /* HERO: Prioridad número 1 para el Demo de Casos de Uso en Vivo */
+    .hero-demo-section {
+      padding: 3.5rem 0 4rem;
+      text-align: center;
+    }
+    .hero-demo-header {
+      max-width: 800px;
+      margin: 0 auto 2.2rem;
+    }
+    .hero-demo-header h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: -0.03em;
+      line-height: 1.12;
+      margin: 1rem 0 0.6rem;
+      text-shadow: 0 3px 20px rgba(0, 50, 43, 0.25);
+    }
+    .hero-demo-header p {
+      font-size: 1.15rem;
+      color: #042e32;
+      font-weight: 500;
+    }
+
+    /* Contenedor del simulador centrado y destacado */
+    .demo-showcase-box {
+      max-width: 580px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.28);
+      border: 2px solid rgba(255, 255, 255, 0.7);
+      border-radius: 36px;
+      padding: 1.5rem;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 25px 60px -15px rgba(0, 55, 48, 0.35), 0 0 40px rgba(255, 255, 255, 0.4);
+      position: relative;
+    }
+    .demo-action-guide {
+      font-family: var(--font-mono);
       font-size: 0.8rem;
-      font-weight: 600;
-      padding: 0.55rem 0.65rem;
-      border-radius: var(--radius-pill);
-      cursor: pointer;
-      transition: all 0.2s ease;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #022b2e;
+      margin-bottom: 1rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 0.45rem;
-      white-space: nowrap;
+      gap: 0.5rem;
     }
-    .sim-tab-btn .tab-dot {
-      width: 5px;
-      height: 5px;
+    .demo-action-guide span.live-light {
+      width: 8px;
+      height: 8px;
+      background: #ffffff;
       border-radius: 50%;
-      background: #475569;
-      transition: background 0.2s ease;
-    }
-    .sim-tab-btn.active {
-      background: rgba(0, 224, 186, 0.15);
-      color: #ffffff;
-      border: 1px solid var(--border-bright);
-      box-shadow: 0 0 15px rgba(0, 224, 186, 0.25);
-    }
-    .sim-tab-btn.active .tab-dot {
-      background: var(--primary);
-      box-shadow: 0 0 8px var(--primary);
+      box-shadow: 0 0 10px #ffffff;
     }
 
-    /* Mockup de teléfono WhatsApp */
-    .phone-wrapper {
-      background: #0d1e2c;
-      border-radius: 36px;
-      padding: 10px;
-      border: 2px solid rgba(0, 224, 186, 0.35);
-      box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.8), 0 0 40px -10px rgba(0, 224, 186, 0.25);
-      max-width: 395px;
-      margin: 0 auto;
-      position: relative;
+    /* Pestañas de casos de uso (4 opciones limpias) */
+    .simulator-tabs-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.45rem;
+      background: rgba(2, 43, 47, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      padding: 5px;
+      border-radius: var(--radius-pill);
+      margin-bottom: 1.4rem;
+      backdrop-filter: blur(8px);
     }
-    .phone-screen {
-      background: #08131e;
+    .sim-tab-item {
+      background: transparent;
+      border: none;
+      color: #042e33;
+      font-family: var(--font-main);
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 0.65rem 0.4rem;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      transition: all 0.25s ease;
+      white-space: nowrap;
+      text-align: center;
+    }
+    .sim-tab-item:hover {
+      background: rgba(255, 255, 255, 0.4);
+    }
+    .sim-tab-item.active {
+      background: #04272b;
+      color: #ffffff;
+      box-shadow: 0 4px 15px rgba(4, 39, 43, 0.35);
+    }
+
+    /* Marco del Smartphone WhatsApp */
+    .phone-mockup-turq {
+      background: #ffffff;
       border-radius: 28px;
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      height: 520px;
-      background-image: radial-gradient(rgba(0, 224, 186, 0.03) 1px, transparent 0);
-      background-size: 20px 20px;
-      position: relative;
+      height: 540px;
+      box-shadow: 0 15px 35px rgba(2, 45, 40, 0.2);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      text-align: left;
     }
-    .phone-top-bar {
-      background: #0b1a27;
-      padding: 0.85rem 1rem;
+    .phone-head-bar {
+      background: #075e54;
+      color: #ffffff;
+      padding: 0.85rem 1.1rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border-bottom: 1px solid var(--border-subtle);
     }
-    .top-agent-info {
+    .head-user-data {
       display: flex;
       align-items: center;
       gap: 0.75rem;
     }
-    .agent-avatar {
-      width: 36px;
-      height: 36px;
+    .avatar-circle {
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
-      background: var(--primary);
+      background: #ffffff;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 0 12px var(--primary);
       overflow: hidden;
       padding: 5px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     }
-    .agent-avatar img {
+    .avatar-circle img {
       width: 100%;
       height: auto;
-      filter: invert(1) brightness(0.2);
+      filter: invert(0.8) sepia(1) saturate(5) hue-rotate(120deg);
     }
-    .agent-name {
-      font-size: 0.875rem;
+    .agent-title-text {
+      font-size: 0.925rem;
       font-weight: 700;
-      color: #ffffff;
-      line-height: 1.2;
+      line-height: 1.15;
     }
-    .agent-status {
-      font-size: 0.7rem;
-      color: var(--primary);
+    .agent-status-sub {
+      font-size: 0.725rem;
+      color: #a7f3d0;
       display: flex;
       align-items: center;
       gap: 4px;
     }
-    .agent-status::before {
+    .agent-status-sub::before {
       content: "";
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: var(--primary);
-      box-shadow: 0 0 6px var(--primary);
+      background: #34d399;
+      box-shadow: 0 0 6px #34d399;
     }
 
-    .chat-stream {
+    .chat-body-stream {
       flex: 1;
-      padding: 1.1rem 0.9rem;
+      padding: 1.1rem 1rem;
       overflow-y: auto;
+      background: #efeae2;
+      background-image: radial-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 0);
+      background-size: 20px 20px;
       display: flex;
       flex-direction: column;
-      gap: 0.75rem;
-      font-size: 0.815rem;
-      scroll-behavior: smooth;
+      gap: 0.8rem;
+      font-size: 0.825rem;
     }
     .chat-bubble {
       max-width: 86%;
@@ -439,21 +404,21 @@
     }
     .bubble-user {
       align-self: flex-end;
-      background: #005c4b;
-      color: #e9edef;
+      background: #d9fdd3;
+      color: #111b21;
       border-top-right-radius: 2px;
-      border: 1px solid rgba(0, 224, 186, 0.2);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
     }
     .bubble-bot {
       align-self: flex-start;
-      background: #192a3a;
-      color: #f1f5f9;
+      background: #ffffff;
+      color: #111b21;
       border-top-left-radius: 2px;
-      border: 1px solid var(--border-subtle);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
     }
     .bubble-time {
       font-size: 0.65rem;
-      color: #94a3b8;
+      color: #667781;
       float: right;
       margin: 4px 0 -2px 10px;
       display: flex;
@@ -461,12 +426,12 @@
       gap: 2px;
     }
     .check-icon {
-      color: var(--primary);
+      color: #53bdeb;
       font-size: 0.75rem;
     }
-    .product-mini-card {
-      background: rgba(0, 224, 186, 0.08);
-      border: 1px solid var(--border-bright);
+    .mini-status-card {
+      background: #f0fdf9;
+      border: 1px solid #99f6e4;
       border-radius: 8px;
       padding: 6px 10px;
       margin-top: 6px;
@@ -475,106 +440,159 @@
       justify-content: space-between;
       font-family: var(--font-mono);
       font-size: 0.75rem;
-      color: var(--primary);
+      color: #0f766e;
+      font-weight: 700;
     }
 
     .typing-box {
       align-self: flex-start;
-      background: #192a3a;
-      border: 1px solid var(--border-subtle);
-      padding: 0.55rem 0.9rem;
+      background: #ffffff;
+      padding: 0.5rem 0.9rem;
       border-radius: 14px;
       border-top-left-radius: 2px;
       display: inline-flex;
       align-items: center;
       gap: 4px;
       font-size: 0.75rem;
-      color: var(--primary);
+      color: #0f766e;
       font-family: var(--font-mono);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
     }
     .typing-dot {
       width: 5px;
       height: 5px;
-      background: var(--primary);
+      background: #0f766e;
       border-radius: 50%;
-      animation: cyberBlink 1.2s infinite ease-in-out;
+      animation: typingPulse 1.2s infinite ease-in-out;
     }
     .typing-dot:nth-child(2) { animation-delay: 0.2s; }
     .typing-dot:nth-child(3) { animation-delay: 0.4s; }
 
-    @keyframes cyberBlink {
-      0%, 80%, 100% { opacity: 0.2; transform: scale(0.8); }
-      40% { opacity: 1; transform: scale(1.15); box-shadow: 0 0 6px var(--primary); }
+    @keyframes typingPulse {
+      0%, 80%, 100% { opacity: 0.25; transform: scale(0.85); }
+      40% { opacity: 1; transform: scale(1.2); }
     }
     @keyframes messagePop {
       from { opacity: 0; transform: translateY(8px) scale(0.97); }
       to { opacity: 1; transform: translateY(0) scale(1); }
     }
 
-    /* Cintillo de Clientes Cyber */
+    /* SECCIÓN FILOSOFÍA: "Si es repetitivo, no lo hagas tú: que lo haga la IA" */
+    .repetitive-section {
+      padding: 4.5rem 0;
+      background: rgba(255, 255, 255, 0.2);
+      border-top: 1px solid rgba(255, 255, 255, 0.4);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(14px);
+    }
+    .repetitive-wrap {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 3.5rem;
+      align-items: center;
+    }
+    .repetitive-content h2 {
+      font-size: 2.85rem;
+      line-height: 1.15;
+      font-weight: 800;
+      color: #ffffff;
+      margin: 1rem 0 1rem;
+      text-shadow: 0 3px 20px rgba(0, 50, 43, 0.2);
+    }
+    .repetitive-content h2 span {
+      color: #032b2f;
+      background: rgba(255, 255, 255, 0.55);
+      padding: 0 0.4rem;
+      border-radius: 8px;
+    }
+    .repetitive-desc {
+      font-size: 1.15rem;
+      color: #032e33;
+      margin-bottom: 2rem;
+      max-width: 580px;
+      font-weight: 500;
+    }
+    .quick-stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.4);
+    }
+    .quick-stat h4 {
+      font-family: var(--font-mono);
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #ffffff;
+      text-shadow: 0 2px 10px rgba(0, 45, 40, 0.25);
+    }
+    .quick-stat span {
+      font-size: 0.825rem;
+      color: #032f34;
+      font-weight: 600;
+    }
+
+    /* Cintillo de Clientes */
     .clients-strip {
       padding: 2.5rem 0;
-      border-top: 1px solid var(--border-subtle);
-      border-bottom: 1px solid var(--border-subtle);
-      background: rgba(8, 19, 29, 0.6);
-      backdrop-filter: blur(12px);
+      text-align: center;
     }
     .clients-title {
-      text-align: center;
       font-family: var(--font-mono);
-      font-size: 0.75rem;
-      font-weight: 700;
+      font-size: 0.8rem;
+      font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.1em;
-      color: var(--text-muted);
-      margin-bottom: 1.5rem;
+      color: #022f33;
+      margin-bottom: 1.4rem;
     }
     .clients-flex {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 2.5rem;
+      gap: 1.5rem;
       flex-wrap: wrap;
     }
     .client-tag {
-      background: rgba(14, 32, 49, 0.7);
-      border: 1px solid var(--border-subtle);
-      padding: 0.5rem 1.1rem;
-      border-radius: var(--radius-sm);
-      color: #e2e8f0;
+      background: rgba(255, 255, 255, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.65);
+      padding: 0.65rem 1.3rem;
+      border-radius: var(--radius-pill);
+      color: #022a2e;
       font-size: 0.95rem;
-      font-weight: 600;
+      font-weight: 700;
       display: inline-flex;
       align-items: center;
       gap: 0.55rem;
-      transition: all 0.2s ease;
+      box-shadow: 0 4px 15px rgba(0, 50, 45, 0.08);
+      transition: all 0.25s ease;
     }
     .client-tag:hover {
-      border-color: var(--primary);
-      box-shadow: 0 0 15px rgba(0, 224, 186, 0.2);
+      background: #ffffff;
       transform: translateY(-2px);
-      color: var(--primary);
+      box-shadow: 0 8px 25px rgba(0, 50, 45, 0.15);
     }
 
-    /* 3 Pilares Concisos y Visuales (Máximo 2 líneas de texto) */
+    /* 3 Pilares de resolución mecánica (2 líneas exactas de copy) */
     .section-spacing {
-      padding: 5.5rem 0;
+      padding: 5rem 0;
     }
     .center-header {
       text-align: center;
-      max-width: 660px;
+      max-width: 680px;
       margin: 0 auto 3.5rem;
     }
     .center-header h2 {
-      font-size: 2.35rem;
+      font-size: 2.5rem;
       font-weight: 800;
-      letter-spacing: -0.025em;
       color: #ffffff;
       margin: 0.85rem 0 0.5rem;
+      text-shadow: 0 3px 20px rgba(0, 50, 43, 0.2);
     }
     .center-header p {
-      color: var(--text-muted);
-      font-size: 1.05rem;
+      color: #032c30;
+      font-size: 1.1rem;
+      font-weight: 500;
     }
 
     .pillars-grid {
@@ -583,211 +601,189 @@
       gap: 1.75rem;
     }
     .pillar-box {
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
+      background: rgba(255, 255, 255, 0.32);
+      border: 1px solid rgba(255, 255, 255, 0.7);
       border-radius: var(--radius-md);
-      padding: 2rem 1.6rem;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      position: relative;
-      overflow: hidden;
+      padding: 2.2rem 1.8rem;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-    }
-    .pillar-box::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--primary), transparent);
-      opacity: 0;
-      transition: opacity 0.3s ease;
+      backdrop-filter: blur(14px);
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 30px rgba(0, 50, 45, 0.08);
     }
     .pillar-box:hover {
-      background: var(--bg-card-hover);
-      border-color: var(--border-bright);
+      background: rgba(255, 255, 255, 0.45);
       transform: translateY(-4px);
-      box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.6), 0 0 25px rgba(0, 224, 186, 0.15);
+      box-shadow: 0 16px 40px rgba(0, 50, 45, 0.16);
     }
-    .pillar-box:hover::before {
-      opacity: 1;
-    }
-    .pillar-icon-wrap {
+    .pillar-icon {
       width: 48px;
       height: 48px;
       border-radius: 12px;
-      background: rgba(0, 224, 186, 0.1);
-      border: 1px solid var(--border-bright);
+      background: #04272b;
+      color: #ffffff;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--primary);
       margin-bottom: 1.25rem;
+      box-shadow: 0 4px 15px rgba(4, 39, 43, 0.2);
     }
     .pillar-box h3 {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: #ffffff;
-      margin-bottom: 0.5rem;
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #03282b;
+      margin-bottom: 0.4rem;
     }
-    /* Regla crítica: 2 líneas de texto conciso */
     .pillar-box p {
-      color: var(--text-muted);
-      font-size: 0.915rem;
+      color: #04373c;
+      font-size: 0.95rem;
       line-height: 1.5;
+      font-weight: 500;
       margin-bottom: 1.5rem;
     }
-
-    /* Micro-UI interactiva dentro de cada pilar */
-    .pillar-preview-ui {
-      background: #06111a;
-      border: 1px dashed var(--border-subtle);
+    .micro-ui-preview {
+      background: rgba(255, 255, 255, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.9);
       border-radius: 10px;
-      padding: 0.75rem 0.9rem;
+      padding: 0.75rem 0.95rem;
       font-family: var(--font-mono);
-      font-size: 0.725rem;
-      color: #94a3b8;
+      font-size: 0.75rem;
+      color: #033237;
     }
-    .pillar-preview-ui .accent-row {
-      color: var(--primary);
+    .micro-ui-preview .row-accent {
+      color: #0f766e;
       display: flex;
       align-items: center;
       justify-content: space-between;
       margin-top: 4px;
-      font-weight: 600;
+      font-weight: 800;
     }
 
-    /* Planes e Inversión (3 Tiers: $49, $149 y Enterprise) */
-    .pricing-grid-3 {
+    /* Sección Planes e Inversión (Starter $49 + Pro $149 + Custom) */
+    .pricing-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
+      gap: 1.75rem;
       align-items: stretch;
     }
     .price-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
+      background: rgba(255, 255, 255, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.7);
       border-radius: var(--radius-lg);
       padding: 2.2rem 1.8rem;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       position: relative;
+      backdrop-filter: blur(14px);
+      box-shadow: 0 10px 30px rgba(0, 50, 45, 0.08);
       transition: all 0.3s ease;
     }
     .price-card:hover {
-      border-color: var(--primary);
+      background: rgba(255, 255, 255, 0.48);
       transform: translateY(-4px);
     }
     .price-card.featured {
-      background: linear-gradient(180deg, rgba(14, 38, 56, 0.9) 0%, rgba(8, 20, 31, 0.95) 100%);
-      border: 2px solid var(--primary);
-      box-shadow: 0 0 35px rgba(0, 224, 186, 0.25);
+      background: rgba(255, 255, 255, 0.92);
+      border: 2px solid #04272b;
+      box-shadow: 0 20px 50px rgba(0, 50, 45, 0.25);
     }
-    .price-badge-top {
+    .badge-pop {
       position: absolute;
       top: -12px;
       left: 50%;
       transform: translateX(-50%);
-      background: var(--primary);
-      color: #03141a;
+      background: #04272b;
+      color: #ffffff;
       font-family: var(--font-mono);
-      font-size: 0.7rem;
+      font-size: 0.725rem;
       font-weight: 800;
-      padding: 0.25rem 0.9rem;
+      padding: 0.3rem 1rem;
       border-radius: var(--radius-pill);
       text-transform: uppercase;
       letter-spacing: 0.06em;
       white-space: nowrap;
     }
-    .price-header h3 {
-      font-size: 1.35rem;
-      font-weight: 800;
-      color: #ffffff;
-    }
-    .price-header p {
-      font-size: 0.825rem;
-      color: var(--text-muted);
-      margin-top: 0.25rem;
-    }
     .price-amount {
-      font-size: 2.85rem;
+      font-size: 3rem;
       font-weight: 800;
-      color: #ffffff;
+      color: #03282b;
       font-family: var(--font-mono);
       margin: 1.25rem 0 0.25rem;
     }
     .price-amount span {
-      font-size: 0.95rem;
-      font-weight: 500;
-      color: var(--text-muted);
+      font-size: 1rem;
+      font-weight: 600;
+      color: #0c4a51;
       font-family: var(--font-main);
     }
-    .price-setup {
-      font-size: 0.775rem;
-      color: var(--primary);
+    .price-setup-line {
+      font-size: 0.8rem;
+      color: #042f34;
+      font-weight: 700;
       font-family: var(--font-mono);
       margin-bottom: 1.5rem;
       padding-bottom: 1.25rem;
-      border-bottom: 1px solid var(--border-subtle);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     }
-    .price-features {
+    .price-list {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 0.75rem;
-      font-size: 0.865rem;
-      color: #cbd5e1;
+      gap: 0.8rem;
+      font-size: 0.9rem;
+      color: #032e33;
+      font-weight: 500;
       margin-bottom: 2rem;
     }
-    .price-features li {
+    .price-list li {
       display: flex;
       align-items: flex-start;
       gap: 0.55rem;
     }
-    .price-features li span {
-      color: var(--primary);
-      font-weight: 800;
+    .price-list li strong {
+      color: #021a1d;
     }
 
-    /* FAQ Cyber */
+    /* FAQ */
     .faq-container {
-      max-width: 760px;
+      max-width: 780px;
       margin: 0 auto;
       display: flex;
       flex-direction: column;
       gap: 0.85rem;
     }
     .faq-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
+      background: rgba(255, 255, 255, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.7);
       border-radius: var(--radius-md);
       overflow: hidden;
-      transition: border-color 0.2s ease;
+      backdrop-filter: blur(12px);
+      transition: all 0.25s ease;
     }
     .faq-card.open {
-      border-color: var(--primary);
-      box-shadow: 0 0 20px rgba(0, 224, 186, 0.12);
+      background: rgba(255, 255, 255, 0.65);
+      border-color: #ffffff;
+      box-shadow: 0 8px 25px rgba(0, 50, 45, 0.12);
     }
     .faq-question {
       width: 100%;
       text-align: left;
-      padding: 1.2rem 1.5rem;
+      padding: 1.3rem 1.6rem;
       background: transparent;
       border: none;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      color: #ffffff;
-      font-size: 1rem;
-      font-weight: 700;
+      color: #032a2e;
+      font-size: 1.05rem;
+      font-weight: 800;
       cursor: pointer;
       font-family: inherit;
     }
     .faq-chevron {
-      color: var(--primary);
+      color: #032a2e;
       transition: transform 0.25s ease;
     }
     .faq-card.open .faq-chevron {
@@ -797,9 +793,9 @@
       max-height: 0;
       overflow: hidden;
       transition: max-height 0.3s ease;
-      padding: 0 1.5rem;
-      color: var(--text-muted);
-      font-size: 0.925rem;
+      padding: 0 1.6rem;
+      color: #04363b;
+      font-size: 0.95rem;
       line-height: 1.6;
     }
     .faq-card.open .faq-answer {
@@ -809,60 +805,40 @@
       padding-bottom: 1.25rem;
     }
 
-    /* Banner CTA Final */
-    .cta-cyber-box {
-      background: radial-gradient(circle at 50% 0%, rgba(0, 224, 186, 0.2) 0%, rgba(6, 17, 26, 0.95) 75%);
-      border: 1px solid var(--border-bright);
-      border-radius: var(--radius-lg);
-      padding: 4rem 2rem;
-      text-align: center;
-      box-shadow: 0 0 50px rgba(0, 224, 186, 0.2);
-      margin-bottom: 4rem;
-      position: relative;
-    }
-    .cta-cyber-box h2 {
-      font-size: 2.45rem;
-      font-weight: 800;
-      color: #ffffff;
-      margin-bottom: 1rem;
-      letter-spacing: -0.025em;
-    }
-    .cta-cyber-box p {
-      color: #cbd5e1;
-      font-size: 1.05rem;
-      max-width: 580px;
-      margin: 0 auto 2rem;
-    }
-
+    /* Footer */
     footer {
-      border-top: 1px solid var(--border-subtle);
+      border-top: 1px solid rgba(255, 255, 255, 0.4);
       padding: 2.5rem 0;
       text-align: center;
-      font-size: 0.85rem;
-      color: var(--text-muted);
+      font-size: 0.9rem;
+      color: #03282b;
+      font-weight: 500;
     }
 
     /* Responsive */
     @media (max-width: 960px) {
-      .hero-grid { grid-template-columns: 1fr; gap: 3rem; text-align: center; }
-      .hero-desc { margin: 0 auto 2rem; }
-      .hero-actions { justify-content: center; }
-      .hero-stats { justify-content: center; }
+      .hero-demo-header h1 { font-size: 2.35rem; }
+      .repetitive-wrap { grid-template-columns: 1fr; text-align: center; gap: 2.5rem; }
+      .repetitive-desc { margin: 0 auto 2rem; }
+      .quick-stats-row { justify-content: center; }
       .pillars-grid { grid-template-columns: 1fr; }
-      .pricing-grid-3 { grid-template-columns: 1fr; }
-      .hero-content h1 { font-size: 2.45rem; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .simulator-tabs-grid { grid-template-columns: repeat(2, 1fr); border-radius: 16px; }
+      .sim-tab-item { border-radius: 12px; }
+      .brand-logo { height: 56px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Fondo interactivo de nodos neuronales / partículas -->
-  <canvas id="neuralCanvas"></canvas>
+  <!-- Canvas de lucecitas brillantes y partículas cuánticas sobre turquesa -->
+  <canvas id="sparkleCanvas"></canvas>
 
-  <!-- NAVBAR -->
+  <!-- NAVBAR CON LOGO AUMENTADO AL 100% -->
   <header class="navbar" role="banner">
     <div class="container navbar-inner">
       <a href="#" aria-label="Moofin Inicio">
+        <!-- Logo aumentado al 100% (76px de altura) -->
         <img 
           src="https://xclczvqoggvuuzaualbs.supabase.co/storage/v1/object/public/content-media/White-Moofin.png" 
           alt="Moofin Agentes IA" 
@@ -871,9 +847,9 @@
       </a>
 
       <nav style="display: flex; align-items: center; gap: 1.25rem;">
-        <a href="#como-funciona" style="text-decoration: none; color: var(--text-muted); font-size: 0.9rem; font-weight: 600;">Soluciones</a>
-        <a href="#precios" style="text-decoration: none; color: var(--text-muted); font-size: 0.9rem; font-weight: 600;">Planes</a>
-        <a href="https://wa.link/9nwgex" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding: 0.55rem 1.25rem; font-size: 0.85rem;">
+        <a href="#como-funciona" style="text-decoration: none; color: #032b2f; font-size: 0.925rem; font-weight: 700;">Soluciones</a>
+        <a href="#precios" style="text-decoration: none; color: #032b2f; font-size: 0.925rem; font-weight: 700;">Planes</a>
+        <a href="https://wa.link/9nwgex" target="_blank" rel="noopener noreferrer" class="btn btn-dark" style="padding: 0.65rem 1.4rem; font-size: 0.88rem;">
           Hablar por WhatsApp
         </a>
       </nav>
@@ -881,98 +857,116 @@
   </header>
 
   <main>
-    <!-- HERO SECTION -->
-    <section class="hero" aria-label="Presentación Moofin">
-      <div class="container hero-grid">
-        <div class="hero-content">
-          <div class="badge-cyber">
-            <span class="badge-pulse"></span>
+    <!-- SECCIÓN 1: CASOS DE USO EN VIVO (PRIORIDAD NÚMERO UNO EN EL CENTRO) -->
+    <section class="hero-demo-section" aria-label="Casos de uso en vivo">
+      <div class="container">
+        
+        <div class="hero-demo-header">
+          <div class="badge-luminous">
+            <span class="badge-sparkle-dot"></span>
             SISTEMA AUTÓNOMO DE IA PARA EMPRESAS
           </div>
+          <h1>Automatización Conversacional en Vivo</h1>
+          <p>Comprueba con un clic cómo responde el agente a las situaciones reales de tu negocio:</p>
+        </div>
 
-          <h1>
-            Si es repetitivo, no lo hagas tú: <br />
-            <span class="glow-text">que lo haga la IA.</span>
-          </h1>
-
-          <p class="hero-desc">
-            Delega respuestas de stock, consultas de precios y agendamiento directo de turnos 24/7 en WhatsApp. Recupera horas libres de tu día sin dejar prospectos en visto.
-          </p>
-
-          <div class="hero-actions">
-            <a href="https://wa.link/9nwgex" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z"/></svg>
-              Probar en mi negocio
-            </a>
-            <a href="#como-funciona" class="btn btn-ghost">
-              Ver casos de uso
-            </a>
+        <!-- MOCKUP DEL DEMO EN VIVO CON 4 CASOS -->
+        <div class="demo-showcase-box">
+          <div class="demo-action-guide">
+            <span class="live-light"></span>
+            Casos de uso en vivo — Haz clic para probar:
           </div>
 
-          <div class="hero-stats">
-            <div class="stat-box">
-              <strong>&lt; 3 seg</strong>
-              <span>Respuesta inmediata</span>
+          <!-- 4 Botones de Casos de Uso (Sin iconos genéricos) -->
+          <div class="simulator-tabs-grid" role="tablist">
+            <button class="sim-tab-item active" onclick="switchScenario('citas', this)">
+              Agendar Cita
+            </button>
+            <button class="sim-tab-item" onclick="switchScenario('catalogo', this)">
+              Consultar Stock
+            </button>
+            <button class="sim-tab-item" onclick="switchScenario('cobro', this)">
+              Cierre de Venta
+            </button>
+            <button class="sim-tab-item" onclick="switchScenario('horarios', this)">
+              Horarios & Info
+            </button>
+          </div>
+
+          <!-- Smartphone WhatsApp -->
+          <div class="phone-mockup-turq">
+            <div class="phone-head-bar">
+              <div class="head-user-data">
+                <div class="avatar-circle">
+                  <img src="https://xclczvqoggvuuzaualbs.supabase.co/storage/v1/object/public/content-media/White-Moofin.png" alt="Moofin Logo" />
+                </div>
+                <div>
+                  <div class="agent-title-text">Moofin Asistente</div>
+                  <div class="agent-status-sub">Conectado a tu base de datos</div>
+                </div>
+              </div>
+              <div style="font-family: var(--font-mono); font-size: 0.72rem; color: #a7f3d0; font-weight: 700;">
+                WHATSAPP API
+              </div>
             </div>
-            <div class="stat-box">
-              <strong>24 / 7</strong>
-              <span>Operación continua</span>
-            </div>
-            <div class="stat-box">
-              <strong>100%</strong>
-              <span>Datos reales de tu stock</span>
+
+            <!-- Flujo conversacional dinámico -->
+            <div class="chat-body-stream" id="chatArea" aria-live="polite">
+              <!-- Mensajes generados por JavaScript -->
             </div>
           </div>
         </div>
 
-        <!-- SIMULADOR INTERACTIVO CONVERSACIONAL (Sin emojis genéricos en pestañas) -->
-        <div class="simulator-container">
-          <div class="simulator-label">
-            <span style="display:inline-block; width:6px; height:6px; background:var(--primary); border-radius:50%;"></span>
-            Casos de uso en vivo — Haz clic para probar:
+      </div>
+    </section>
+
+    <!-- SECCIÓN 2: "SI ES REPETITIVO, NO LO HAGAS TÚ: QUE LO HAGA LA IA" -->
+    <section class="repetitive-section">
+      <div class="container repetitive-wrap">
+        <div class="repetitive-content">
+          <div class="badge-luminous">
+            FILOSOFÍA MOOFIN
           </div>
 
-          <div class="simulator-tabs" role="tablist">
-            <button class="sim-tab-btn active" onclick="switchScenario('citas', this)">
-              <span class="tab-dot"></span> Agendar Cita
-            </button>
-            <button class="sim-tab-btn" onclick="switchScenario('catalogo', this)">
-              <span class="tab-dot"></span> Consultar Stock
-            </button>
-            <button class="sim-tab-btn" onclick="switchScenario('cobro', this)">
-              <span class="tab-dot"></span> Cierre de Venta
-            </button>
+          <h2>
+            Si es repetitivo, no lo hagas tú: <br />
+            <span>que lo haga la IA.</span>
+          </h2>
+
+          <p class="repetitive-desc">
+            Deja de perder 4 horas al día respondiendo las mismas preguntas de precios, tallas, direcciones y disponibilidad. Pon a trabajar un agente inteligente que atiende de inmediato y transfiere solo cuando hay que facturar.
+          </p>
+
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+            <a href="https://wa.link/9nwgex" target="_blank" rel="noopener noreferrer" class="btn btn-dark">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z"/></svg>
+              Automatizar mi negocio
+            </a>
+            <a href="#como-funciona" class="btn btn-white-glass">
+              Ver cómo funciona
+            </a>
           </div>
+        </div>
 
-          <div class="phone-wrapper">
-            <div class="phone-screen">
-              <div class="phone-top-bar">
-                <div class="top-agent-info">
-                  <div class="agent-avatar">
-                    <img src="https://xclczvqoggvuuzaualbs.supabase.co/storage/v1/object/public/content-media/White-Moofin.png" alt="Moofin Icon" />
-                  </div>
-                  <div>
-                    <div class="agent-name">Moofin Asistente</div>
-                    <div class="agent-status">Conectado a tu base de datos</div>
-                  </div>
-                </div>
-                <div style="font-family: var(--font-mono); font-size: 0.68rem; color: #94a3b8;">
-                  WHATSAPP API
-                </div>
-              </div>
-
-              <!-- Stream dinámico de mensajes -->
-              <div class="chat-stream" id="chatArea" aria-live="polite">
-                <!-- Se alimenta dinámicamente mediante JavaScript -->
-              </div>
-            </div>
+        <div class="quick-stats-row">
+          <div class="quick-stat">
+            <h4>&lt; 3 seg</h4>
+            <span>Respuesta inmediata</span>
+          </div>
+          <div class="quick-stat">
+            <h4>24 / 7</h4>
+            <span>Operación continua</span>
+          </div>
+          <div class="quick-stat">
+            <h4>100%</h4>
+            <span>Datos reales de tu stock</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- CINTILLO DE CLIENTES ACTIVOS -->
-    <section class="clients-strip" aria-label="Clientes activos">
+    <!-- CINTILLO DE CLIENTES -->
+    <section class="clients-strip" aria-label="Clientes que delegan en Moofin">
       <div class="container">
         <p class="clients-title">Operaciones comerciales que ya delegan su rutina en Moofin</p>
         <div class="clients-flex">
@@ -996,73 +990,64 @@
       </div>
     </section>
 
-    <!-- 3 PILARES: RESOLUCIÓN REAL (TEXTO RESUMIDO A 2 LÍNEAS + MICRO PREVIEWS) -->
+    <!-- 3 PILARES: RESOLUCIÓN REAL (MÁXIMO 2 LÍNEAS DE TEXTO) -->
     <section class="section-spacing" id="como-funciona">
       <div class="container">
         <div class="center-header">
-          <div class="badge-cyber">RESOLUCIÓN REAL</div>
+          <div class="badge-luminous">RESOLUCIÓN REAL</div>
           <h2>Tareas mecánicas que ya no harás tú</h2>
           <p>Sin rodeos ni métricas inventadas: automatiza lo que hoy te quita horas de tu día.</p>
         </div>
 
         <div class="pillars-grid">
-          <!-- Pilar 1: Agendamiento de Citas -->
+          <!-- Pilar 1: Citas -->
           <div class="pillar-box">
             <div>
-              <div class="pillar-icon-wrap">
+              <div class="pillar-icon">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/></svg>
               </div>
               <h3>Agendamiento de Citas</h3>
-              <!-- 2 líneas de texto máximo -->
               <p>Sincroniza tu calendario en tiempo real para verificar turnos libres y confirmar citas sin intervención de secretarias.</p>
             </div>
-
-            <!-- Micro Preview Interactivo -->
-            <div class="pillar-preview-ui">
+            <div class="micro-ui-preview">
               <div>Sincronización: Google Calendar / CRM</div>
-              <div class="accent-row">
+              <div class="row-accent">
                 <span>Viernes 3:30 PM</span>
                 <span>[BLOQUEADO]</span>
               </div>
             </div>
           </div>
 
-          <!-- Pilar 2: Catálogo y Stock en Vivo -->
+          <!-- Pilar 2: Catálogo -->
           <div class="pillar-box">
             <div>
-              <div class="pillar-icon-wrap">
+              <div class="pillar-icon">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5M12 22V12"/></svg>
               </div>
               <h3>Catálogo, Tallas y Stock</h3>
-              <!-- 2 líneas de texto máximo -->
               <p>Conectado a tus hojas o base de datos para responder precios, variantes y disponibilidad exacta en 3 segundos sin inventar.</p>
             </div>
-
-            <!-- Micro Preview Interactivo -->
-            <div class="pillar-preview-ui">
-              <div>Consulta: Zapatilla Negra Talla 42</div>
-              <div class="accent-row">
+            <div class="micro-ui-preview">
+              <div>Consulta: Zapatilla Running #42</div>
+              <div class="row-accent">
                 <span>Stock: 3 uds • $45 USD</span>
                 <span>[ACTUALIZADO]</span>
               </div>
             </div>
           </div>
 
-          <!-- Pilar 3: Filtro Listo para Cobrar -->
+          <!-- Pilar 3: Filtro -->
           <div class="pillar-box">
             <div>
-              <div class="pillar-icon-wrap">
+              <div class="pillar-icon">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
               </div>
               <h3>Filtro Listo para Cobrar</h3>
-              <!-- 2 líneas de texto máximo -->
               <p>La IA asume el 80% de preguntas repetitivas y deriva el chat a tu equipo humano solo cuando el cliente va a pagar.</p>
             </div>
-
-            <!-- Micro Preview Interactivo -->
-            <div class="pillar-preview-ui">
+            <div class="micro-ui-preview">
               <div>Estado de lead: Calificado para pago</div>
-              <div class="accent-row">
+              <div class="row-accent">
                 <span>Derivación a Asesor</span>
                 <span>[ORDEN LISTA]</span>
               </div>
@@ -1072,101 +1057,95 @@
       </div>
     </section>
 
-    <!-- PRECIOS Y PLANES (INCLUYE PLAN STARTER $49) -->
-    <section class="section-spacing" id="precios" style="border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle); background: rgba(6, 15, 23, 0.7);">
+    <!-- PRECIOS Y PLANES (3 TIERS: $49, $149 Y ENTERPRISE) -->
+    <section class="section-spacing" id="precios">
       <div class="container">
         <div class="center-header">
-          <div class="badge-cyber">INVERSIÓN CLARA</div>
+          <div class="badge-luminous">INVERSIÓN CLARA</div>
           <h2>Planes transparentes sin letra chica</h2>
           <p>Tarifa fija mensual. Sin contratos de permanencia forzosa.</p>
         </div>
 
-        <div class="pricing-grid-3">
+        <div class="pricing-grid">
           <!-- 1. Plan Starter ($49/mes) -->
           <div class="price-card">
             <div>
-              <div class="price-header">
-                <h3>Plan Starter</h3>
-                <p>Ideal para negocios que inician en un solo canal de mensajería.</p>
-              </div>
+              <h3>Plan Starter</h3>
+              <p style="font-size: 0.85rem; color: #04373d;">Para negocios que inician en un solo canal.</p>
 
               <div class="price-amount">
                 $49 <span>/ mes</span>
               </div>
-              <div class="price-setup">
-                Costo de Setup inicial: $99 USD (único)
+              <div class="price-setup-line">
+                Setup inicial: $99 USD (pago único)
               </div>
 
-              <ul class="price-features">
+              <ul class="price-list">
                 <li><span>✓</span> <strong>1 Canal exclusivo</strong> (WhatsApp Business)</li>
                 <li><span>✓</span> Hasta <strong>1.000 conversaciones</strong> al mes</li>
-                <li><span>✓</span> Respuestas con IA basada en catálogo</li>
+                <li><span>✓</span> Respuestas automáticas con catálogo</li>
                 <li><span>✓</span> Agendamiento de citas en Google Calendar</li>
-                <li><span>✓</span> Derivación básica a número de WhatsApp humano</li>
+                <li><span>✓</span> Derivación básica a asesor humano</li>
               </ul>
             </div>
 
-            <a href="https://wa.link/9nwgex" target="_blank" rel="noopener noreferrer" class="btn btn-ghost" style="width: 100%;">
+            <a href="https://wa.link/9nwgex" target="_blank" rel="noopener noreferrer" class="btn btn-white-glass" style="width: 100%;">
               Contratar Starter
             </a>
           </div>
 
           <!-- 2. Plan Pro ($149/mes - Destacado) -->
           <div class="price-card featured">
-            <div class="price-badge-top">Más Recomendado</div>
+            <div class="badge-pop">Más Recomendado</div>
             <div>
-              <div class="price-header">
-                <h3>Plan Pro Pymes</h3>
-                <p>Para empresas con flujo diario de consultas y reservas constantes.</p>
-              </div>
+              <h3>Plan Pro Pymes</h3>
+              <p style="font-size: 0.85rem; color: #04373d;">Para empresas con flujo diario y reservas constantes.</p>
 
-              <div class="price-amount" style="color: var(--primary);">
+              <div class="price-amount" style="color: #04272b;">
                 $149 <span>/ mes</span>
               </div>
-              <div class="price-setup">
-                Costo de Setup inicial: $299 USD (Setup GRATIS en pago anual)
+              <div class="price-setup-line">
+                Setup inicial: $299 USD (GRATIS en pago anual)
               </div>
 
-              <ul class="price-features">
-                <li><span>✓</span> <strong>2 Canales integrados</strong> (WhatsApp + Instagram o Web)</li>
+              <ul class="price-list">
+                <li><span>✓</span> <strong>2 Canales integrados</strong> (WhatsApp + IG o Web)</li>
                 <li><span>✓</span> Hasta <strong>3.000 conversaciones</strong> al mes</li>
-                <li><span>✓</span> Conexión en vivo con <strong>Google Sheets o Base de Datos</strong></li>
-                <li><span>✓</span> Agendamiento y cancelación automatizada de citas</li>
-                <li><span>✓</span> Derivación avanzada con historial de compra listo</li>
+                <li><span>✓</span> Conexión en vivo con <strong>Google Sheets o BD</strong></li>
+                <li><span>✓</span> Agendamiento y cancelación automatizada</li>
+                <li><span>✓</span> Derivación avanzada con historial de compra</li>
                 <li><span>✓</span> Soporte prioritario directo por WhatsApp</li>
               </ul>
             </div>
 
-            <a href="https://wa.link/9nwgex" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width: 100%;">
+            <a href="https://wa.link/9nwgex" target="_blank" rel="noopener noreferrer" class="btn btn-dark" style="width: 100%;">
               Contratar Plan Pro
             </a>
           </div>
 
-          <!-- 3. Plan Enterprise (A Medida) -->
+          <!-- 3. Plan Enterprise -->
           <div class="price-card">
             <div>
-              <div class="price-header">
-                <h3>Plan Custom / ERP</h3>
-                <p>Para operaciones con múltiples sedes o infraestructura propia.</p>
-              </div>
+              <h3>Plan Custom / ERP</h3>
+              <p style="font-size: 0.85rem; color: #04373d;">Para operaciones con múltiples sedes o CRM propio.</p>
 
               <div class="price-amount" style="font-size: 2.2rem; margin: 1.45rem 0 0.25rem;">
                 A Medida
               </div>
-              <div class="price-setup">
+              <div class="price-setup-line">
                 Cotización según volumen y arquitectura técnica
               </div>
 
-              <ul class="price-features">
+              <ul class="price-list">
                 <li><span>✓</span> <strong>Canales ilimitados</strong> (WhatsApp, IG, Web, Messenger)</li>
                 <li><span>✓</span> Volumen de conversaciones sin límite fijo</li>
                 <li><span>✓</span> Integración con <strong>ERP, CRM propio o base SQL</strong></li>
-                <li><span>✓</span> Múltiples agentes asignados por departamento</li>
+                <li><span>✓</span> Múltiples agentes por departamento</li>
                 <li><span>✓</span> Acuerdo de Nivel de Servicio (SLA) dedicado</li>
               </ul>
             </div>
 
-            <a href="https://wa.link/9nwgex" target="_blank" rel="noopener noreferrer" class="btn btn-ghost" style="width: 100%;">
+            <a href="https://wa.link/9nwgex" target="_blank" rel="noopener noreferrer" class="btn btn-white-glass" style="width: 100%;">
               Solicitar Cotización
             </a>
           </div>
@@ -1178,7 +1157,7 @@
     <section class="section-spacing">
       <div class="container">
         <div class="center-header">
-          <div class="badge-cyber">DUDAS RESUELTAS</div>
+          <div class="badge-luminous">DUDAS RESUELTAS</div>
           <h2>Preguntas Frecuentes</h2>
           <p>Aclara los puntos clave antes de poner en marcha tu agente.</p>
         </div>
@@ -1190,7 +1169,7 @@
               <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
             </button>
             <div class="faq-answer">
-              <p>Es un agente de Inteligencia Artificial que procesa lenguaje natural. Tus clientes pueden escribir con modismos, faltas de ortografía o enviar frases largas; el agente comprende la intención real y responde como un integrante capacitado de tu equipo.</p>
+              <p>Es un agente de Inteligencia Artificial que procesa lenguaje natural. Tus clientes pueden escribir con modismos, faltas de ortografía o notas complejas; el agente comprende la intención real y responde como un integrante capacitado de tu equipo.</p>
             </div>
           </div>
 
@@ -1228,11 +1207,15 @@
     </section>
 
     <!-- BANNER FINAL CTA -->
-    <section class="container">
-      <div class="cta-cyber-box">
-        <h2>¿Listo para dejar de responder lo mismo todos los días?</h2>
-        <p>Escríbenos directamente a WhatsApp. Evaluaremos el flujo actual de tu negocio y te mostraremos una demostración real adaptada a tus productos o citas.</p>
-        <a href="https://wa.link/9nwgex" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="font-size: 1.05rem; padding: 0.95rem 2.2rem;">
+    <section class="container" style="margin-bottom: 4rem;">
+      <div style="background: rgba(255, 255, 255, 0.4); border: 2px solid rgba(255, 255, 255, 0.8); border-radius: var(--radius-lg); padding: 4rem 2rem; text-align: center; box-shadow: 0 15px 40px rgba(0, 50, 45, 0.15); backdrop-filter: blur(14px);">
+        <h2 style="font-size: 2.5rem; font-weight: 800; color: #ffffff; text-shadow: 0 3px 20px rgba(0, 50, 43, 0.2); margin-bottom: 1rem;">
+          ¿Listo para dejar de responder lo mismo todos los días?
+        </h2>
+        <p style="color: #032e33; font-size: 1.1rem; max-width: 580px; margin: 0 auto 2rem; font-weight: 500;">
+          Escríbenos directamente a WhatsApp. Evaluaremos el flujo actual de tu negocio y te mostraremos una demostración real adaptada a tus productos o citas.
+        </p>
+        <a href="https://wa.link/9nwgex" target="_blank" rel="noopener noreferrer" class="btn btn-dark" style="font-size: 1.05rem; padding: 1rem 2.5rem;">
           Agendar Demostración por WhatsApp
         </a>
       </div>
@@ -1242,17 +1225,17 @@
   <!-- FOOTER -->
   <footer>
     <div class="container">
-      <img src="https://xclczvqoggvuuzaualbs.supabase.co/storage/v1/object/public/content-media/White-Moofin.png" alt="Moofin" style="height: 28px; margin-bottom: 0.85rem; opacity: 0.85;" />
+      <img src="https://xclczvqoggvuuzaualbs.supabase.co/storage/v1/object/public/content-media/White-Moofin.png" alt="Moofin" style="height: 48px; margin-bottom: 0.85rem; opacity: 0.95;" />
       <p>© 2026 MOOFIN. Todos los derechos reservados.</p>
-      <p style="margin-top: 0.35rem; font-size: 0.775rem; color: #64748b;">Maturín, Venezuela. Soluciones de Automatización e IA para Empresas.</p>
+      <p style="margin-top: 0.35rem; font-size: 0.8rem; color: #053b42;">Maturín, Venezuela. Soluciones de Automatización e IA para Empresas.</p>
     </div>
   </footer>
 
   <script>
     /* -------------------------------------------------------------
-       1. CANVAS DE RED NEURAL / FONDO CUÁNTICO CYBER
+       1. CANVAS DE LUCITAS BRILLANTES, PARTICULAS Y DESTELLOS
     ------------------------------------------------------------- */
-    const canvas = document.getElementById('neuralCanvas');
+    const canvas = document.getElementById('sparkleCanvas');
     const ctx = canvas.getContext('2d');
     let width = canvas.width = window.innerWidth;
     let height = canvas.height = window.innerHeight;
@@ -1262,57 +1245,54 @@
       height = canvas.height = window.innerHeight;
     });
 
-    const particles = [];
-    const particleCount = Math.min(window.innerWidth < 768 ? 25 : 55, 60);
+    const sparkles = [];
+    const sparkleCount = window.innerWidth < 768 ? 30 : 65;
 
-    for (let i = 0; i < particleCount; i++) {
-      particles.push({
+    for (let i = 0; i < sparkleCount; i++) {
+      sparkles.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.45,
-        vy: (Math.random() - 0.5) * 0.45,
-        radius: Math.random() * 1.8 + 0.8
+        vx: (Math.random() - 0.5) * 0.4,
+        vy: (Math.random() - 0.5) * 0.4,
+        radius: Math.random() * 2.2 + 0.8,
+        alpha: Math.random() * 0.7 + 0.3,
+        pulseSpeed: Math.random() * 0.02 + 0.01
       });
     }
 
-    function animateNeuralNetwork() {
+    function animateSparkles() {
       ctx.clearRect(0, 0, width, height);
 
-      for (let i = 0; i < particles.length; i++) {
-        const p = particles[i];
-        p.x += p.vx;
-        p.y += p.vy;
+      for (let i = 0; i < sparkles.length; i++) {
+        const s = sparkles[i];
+        s.x += s.vx;
+        s.y += s.vy;
+        s.alpha += Math.sin(Date.now() * s.pulseSpeed) * 0.01;
 
-        if (p.x < 0 || p.x > width) p.vx *= -1;
-        if (p.y < 0 || p.y > height) p.vy *= -1;
+        if (s.x < 0) s.x = width;
+        if (s.x > width) s.x = 0;
+        if (s.y < 0) s.y = height;
+        if (s.y > height) s.y = 0;
 
+        // Dibujo de lucitas con resplandor suave
         ctx.beginPath();
-        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(0, 224, 186, 0.5)';
+        ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 255, 255, ${Math.max(0.15, Math.min(0.9, s.alpha))})`;
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = 'rgba(255, 255, 255, 0.9)';
         ctx.fill();
-
-        for (let j = i + 1; j < particles.length; j++) {
-          const p2 = particles[j];
-          const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
-          if (dist < 130) {
-            ctx.beginPath();
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(p2.x, p2.y);
-            ctx.strokeStyle = `rgba(0, 224, 186, ${0.18 * (1 - dist / 130)})`;
-            ctx.lineWidth = 0.75;
-            ctx.stroke();
-          }
-        }
+        ctx.shadowBlur = 0; // reset
       }
-      requestAnimationFrame(animateNeuralNetwork);
+
+      requestAnimationFrame(animateSparkles);
     }
-    animateNeuralNetwork();
+    animateSparkles();
 
     /* -------------------------------------------------------------
-       2. ESCENARIOS AMPLIADOS DEL SIMULADOR DE CHAT
+       2. ESCENARIOS AMPLIADOS DEL SIMULADOR (4 CASOS CONTEXTUALES)
     ------------------------------------------------------------- */
     const scenarios = {
-      // Escenario 1: Agendamiento de Cita Completo y Realista
+      // Caso 1: Agendamiento de Citas Completo con Cierre Humano
       citas: [
         { sender: 'user', text: 'Buenas tardes, quisiera agendar una consulta odontológica para valoración este viernes.' },
         { sender: 'bot', text: '¡Hola! Qué gusto saludarte. Claro que sí, con el Dr. Mendoza tenemos disponibles estos turnos para el viernes:\n• 10:00 AM\n• 3:30 PM\n• 5:00 PM\n¿Cuál horario te resulta más cómodo?' },
@@ -1321,38 +1301,56 @@
         { sender: 'user', text: 'María González, 0414-1234567.' },
         { 
           sender: 'bot', 
-          text: '¡Listo, María! Tu cita para Valoración Odontológica ha quedado confirmada:',
-          extraHtml: '<div class="product-mini-card"><span>📅 Viernes 3:30 PM</span><span>DR. MENDOZA • SALA 2</span></div>'
+          text: '¡Listo, María! Tu cita para Valoración Odontológica ha quedado confirmada en nuestra agenda:',
+          extraHtml: '<div class="mini-status-card"><span>📅 Viernes 3:30 PM</span><span>DR. MENDOZA • SALA 2</span></div>'
         },
-        { sender: 'bot', text: 'Te enviamos un recordatorio automático 24 horas antes por este mismo medio. ¡Te esperamos!' }
+        { sender: 'user', text: 'Perfecto, muchísimas gracias por la atención rápida.' },
+        { sender: 'bot', text: '¡A ti, María! Con todo gusto. Te enviamos un recordatorio automático 24 horas antes por este mismo chat. ¡Te esperamos puntualmente!' }
       ],
 
-      // Escenario 2: Consulta de Stock, Talla y Precios en Vivo
+      // Caso 2: Consulta de Catálogo, Talla, Stock y Reserva
       catalogo: [
         { sender: 'user', text: 'Hola, buenas noches. ¿Tienen disponible la zapatilla running en color negro talla 42? ¿Qué precio tiene?' },
-        { sender: 'bot', text: '¡Hola! Un momento mientras consulto el inventario en tiempo real...' },
+        { sender: 'bot', text: '¡Hola! Con gusto, dame 2 segundos mientras consulto el inventario en tiempo real...' },
         { 
           sender: 'bot', 
-          text: 'Sí, nos quedan 3 unidades en stock en tienda:',
-          extraHtml: '<div class="product-mini-card"><span>👟 Running Pro Black #42</span><span>$45 USD (O al cambio BCV)</span></div>'
+          text: 'Sí, nos quedan 3 unidades en stock en la tienda física:',
+          extraHtml: '<div class="mini-status-card"><span>👟 Running Pro Black #42</span><span>$45 USD (o tasa oficial)</span></div>'
         },
         { sender: 'user', text: '¿Hacen entregas el mismo día en la zona?' },
         { sender: 'bot', text: '¡Sí! Todas las órdenes confirmadas antes de las 2:00 PM salen en delivery hoy mismo. ¿Te gustaría apartar tu par antes de que se agoten?' },
-        { sender: 'user', text: 'Sí, apártamelas por favor.' },
-        { sender: 'bot', text: '¡Apartadas por 2 horas! Te paso en el siguiente mensaje los datos para completar tu pedido.' }
+        { sender: 'user', text: 'Sí, apártamelas por favor, voy a buscarlas hoy en la tarde.' },
+        { sender: 'bot', text: '¡Apartadas a tu nombre por 2 horas! Te paso la ubicación de la tienda en el siguiente mensaje. ¡Te esperamos!' }
       ],
 
-      // Escenario 3: Cierre de Venta y Derivación Lista para Cobrar
+      // Caso 3: Cierre de Venta con Derivación para Cobro
       cobro: [
-        { sender: 'user', text: 'Hola, revisé los planes y decidí contratar el Plan Pro para mi clínica. ¿Cómo hago para pagar?' },
+        { sender: 'user', text: 'Hola, estuve revisando los planes y decidí contratar el Plan Pro para mi clínica. ¿Cómo hago para pagar?' },
         { sender: 'bot', text: '¡Excelente decisión! El Plan Pro incluye conexión para WhatsApp e Instagram, agenda médica y soporte prioritario por $149/mes.' },
         { sender: 'bot', text: 'Estoy generando tu orden de servicio y preparando los datos de facturación...' },
         { 
           sender: 'bot', 
           text: 'Tu orden está lista para formalizar:',
-          extraHtml: '<div class="product-mini-card"><span>ORDEN #8492 — PLAN PRO</span><span>ESTADO: LISTO PARA PAGO</span></div>'
+          extraHtml: '<div class="mini-status-card"><span>ORDEN #8492 — PLAN PRO</span><span>ESTADO: LISTO PARA PAGO</span></div>'
         },
-        { sender: 'bot', text: '👤 Te estoy transfiriendo en este instante con Carlos de Administración para enviarte los datos de pago móvil o transferencia. ¡En 1 minuto te atiende!' }
+        { sender: 'bot', text: '👤 Te estoy transfiriendo en este instante con Carlos de Administración para enviarte los datos de pago móvil o transferencia bancaria.' },
+        { sender: 'user', text: 'Okay, muchas gracias.' },
+        { sender: 'bot', text: '¡Listo! Estamos para servirle con todo gusto. En un momento Carlos continuará contigo. ¡Feliz día!' }
+      ],
+
+      // Caso 4: Horarios, Ubicación y Preguntas Frecuentes
+      horarios: [
+        { sender: 'user', text: 'Hola, ¿dónde están ubicados exactamente y hasta qué hora trabajan los sábados?' },
+        { sender: 'bot', text: '¡Hola! Qué gusto saludarte. Estamos ubicados en Av. Alirio Ugarte Pelayo, C.C. Petroriente, Módulo B, Local 14.' },
+        { 
+          sender: 'bot', 
+          text: 'Nuestros horarios de atención son:',
+          extraHtml: '<div class="mini-status-card"><span>LUN A VIE: 8:00 AM - 6:00 PM</span><span>SÁB: 8:30 AM - 2:00 PM</span></div>'
+        },
+        { sender: 'user', text: '¿Tienen punto de venta y estacionamiento en el sitio?' },
+        { sender: 'bot', text: '¡Sí! Contamos con estacionamiento privado con vigilancia y aceptamos pago móvil, punto de venta y transferencias.' },
+        { sender: 'user', text: 'Muchas gracias por la información tan clara.' },
+        { sender: 'bot', text: '¡A la orden! Cualquier otra consulta que tengas, estoy disponible 24/7. ¡Que tengas un excelente día!' }
       ]
     };
 
@@ -1371,7 +1369,7 @@
         const current = messages[index];
 
         if (current.sender === 'bot') {
-          // Indicador typing cyber
+          // Indicador typing
           const typingElem = document.createElement('div');
           typingElem.className = 'typing-box';
           typingElem.id = 'typingIndicator';
@@ -1386,7 +1384,7 @@
             appendMessageBubble(current);
             index++;
             simulationTimer = setTimeout(showNextMessage, 1300);
-          }, 1100);
+          }, 1050);
         } else {
           appendMessageBubble(current);
           index++;
@@ -1420,13 +1418,12 @@
       if (simulationTimer) clearTimeout(simulationTimer);
       activeScenarioKey = key;
 
-      document.querySelectorAll('.sim-tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.sim-tab-item').forEach(btn => btn.classList.remove('active'));
       if (buttonElem) buttonElem.classList.add('active');
 
       renderConversation(scenarios[key]);
     }
 
-    // Acordeón FAQ
     function toggleFaq(button) {
       const card = button.parentElement;
       const isOpen = card.classList.contains('open');
@@ -1438,7 +1435,7 @@
       }
     }
 
-    // Inicializar al cargar la página
+    // Iniciar con el primer escenario
     window.addEventListener('DOMContentLoaded', () => {
       renderConversation(scenarios.citas);
     });
