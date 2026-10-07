@@ -2,546 +2,249 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Moofin | IA conversacional para empresas ágiles</title>
-  <meta name="description" content="Comprueba cómo responde la IA a situaciones reales de tu negocio. Agentes de IA para WhatsApp, catálogo, stock y citas en Venezuela y Latinoamérica.">
-  <meta name="keywords" content="chatbot whatsapp venezuela, agente ia empresas, agendamiento citas whatsapp, automatizar catálogo whatsapp, ia para negocios">
-  <link rel="canonical" href="https://www.moofin.com.ve/">
   
-  <meta property="og:title" content="Moofin | IA conversacional para empresas ágiles">
-  <meta property="og:description" content="Automatiza WhatsApp, catálogo y agendamiento de citas sin tareas repetitivas.">
-  <meta property="og:url" content="https://www.moofin.com.ve/">
-  <meta property="og:type" content="website">
-  
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "Moofin",
-    "applicationCategory": "BusinessApplication",
-    "operatingSystem": "All",
-    "description": "Sistema autónomo de inteligencia artificial para atención comercial, catálogo y agendamiento de citas por WhatsApp.",
-    "areaServed": [
-      { "@type": "Country", "name": "Venezuela" },
-      { "@type": "Country", "name": "Latin America" }
-    ],
-    "offers": {
-      "@type": "Offer",
-      "price": "49.00",
-      "priceCurrency": "USD"
-    }
-  }
-  </script>
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800;900&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            brand: '#00e0ba',
-            'brand-dark': '#00b899',
-            'brand-deep': '#003d33',
-            darktext: '#04221e',
-          },
-          fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-            mono: ['"JetBrains Mono"', 'monospace'],
-          }
-        }
-      }
-    }
-  </script>
-
   <style>
-    body {
+    html, body {
+      max-width: 100%;
+      overflow-x: hidden !important;
       background-color: #ffffff;
       color: #04221e;
-      overflow-x: hidden;
       font-family: 'Plus Jakarta Sans', sans-serif;
+      -webkit-tap-highlight-color: transparent;
     }
 
-    /* Fondo turquesa con degradado dinámico */
-    .hero-turquoise {
-      background: linear-gradient(165deg, #38fff1 0%, #00e0ba 40%, #00bda0 100%);
+    /* Fondo degradado continuo: Turquesa Moofin a Blanco puro */
+    .hero-turquoise-glow {
       position: relative;
+      background: linear-gradient(
+        180deg,
+        #00e0ba 0%,
+        #12e7c3 35%,
+        #52f4dc 65%,
+        #bbfbf1 85%,
+        #ffffff 100%
+      );
+      width: 100%;
+      overflow: hidden;
     }
 
-    /* Resplandor cenital cibernético */
-    .ambient-glow {
+    .ambient-aurora {
       position: absolute;
-      top: -15%;
+      top: -30%;
       left: 50%;
       transform: translateX(-50%);
-      width: 800px;
-      height: 480px;
-      background: radial-gradient(circle, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0) 70%);
+      width: 140%;
+      height: 600px;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.45) 0%, rgba(0, 224, 186, 0) 70%);
+      animation: auroraMove 9s ease-in-out infinite alternate;
       pointer-events: none;
       z-index: 1;
     }
 
-    /* Barra unificada de píldoras en tonos puros */
-    .segmented-bar {
-      background: #ffffff;
-      padding: 6px;
-      display: inline-flex;
-      border-radius: 9999px;
-      box-shadow: 0 10px 30px -5px rgba(0, 77, 64, 0.2);
-      border: 1px solid rgba(255, 255, 255, 0.9);
+    @keyframes auroraMove {
+      0% { transform: translateX(-52%) scale(0.95); opacity: 0.6; }
+      100% { transform: translateX(-48%) scale(1.05); opacity: 0.95; }
     }
 
-    /* Botones de tags: adiós al color negro tosco */
-    .seg-item {
-      padding: 9px 22px;
-      border-radius: 9999px;
-      font-size: 13px;
-      font-weight: 700;
-      color: #005a4d;
-      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-      cursor: pointer;
-      border: none;
-      background: transparent;
-      white-space: nowrap;
-    }
-
-    .seg-item:hover {
-      background: rgba(0, 224, 186, 0.2);
-      color: #003830;
-    }
-
-    .seg-item.active {
-      background: linear-gradient(135deg, #00bda0 0%, #008772 100%);
+    .title-white-glow {
       color: #ffffff;
-      box-shadow: 0 4px 14px rgba(0, 90, 77, 0.35);
+      font-weight: 900;
+      letter-spacing: -0.035em;
+      filter: drop-shadow(0 0 24px rgba(0, 168, 138, 0.45));
     }
 
-    /* Chasis de smartphone realista con biseles y sombra profunda */
-    .phone-mockup {
-      width: 100%;
-      max-width: 350px;
-      background: #0d131a;
-      border-radius: 46px;
-      padding: 10px;
-      box-shadow: 
-        0 0 0 2px #263339,
-        0 30px 80px -15px rgba(0, 61, 51, 0.38),
-        0 15px 30px -10px rgba(0, 0, 0, 0.15);
+    /* CONTENEDOR DE PÍLDORAS CON CÁPSULA DESLIZANTE MORPH */
+    .pills-container {
       position: relative;
-      z-index: 30;
+      background: #ffffff;
+      border-radius: 9999px;
+      padding: 5px;
+      display: inline-flex;
+      border: 1.5px solid rgba(255, 255, 255, 0.9);
+      box-shadow: 0 10px 28px -6px rgba(0, 140, 116, 0.22);
     }
 
-    .phone-screen {
-      background: #EFEAE2;
-      border-radius: 36px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      position: relative;
-    }
-
-    .dynamic-island {
+    /* Cápsula interactiva flotante que viaja detrás de los botones */
+    #tab-bubble {
       position: absolute;
-      top: 9px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 88px;
-      height: 20px;
-      background: #000000;
-      border-radius: 20px;
-      z-index: 40;
+      top: 5px;
+      bottom: 5px;
+      left: 5px;
+      background: #00e0ba;
+      border-radius: 9999px;
+      transition: all 0.28s cubic-bezier(0.34, 1.3, 0.64, 1);
+      z-index: 1;
+      pointer-events: none;
     }
 
-    .chat-scroll::-webkit-scrollbar {
-      width: 4px;
+    .pill-item {
+      position: relative;
+      z-index: 2;
+      transition: color 0.22s ease;
+      white-space: nowrap;
+      flex-shrink: 0;
+      background: transparent;
+      color: #025244;
+      font-weight: 700;
+      padding: 9px 20px;
+      border-radius: 9999px;
+      border: none;
+      cursor: pointer;
     }
-    .chat-scroll::-webkit-scrollbar-thumb {
-      background: rgba(0, 0, 0, 0.15);
-      border-radius: 8px;
+
+    .pill-item:hover {
+      color: #00332a;
+    }
+
+    .pill-item.active {
+      color: #00332a;
+      font-weight: 800;
+    }
+
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    .phone-shadow {
+      box-shadow: 
+        0 25px 60px -15px rgba(0, 140, 116, 0.28),
+        0 10px 25px -10px rgba(0, 0, 0, 0.08);
     }
   </style>
 </head>
-<body class="relative min-h-screen flex flex-col">
+<body class="w-full">
 
-  <!-- ==================== SECCIÓN SUPERIOR: HERO TURQUESA ==================== -->
-  <div class="hero-turquoise relative z-10 pt-4 pb-36 sm:pb-48">
-    <div class="ambient-glow"></div>
+  <!-- ==================== SECCIÓN HERO TURQUESA CLARO ==================== -->
+  <section class="hero-turquoise-glow pt-6 pb-16 px-4">
+    <div class="ambient-aurora"></div>
 
-    <!-- NAVBAR -->
-    <header class="max-w-6xl mx-auto px-6 flex items-center justify-between relative z-10">
-      <a href="/" class="block transition-transform hover:scale-105">
+    <!-- NAVBAR: LOGO NOTABLEMENTE MÁS GRANDE (h-16 sm:h-20) -->
+    <header class="max-w-4xl mx-auto flex items-center justify-between relative z-10 mb-8 sm:mb-12">
+      <a href="/" class="block transition-transform hover:scale-105 active:scale-95">
         <img 
           src="https://xclczvqoggvuuzaualbs.supabase.co/storage/v1/object/public/content-media/White-Moofin.png" 
-          alt="Moofin Logo" 
+          alt="Moofin" 
           class="h-16 sm:h-20 w-auto object-contain filter drop-shadow-sm"
         >
       </a>
 
-      <nav class="hidden md:flex items-center gap-8 text-sm font-bold text-white">
-        <a href="#demo" class="hover:text-darktext transition-colors">Demo</a>
-        <a href="#beneficios" class="hover:text-darktext transition-colors">Beneficios</a>
-        <a href="#planes" class="hover:text-darktext transition-colors">Planes</a>
-        <a href="#faq" class="hover:text-darktext transition-colors">Preguntas</a>
-      </nav>
-
       <a 
-        href="https://wa.me/584240000000?text=Hola,%20quiero%20conocer%20los%20planes%20de%20Moofin" 
+        href="https://wa.me/584240000000" 
         target="_blank"
-        class="bg-white hover:bg-slate-100 text-darktext px-6 py-2.5 rounded-full text-xs sm:text-sm font-extrabold shadow-md transition-all hover:scale-105 inline-flex items-center gap-2"
+        class="bg-white hover:bg-slate-50 text-[#008770] text-xs sm:text-sm font-extrabold px-6 py-3 rounded-full shadow-md transition-all active:scale-95 flex items-center gap-1.5"
       >
         <span>Ver Planes</span>
-        <svg class="w-3.5 h-3.5 text-brand-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        <svg class="w-3.5 h-3.5 text-[#00e0ba]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
       </a>
     </header>
 
-    <!-- ESTRUCTURA HERO: TÍTULO -> TAGS -> SUBTÍTULO -->
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 pt-10 text-center relative z-10">
+    <!-- CABECERA: TÍTULO BLANCO -> PÍLDORAS CON CÁPSULA FLOTANTE -> SUBTÍTULO -->
+    <div class="max-w-3xl mx-auto text-center relative z-10">
       
-      <!-- 1. Encabezado principal -->
-      <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight sm:leading-none mb-6 drop-shadow-sm">
+      <h1 class="title-white-glow text-3xl sm:text-5xl lg:text-6xl tracking-tight leading-[1.12] mb-6">
         IA conversacional para empresas ágiles
       </h1>
-      
-      <!-- 2. Sistema de Tags / Selector de casos de uso inmediatamente debajo del título -->
-      <div id="demo" class="flex justify-center mb-5">
-        <div class="segmented-bar overflow-x-auto max-w-full">
-          <button class="seg-item active" onclick="selectScenario('cita', this)">Agendar Cita</button>
-          <button class="seg-item" onclick="selectScenario('stock', this)">Consultar Stock</button>
-          <button class="seg-item" onclick="selectScenario('venta', this)">Cierre de Venta</button>
-          <button class="seg-item" onclick="selectScenario('info', this)">Horarios & Info</button>
+
+      <!-- Contenedor con cápsula dinámica deslizante -->
+      <div class="w-full flex justify-center mb-5">
+        <div class="pills-container inline-flex max-w-full overflow-x-auto no-scrollbar gap-1" id="pills-wrapper">
+          <!-- Burbuja que se desplaza y adapta su ancho orgánicamente -->
+          <div id="tab-bubble"></div>
+
+          <button class="pill-item active text-xs sm:text-sm" onclick="selectScenario('cita', this)">Agendar Cita</button>
+          <button class="pill-item text-xs sm:text-sm" onclick="selectScenario('stock', this)">Consultar Stock</button>
+          <button class="pill-item text-xs sm:text-sm" onclick="selectScenario('venta', this)">Cierre de Venta</button>
+          <button class="pill-item text-xs sm:text-sm" onclick="selectScenario('info', this)">Horarios & Info</button>
         </div>
       </div>
 
-      <!-- 3. Subtítulo ubicado estratégicamente debajo de los botones de acción -->
-      <p class="text-base sm:text-xl font-medium text-white/95 max-w-xl mx-auto leading-relaxed drop-shadow-sm">
+      <p class="text-sm sm:text-base font-bold text-white max-w-md mx-auto mb-10 leading-relaxed drop-shadow-sm">
         Comprueba cómo responde la IA a situaciones reales de tu negocio.
       </p>
 
     </div>
 
-    <!-- TRANSICIÓN TECNOLÓGICA TIPO ONDA CIBERNÉTICA / FIBRA DIGITAL -->
-    <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none pointer-events-none z-10">
-      <svg class="relative block w-full h-28 sm:h-44" viewBox="0 0 1440 240" fill="none" preserveAspectRatio="none">
-        <defs>
-          <linearGradient id="cyberTrace" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.1" />
-            <stop offset="30%" stop-color="#ffffff" stop-opacity="0.6" />
-            <stop offset="70%" stop-color="#38fff1" stop-opacity="0.9" />
-            <stop offset="100%" stop-color="#ffffff" stop-opacity="0.2" />
-          </linearGradient>
-        </defs>
-
-        <!-- Capa de pulso tecnológico secundaria -->
-        <path d="M0,130 Q360,30 720,110 T1440,80 L1440,240 L0,240 Z" fill="#ffffff" fill-opacity="0.3"></path>
+    <!-- SIMULADOR SMARTPHONE SOBRE EL FUNDIDO BLANCO -->
+    <div class="w-full max-w-[340px] sm:max-w-[360px] mx-auto relative z-20">
+      <div class="phone-shadow rounded-[2.6rem] bg-[#111b21] p-2.5 border-4 border-white">
         
-        <!-- Línea brillante de trazado de circuito / pulso digital -->
-        <path d="M0,110 Q380,20 740,95 T1440,55" stroke="url(#cyberTrace)" stroke-width="2.5" fill="none"></path>
-
-        <!-- Masa principal blanca con relieve y quiebre tecnológico sutil -->
-        <path d="M0,110 Q380,20 740,95 T1440,55 L1440,240 L0,240 Z" fill="#ffffff"></path>
-      </svg>
-    </div>
-
-  </div>
-
-  <!-- ==================== SECCIÓN INFERIOR: BLANCA (SMARTPHONE PISANDO AMBOS LADOS) ==================== -->
-  <div class="bg-white relative z-20 -mt-28 sm:-mt-40 pb-20">
-    <div class="max-w-4xl mx-auto px-4">
-      
-      <!-- SMARTPHONE COLOCADO SOBRE EL CRUCE TECNOLÓGICO -->
-      <div class="phone-mockup mx-auto">
-        <div class="dynamic-island"></div>
-
-        <div class="phone-screen flex flex-col">
-          <!-- Barra de estado -->
-          <div class="pt-3 px-6 pb-2 flex justify-between items-center text-[10px] font-bold bg-[#075E54] text-white">
-            <span>9:41</span>
-            <div class="flex items-center gap-1.5 opacity-90">
-              <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"/></svg>
-              <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M17.778 8.222c-4.296-4.296-11.26-4.296-15.556 0A1 1 0 01.808 6.808c5.076-5.077 13.308-5.077 18.384 0a1 1 0 01-1.414 1.414zM14.95 11.05a7 7 0 00-9.9 0 1 1 0 01-1.414-1.414 9 9 0 0112.728 0 1 1 0 01-1.414 1.414zM12.12 13.88a3 3 0 00-4.24 0 1 1 0 01-1.414-1.414 5 5 0 017.07 0 1 1 0 01-1.414 1.414zM9 16a1 1 0 112 0 1 1 0 01-2 0z" clip-rule="evenodd"/></svg>
-              <span class="text-[9px]">100%</span>
-            </div>
-          </div>
-
-          <!-- Cabecera de WhatsApp -->
-          <div class="bg-[#075E54] px-4 py-2.5 flex items-center justify-between text-white border-b border-[#054c44]">
-            <div class="flex items-center gap-3">
-              <div class="relative">
-                <div class="w-8 h-8 rounded-full bg-brand flex items-center justify-center font-bold text-darktext text-xs shadow-inner">
-                  M
-                </div>
-                <span class="absolute bottom-0 right-0 w-2 h-2 bg-emerald-400 border border-[#075E54] rounded-full"></span>
+        <div class="rounded-[2.1rem] overflow-hidden bg-[#efeae2] flex flex-col h-[400px]">
+          
+          <!-- Barra superior WhatsApp -->
+          <div class="bg-[#075e54] px-4 py-3 flex items-center justify-between text-white shrink-0">
+            <div class="flex items-center gap-2.5">
+              <div class="w-8 h-8 rounded-full bg-[#00e0ba] text-[#003830] font-black text-xs flex items-center justify-center">
+                M
               </div>
               <div class="text-left">
-                <p class="font-bold text-xs leading-tight text-white">Moofin Asistente</p>
-                <p class="text-[10px] text-emerald-200 font-medium">en línea</p>
+                <p class="text-xs font-bold leading-tight">Moofin Asistente</p>
+                <p class="text-[10px] text-teal-200">en línea</p>
               </div>
             </div>
-            <div class="flex items-center gap-3 text-white/80">
+            <div class="flex items-center gap-2 text-white/80">
               <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 4V3z"/></svg>
-              <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
             </div>
           </div>
 
-          <!-- Ventana de Chat (360px fijos con scroll suave) -->
-          <div id="chat-box" class="chat-scroll p-3.5 space-y-2.5 bg-[#EFEAE2] h-[360px] overflow-y-auto flex flex-col justify-start text-left text-xs leading-relaxed">
-            <!-- Mensajes animados dinámicamente -->
-          </div>
+          <!-- Mensajes del chat -->
+          <div id="chat-box" class="p-3.5 space-y-2.5 overflow-y-auto flex-1 flex flex-col justify-start text-left text-xs leading-relaxed"></div>
 
-          <!-- Indicador de tipeo con altura fija para evitar saltos bruscos -->
-          <div class="h-5 bg-[#EFEAE2] px-4 flex items-center">
+          <!-- Indicador de tipeo -->
+          <div class="h-6 bg-[#efeae2] px-4 flex items-center shrink-0">
             <div id="typing-indicator" class="hidden text-slate-500 text-[10px] items-center gap-1.5">
-              <span class="w-1.5 h-1.5 rounded-full bg-[#075E54] animate-bounce"></span>
-              <span class="w-1.5 h-1.5 rounded-full bg-[#075E54] animate-bounce [animation-delay:0.2s]"></span>
-              <span class="w-1.5 h-1.5 rounded-full bg-[#075E54] animate-bounce [animation-delay:0.4s]"></span>
-              <span class="ml-1 text-[10px] text-slate-600 font-medium">Moofin está escribiendo...</span>
+              <span class="w-1.5 h-1.5 rounded-full bg-[#075e54] animate-bounce"></span>
+              <span class="w-1.5 h-1.5 rounded-full bg-[#075e54] animate-bounce [animation-delay:0.2s]"></span>
+              <span class="w-1.5 h-1.5 rounded-full bg-[#075e54] animate-bounce [animation-delay:0.4s]"></span>
+              <span class="ml-1 text-[10px] text-slate-600 font-medium">escribiendo...</span>
             </div>
           </div>
 
           <!-- Input inferior de WhatsApp -->
-          <div class="bg-[#F0F2F5] px-3 py-2 flex items-center gap-2 border-t border-slate-200">
-            <div class="flex-1 bg-white rounded-full px-3 py-1.5 text-slate-400 text-xs flex items-center justify-between border border-slate-200 shadow-inner">
+          <div class="bg-[#f0f2f5] px-3 py-2 flex items-center gap-2 border-t border-slate-200 shrink-0">
+            <div class="flex-1 bg-white rounded-full px-3 py-1.5 text-slate-400 text-xs flex items-center justify-between border border-slate-200">
               <span>Mensaje...</span>
-              <svg class="w-3.5 h-3.5 text-slate-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 100-2 1 1 0 000 2zm7-1a1 1 0 11-2 0 1 1 0 012 0zm-.464 5.535a1 1 0 10-1.415-1.414 3 3 0 01-4.242 0 1 1 0 00-1.415 1.414 5 5 0 007.072 0z" clip-rule="evenodd"/></svg>
             </div>
-            <div class="w-7 h-7 rounded-full bg-[#075E54] flex items-center justify-center text-white">
+            <div class="w-7 h-7 rounded-full bg-[#075e54] flex items-center justify-center text-white">
               <svg class="w-3 h-3 transform rotate-45 -ml-0.5" fill="currentColor" viewBox="0 0 20 20"><path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"/></svg>
             </div>
           </div>
 
-          <!-- Home indicator inferior -->
-          <div class="bg-[#F0F2F5] pb-2 pt-1 flex justify-center">
-            <div class="w-28 h-1 bg-slate-400 rounded-full"></div>
-          </div>
         </div>
       </div>
 
-      <!-- BADGE DE TEXTO LIMPIO Y BOTÓN DE ACCIÓN -->
-      <div class="mt-8 flex flex-col items-center justify-center gap-4 text-center">
-        <p class="inline-flex items-center gap-2 text-xs font-semibold text-slate-600">
+      <!-- BADGE Y CTA -->
+      <div class="mt-6 text-center space-y-3">
+        <p class="inline-flex items-center gap-1.5 text-xs font-bold text-[#006b58]">
           <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
-          <span>Implementación lista en 48 - 72 horas hábiles</span>
+          <span>Implementación lista en 48 - 72 horas</span>
         </p>
 
-        <a 
-          href="https://wa.me/584240000000?text=Hola,%20quiero%20solicitar%20un%20agente%20de%20Moofin%20para%20mi%20negocio" 
-          target="_blank"
-          class="w-full sm:w-auto bg-darktext hover:bg-black text-white px-8 py-3.5 rounded-full font-extrabold text-sm sm:text-base shadow-xl transition-all hover:scale-105 flex items-center justify-center gap-2"
-        >
-          <span>Solicitar agente para mi negocio</span>
-          <svg class="w-4 h-4 text-brand" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
-        </a>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- SECCIÓN BENEFICIOS -->
-  <section id="beneficios" class="bg-slate-900 text-white py-20 px-6 relative z-10">
-    <div class="max-w-5xl mx-auto">
-      <div class="text-center max-w-2xl mx-auto mb-14">
-        <span class="text-xs font-mono font-bold uppercase tracking-wider text-brand">Adiós al desgaste manual</span>
-        <h2 class="text-3xl sm:text-4xl font-extrabold mt-2 tracking-tight">
-          Si es repetitivo, no lo hagas tú: que lo haga la IA
-        </h2>
-        <p class="text-slate-400 text-sm mt-3">
-          No te prometemos ventas mágicas automáticas. Te devolvemos 4 horas de tu día liberándote de las preguntas mecánicas.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        
-        <div class="bg-slate-800/60 border border-slate-700/60 p-6 rounded-2xl">
-          <div class="w-10 h-10 rounded-xl bg-brand/20 text-brand flex items-center justify-center font-bold mb-4">
-            01
-          </div>
-          <h3 class="text-lg font-bold text-white mb-1">Agendamiento de Citas</h3>
-          <p class="text-slate-300 text-xs leading-relaxed">
-            Sincroniza con Google Calendar. Reserva consultas médicas, turnos de estética o asesorías sin intervención humana.
-          </p>
-        </div>
-
-        <div class="bg-slate-800/60 border border-slate-700/60 p-6 rounded-2xl">
-          <div class="w-10 h-10 rounded-xl bg-brand/20 text-brand flex items-center justify-center font-bold mb-4">
-            02
-          </div>
-          <h3 class="text-lg font-bold text-white mb-1">Catálogo, Tallas y Stock</h3>
-          <p class="text-slate-300 text-xs leading-relaxed">
-            Conectado a tu base de datos o Google Sheets. Responde precios, tallas y existencias exactas al instante.
-          </p>
-        </div>
-
-        <div class="bg-slate-800/60 border border-slate-700/60 p-6 rounded-2xl">
-          <div class="w-10 h-10 rounded-xl bg-brand/20 text-brand flex items-center justify-center font-bold mb-4">
-            03
-          </div>
-          <h3 class="text-lg font-bold text-white mb-1">Filtro Listo para Cobrar</h3>
-          <p class="text-slate-300 text-xs leading-relaxed">
-            El bot aclara todas las dudas preliminares y deriva la conversación a tu equipo solo cuando el cliente va a pagar.
-          </p>
-        </div>
-
-      </div>
-
-      <div class="mt-14 grid grid-cols-3 border-t border-slate-800 pt-8 text-center">
         <div>
-          <p class="text-2xl sm:text-3xl font-extrabold text-brand">&lt; 3s</p>
-          <p class="text-xs text-slate-400 mt-1">Tiempo de respuesta</p>
+          <a 
+            href="https://wa.me/584240000000" 
+            target="_blank"
+            class="inline-flex items-center justify-center w-full sm:w-auto bg-[#008770] hover:bg-[#00705d] text-white px-8 py-3.5 rounded-full font-black text-sm shadow-lg transition-all active:scale-95"
+          >
+            Solicitar agente para mi negocio
+          </a>
         </div>
-        <div>
-          <p class="text-2xl sm:text-3xl font-extrabold text-white">24/7</p>
-          <p class="text-xs text-slate-400 mt-1">Atención continua</p>
-        </div>
-        <div>
-          <p class="text-2xl sm:text-3xl font-extrabold text-brand">100%</p>
-          <p class="text-xs text-slate-400 mt-1">Datos y stock real</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SECCIÓN PLANES -->
-  <section id="planes" class="py-20 px-6 max-w-5xl mx-auto">
-    <div class="text-center max-w-xl mx-auto mb-14">
-      <span class="text-xs font-mono font-bold uppercase tracking-wider text-slate-500">Inversión clara</span>
-      <h2 class="text-3xl sm:text-4xl font-extrabold text-darktext mt-1">Planes sin sorpresas</h2>
-      <p class="text-slate-600 text-sm mt-2">Tarifa fija mensual. Sin contratos forzosos ni comisiones por mensaje.</p>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      
-      <!-- PLAN STARTER ($49) -->
-      <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-md flex flex-col justify-between">
-        <div>
-          <h3 class="text-base font-bold text-darktext">Starter</h3>
-          <p class="text-xs text-slate-500 mt-0.5">Ideal para negocios locales y consultorios</p>
-          <div class="my-5">
-            <span class="text-4xl font-extrabold text-darktext">$49</span>
-            <span class="text-xs text-slate-500 font-semibold">/mes USD</span>
-            <p class="text-[11px] text-slate-600 font-mono mt-1">+ Setup inicial de $99 USD</p>
-          </div>
-          <ul class="space-y-2.5 text-xs text-slate-600 mb-6">
-            <li class="flex items-center gap-2"><span class="text-brand-dark font-bold">✓</span> 1 Canal (WhatsApp Oficial)</li>
-            <li class="flex items-center gap-2"><span class="text-brand-dark font-bold">✓</span> Agendamiento de citas</li>
-            <li class="flex items-center gap-2"><span class="text-brand-dark font-bold">✓</span> Preguntas frecuentes y catálogo</li>
-            <li class="flex items-center gap-2"><span class="text-brand-dark font-bold">✓</span> Soporte técnico continuo</li>
-          </ul>
-        </div>
-        <a 
-          href="https://wa.me/584240000000?text=Hola,%20me%20interesa%20el%20Plan%20Starter%20de%20$49" 
-          target="_blank"
-          class="w-full text-center py-2.5 rounded-full bg-slate-900 text-white text-xs font-bold hover:bg-black transition-colors"
-        >
-          Elegir Starter
-        </a>
-      </div>
-
-      <!-- PLAN PRO ($149) -->
-      <div class="bg-slate-900 rounded-3xl p-6 border-2 border-slate-900 shadow-xl text-white flex flex-col justify-between transform md:-translate-y-2 relative">
-        <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand text-darktext text-[10px] font-extrabold tracking-wider uppercase py-1 px-3 rounded-full shadow">
-          Recomendado
-        </div>
-        <div>
-          <h3 class="text-base font-bold text-white">Plan Pro</h3>
-          <p class="text-xs text-slate-400 mt-0.5">Para negocios con alto flujo comercial</p>
-          <div class="my-5">
-            <span class="text-4xl font-extrabold text-brand">$149</span>
-            <span class="text-xs text-slate-300 font-semibold">/mes USD</span>
-            <p class="text-[11px] text-brand/80 font-mono mt-1">+ Setup inicial de $199 USD</p>
-          </div>
-          <ul class="space-y-2.5 text-xs text-slate-300 mb-6">
-            <li class="flex items-center gap-2"><span class="text-brand font-bold">✓</span> WhatsApp + Instagram Direct</li>
-            <li class="flex items-center gap-2"><span class="text-brand font-bold">✓</span> Stock en tiempo real (Google Sheets / DB)</li>
-            <li class="flex items-center gap-2"><span class="text-brand font-bold">✓</span> Agendamiento y recordatorios</li>
-            <li class="flex items-center gap-2"><span class="text-brand font-bold">✓</span> Derivación con historial a ventas</li>
-          </ul>
-        </div>
-        <a 
-          href="https://wa.me/584240000000?text=Hola,%20me%20interesa%20el%20Plan%20Pro%20de%20$149" 
-          target="_blank"
-          class="w-full text-center py-2.5 rounded-full bg-brand text-darktext text-xs font-bold hover:bg-brand-dark transition-colors shadow-lg"
-        >
-          Elegir Plan Pro
-        </a>
-      </div>
-
-      <!-- PLAN BUSINESS -->
-      <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-md flex flex-col justify-between">
-        <div>
-          <h3 class="text-base font-bold text-darktext">Business</h3>
-          <p class="text-xs text-slate-500 mt-0.5">Empresas con múltiples sucursales</p>
-          <div class="my-5">
-            <span class="text-3xl font-extrabold text-darktext">A Medida</span>
-            <p class="text-[11px] text-slate-600 font-mono mt-1">Cotización personalizada</p>
-          </div>
-          <ul class="space-y-2.5 text-xs text-slate-600 mb-6">
-            <li class="flex items-center gap-2"><span class="text-brand-dark font-bold">✓</span> Múltiples números y canales</li>
-            <li class="flex items-center gap-2"><span class="text-brand-dark font-bold">✓</span> Integración API con CRM o ERP</li>
-            <li class="flex items-center gap-2"><span class="text-brand-dark font-bold">✓</span> Entrenamientos a medida para el equipo</li>
-            <li class="flex items-center gap-2"><span class="text-brand-dark font-bold">✓</span> Acuerdo SLA prioritario</li>
-          </ul>
-        </div>
-        <a 
-          href="https://wa.me/584240000000?text=Hola,%20solicito%20cotización%20del%20Plan%20Business" 
-          target="_blank"
-          class="w-full text-center py-2.5 rounded-full bg-slate-900 text-white text-xs font-bold hover:bg-black transition-colors"
-        >
-          Solicitar Cotización
-        </a>
       </div>
 
     </div>
   </section>
 
-  <!-- PREGUNTAS FRECUENTES -->
-  <section id="faq" class="py-12 px-6 max-w-3xl mx-auto">
-    <h2 class="text-2xl sm:text-3xl font-extrabold text-darktext text-center mb-8">Preguntas Frecuentes</h2>
-    
-    <div class="space-y-3">
-      <details class="bg-slate-50 rounded-2xl p-4 cursor-pointer border border-slate-200">
-        <summary class="font-bold text-xs sm:text-sm text-darktext">¿Es un chatbot de botones o responde con lenguaje natural?</summary>
-        <p class="text-xs text-slate-600 mt-2 leading-relaxed">
-          Comprende lenguaje coloquial, audios, fotos y preguntas abiertas. Responde como un humano capacitado siguiendo únicamente las políticas y datos reales de tu negocio.
-        </p>
-      </details>
-
-      <details class="bg-slate-50 rounded-2xl p-4 cursor-pointer border border-slate-200">
-        <summary class="font-bold text-xs sm:text-sm text-darktext">¿Qué pasa si el cliente pide algo que el agente no sabe?</summary>
-        <p class="text-xs text-slate-600 mt-2 leading-relaxed">
-          Nunca inventa datos. Si la consulta se sale del manual o del stock, avisa al usuario amablemente y transfiere la conversación en segundos a un asesor humano de tu equipo con todo el resumen del chat.
-        </p>
-      </details>
-
-      <details class="bg-slate-50 rounded-2xl p-4 cursor-pointer border border-slate-200">
-        <summary class="font-bold text-xs sm:text-sm text-darktext">¿Cuánto tarda la puesta en marcha?</summary>
-        <p class="text-xs text-slate-600 mt-2 leading-relaxed">
-          Una vez recibido tu catálogo o lista de preguntas frecuentes, configuramos y dejamos activo el agente en tu WhatsApp en un plazo de 48 a 72 horas hábiles.
-        </p>
-      </details>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="py-12 px-6 border-t border-slate-200 text-center text-xs text-slate-600">
-    <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-      <img 
-        src="https://xclczvqoggvuuzaualbs.supabase.co/storage/v1/object/public/content-media/White-Moofin.png" 
-        alt="Moofin" 
-        class="h-9 w-auto brightness-0"
-      >
-      <p>Moofin &copy; 2026. Soluciones de Inteligencia Artificial para empresas en Venezuela y Latinoamérica.</p>
-      <div class="flex gap-4 font-semibold text-slate-800">
-        <a href="#demo" class="hover:underline">Demo</a>
-        <a href="#planes" class="hover:underline">Planes</a>
-        <a href="https://wa.me/584240000000" target="_blank" class="hover:underline">WhatsApp</a>
-      </div>
-    </div>
-  </footer>
-
-  <!-- SCRIPT DE INTERACCIÓN CON INICIO INMEDIATO -->
+  <!-- LÓGICA DE INTERACCIÓN -->
   <script>
     const scenarios = {
       cita: [
@@ -550,39 +253,47 @@
         { sender: 'user', text: 'El jueves a las 3:30 PM me queda excelente.' },
         { sender: 'bot', text: 'Perfecto. Por favor indíqueme su Nombre completo y cédula para formalizar la reserva.' },
         { sender: 'user', text: 'Carlos Mendoza, C.I. 18.452.120.' },
-        { sender: 'bot', text: '¡Listo, Carlos! Su cita quedó agendada para el Jueves a las 3:30 PM. Le enviamos la confirmación por esta vía.' },
+        { sender: 'bot', text: '¡Listo, Carlos! Su cita quedó agendada para el Jueves a las 3:30 PM.' },
         { sender: 'user', text: 'Okay, muchísimas gracias.' },
         { sender: 'bot', text: '¡A usted! Estamos a la orden, que tenga un excelente día.' }
       ],
       stock: [
         { sender: 'user', text: 'Hola, ¿tienen disponible el calzado deportivo Runner Pro en talla 41?' },
-        { sender: 'bot', text: '¡Hola! Permítame verificar... Sí, nos quedan 2 pares en talla 41 en color negro y 1 par en blanco. Su precio es de $45.' },
+        { sender: 'bot', text: '¡Hola! Nos quedan 2 pares en talla 41 en color negro y 1 par en blanco. Su precio es de $45.' },
         { sender: 'user', text: '¿Hacen entregas hoy mismo?' },
         { sender: 'bot', text: 'Sí, contamos con delivery express para entrega el mismo día si confirma antes de las 4:00 PM.' },
         { sender: 'user', text: 'Perfecto, me quedo con el par en color negro.' },
-        { sender: 'bot', text: '¡Excelente elección! Apartamos el par negro talla 41. Ya le transfiero con el área de despacho para tomar sus datos de entrega.' },
+        { sender: 'bot', text: '¡Excelente elección! Ya le transfiero con el área de despacho.' },
         { sender: 'user', text: 'Listo, gracias por la rapidez.' },
         { sender: 'bot', text: '¡Con todo gusto! Para servirle.' }
       ],
       venta: [
-        { sender: 'user', text: 'Hola, me interesa implementar el sistema de IA en mi clínica, pero quiero saber cómo se cobra.' },
-        { sender: 'bot', text: '¡Hola! Para clínicas recomendamos el Plan Pro de $149/mes. Incluye sincronización de citas y atención por WhatsApp e Instagram. ¿Desea que un asesor le coordine una demo guiada de 10 minutos?' },
+        { sender: 'user', text: 'Hola, me interesa implementar el sistema de IA en mi clínica, ¿cómo se cobra?' },
+        { sender: 'bot', text: '¡Hola! Para clínicas recomendamos el Plan Pro de $149/mes con sincronización de citas. ¿Desea una demo guiada de 10 minutos?' },
         { sender: 'user', text: 'Sí, me gustaría que me contacten hoy mismo.' },
-        { sender: 'bot', text: 'Entendido. Ya notificamos a nuestro equipo comercial con este chat. En breve le escribirán directamente para coordinar.' },
-        { sender: 'user', text: 'Excelente, muchas gracias por la atención.' },
-        { sender: 'bot', text: '¡Estamos para servirle! En breves minutos estamos en contacto.' }
+        { sender: 'bot', text: 'Entendido. Ya notificamos a nuestro equipo comercial para coordinar.' },
+        { sender: 'user', text: 'Excelente, muchas gracias.' },
+        { sender: 'bot', text: '¡Estamos para servirle! En breve le contactamos.' }
       ],
       info: [
         { sender: 'user', text: 'Hola, ¿dónde están ubicados y cuál es el horario de atención?' },
-        { sender: 'bot', text: '¡Hola! Estamos en el CC Servimás, Nivel 1. Nuestro horario es de lunes a sábado de 8:30 AM a 6:00 PM corrido.' },
-        { sender: 'user', text: '¿Aceptan pagos en bolívares por Pago Móvil a tasa oficial?' },
-        { sender: 'bot', text: 'Sí, aceptamos Pago Móvil, transferencia bancaria a tasa BCV del día, así como divisas en efectivo y Zelle.' },
+        { sender: 'bot', text: '¡Hola! Estamos en el CC Servimás, Nivel 1. De lunes a sábado de 8:30 AM a 6:00 PM corrido.' },
+        { sender: 'user', text: '¿Aceptan pagos por Pago Móvil a tasa oficial?' },
+        { sender: 'bot', text: 'Sí, aceptamos Pago Móvil a tasa oficial, divisas en efectivo y Zelle.' },
         { sender: 'user', text: 'Buenísimo, paso por allá en un rato.' },
         { sender: 'bot', text: '¡Será un placer recibirle! Le esperamos.' }
       ]
     };
 
     let currentTimeout = null;
+
+    // Cálculo milimétrico de la cápsula flotante
+    function updateBubble(targetBtn) {
+      const bubble = document.getElementById('tab-bubble');
+      if (!bubble || !targetBtn) return;
+      bubble.style.width = `${targetBtn.offsetWidth}px`;
+      bubble.style.left = `${targetBtn.offsetLeft}px`;
+    }
 
     function renderScenario(key) {
       if (currentTimeout) clearTimeout(currentTimeout);
@@ -605,12 +316,12 @@
             typingIndicator.classList.remove('flex');
             appendMsg(msg);
             index++;
-            currentTimeout = setTimeout(step, 2300);
-          }, 1800);
+            currentTimeout = setTimeout(step, 2200);
+          }, 1600);
         } else {
           appendMsg(msg);
           index++;
-          currentTimeout = setTimeout(step, 1500);
+          currentTimeout = setTimeout(step, 1400);
         }
       }
 
@@ -622,7 +333,7 @@
       const div = document.createElement('div');
       
       if (msg.sender === 'user') {
-        div.className = 'ml-auto bg-[#D9FDD3] text-slate-800 p-2.5 rounded-2xl rounded-tr-none max-w-[85%] shadow-sm text-xs border border-[#c4e8be]';
+        div.className = 'ml-auto bg-[#d9fdd3] text-slate-800 p-2.5 rounded-2xl rounded-tr-none max-w-[85%] shadow-sm text-xs border border-[#c4e8be]';
       } else {
         div.className = 'mr-auto bg-white text-slate-800 p-2.5 rounded-2xl rounded-tl-none max-w-[85%] shadow-sm text-xs border border-slate-200';
       }
@@ -632,13 +343,23 @@
     }
 
     function selectScenario(key, btn) {
-      document.querySelectorAll('.seg-item').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.pill-item').forEach(b => {
+        b.classList.remove('active');
+      });
       btn.classList.add('active');
+      updateBubble(btn);
       renderScenario(key);
     }
 
     window.addEventListener('DOMContentLoaded', () => {
+      const activeBtn = document.querySelector('.pill-item.active');
+      updateBubble(activeBtn);
       renderScenario('cita');
+    });
+
+    window.addEventListener('resize', () => {
+      const activeBtn = document.querySelector('.pill-item.active');
+      updateBubble(activeBtn);
     });
   </script>
 </body>
