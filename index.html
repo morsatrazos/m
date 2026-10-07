@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Moofin | Sistema autónomo de IA para empresas</title>
+  <title>Moofin | IA conversacional para empresas ágiles</title>
   <meta name="description" content="Comprueba cómo responde el agente a situaciones reales de tu negocio. Agentes de IA para WhatsApp, catálogo, stock y citas en Venezuela y Latinoamérica.">
   <meta name="keywords" content="chatbot whatsapp venezuela, agente ia empresas, agendamiento citas whatsapp, automatizar catálogo whatsapp, ia para negocios">
   <link rel="canonical" href="https://www.moofin.com.ve/">
   
-  <meta property="og:title" content="Moofin | Sistema autónomo de IA para empresas">
+  <meta property="og:title" content="Moofin | IA conversacional para empresas ágiles">
   <meta property="og:description" content="Automatiza WhatsApp, catálogo y agendamiento de citas sin tareas repetitivas.">
   <meta property="og:url" content="https://www.moofin.com.ve/">
   <meta property="og:type" content="website">
@@ -47,7 +47,6 @@
             'brand-dark': '#00b899',
             'brand-deep': '#003d33',
             darktext: '#04221e',
-            subtext: '#134e44',
           },
           fontFamily: {
             sans: ['"Plus Jakarta Sans"', 'sans-serif'],
@@ -66,28 +65,94 @@
       font-family: 'Plus Jakarta Sans', sans-serif;
     }
 
-    /* Fondo degradado suave en la cabecera turquesa */
+    /* Fondo turquesa con haz de luz radial inmersivo */
     .hero-turquoise {
-      background: linear-gradient(180deg, #00e0ba 0%, #05d4b0 85%, #0ac7a5 100%);
+      background: radial-gradient(circle at 50% -10%, #3dffdf 0%, #00e0ba 50%, #00b899 100%);
+      position: relative;
     }
 
-    /* Pestañas de casos de uso con contraste nítido */
-    .tab-pill {
-      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    .hero-glow {
+      position: absolute;
+      top: 15%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 350px;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0) 70%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Control segmentado en una sola píldora */
+    .segmented-container {
+      background: rgba(255, 255, 255, 0.22);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      padding: 4px;
+      display: inline-flex;
+      border-radius: 9999px;
+      box-shadow: 0 4px 20px rgba(0, 48, 40, 0.12);
+    }
+
+    .seg-item {
+      padding: 8px 18px;
+      border-radius: 9999px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #03362e;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      white-space: nowrap;
+    }
+
+    .seg-item:hover {
+      color: #000000;
+      background: rgba(255, 255, 255, 0.35);
+    }
+
+    .seg-item.active {
       background: #ffffff;
       color: #04221e;
-      border: 2px solid transparent;
-      box-shadow: 0 4px 12px rgba(4, 34, 30, 0.08);
+      box-shadow: 0 4px 12px rgba(4, 34, 30, 0.18);
     }
-    .tab-pill:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(4, 34, 30, 0.14);
+
+    /* Chasis exterior del smartphone */
+    .phone-mockup {
+      width: 100%;
+      max-width: 360px;
+      background: #111827;
+      border-radius: 48px;
+      padding: 10px;
+      box-shadow: 
+        0 0 0 2px #374151,
+        0 25px 60px -15px rgba(0, 48, 40, 0.35),
+        0 15px 25px -10px rgba(0, 0, 0, 0.15);
+      position: relative;
     }
-    .tab-pill.active {
-      background: #04221e;
-      color: #ffffff;
-      border-color: #04221e;
-      box-shadow: 0 6px 18px rgba(4, 34, 30, 0.25);
+
+    .phone-screen {
+      background: #EFEAE2;
+      border-radius: 38px;
+      overflow: hidden;
+      display: flex;
+      flex-col: column;
+      position: relative;
+    }
+
+    /* Dynamic Island */
+    .dynamic-island {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90px;
+      height: 22px;
+      background: #000000;
+      border-radius: 20px;
+      z-index: 40;
     }
 
     /* Scroll del chat */
@@ -98,161 +163,163 @@
       background: rgba(0, 0, 0, 0.15);
       border-radius: 8px;
     }
-
-    /* Sombra suave y realista para el móvil */
-    .phone-shadow {
-      box-shadow: 0 25px 60px -15px rgba(0, 61, 51, 0.22), 0 10px 20px -8px rgba(0, 0, 0, 0.08);
-    }
   </style>
 </head>
 <body class="relative min-h-screen flex flex-col">
 
   <!-- ==================== SECCIÓN SUPERIOR TURQUESA ==================== -->
-  <div class="hero-turquoise relative z-10 pt-4 pb-20 sm:pb-28">
-    
+  <div class="hero-turquoise relative z-10 pt-4 pb-28 sm:pb-36">
+    <div class="hero-glow"></div>
+
     <!-- NAVBAR -->
-    <header class="max-w-6xl mx-auto px-6 flex items-center justify-between">
+    <header class="max-w-6xl mx-auto px-6 flex items-center justify-between relative z-10">
       <a href="/" class="block transition-transform hover:scale-105">
         <img 
           src="https://xclczvqoggvuuzaualbs.supabase.co/storage/v1/object/public/content-media/White-Moofin.png" 
           alt="Moofin Logo" 
-          class="h-16 sm:h-20 w-auto object-contain filter drop-shadow"
+          class="h-16 sm:h-20 w-auto object-contain filter drop-shadow-sm"
         >
       </a>
 
-      <nav class="hidden md:flex items-center gap-8 text-sm font-bold text-darktext">
-        <a href="#demo" class="hover:text-white transition-colors">Demo</a>
-        <a href="#beneficios" class="hover:text-white transition-colors">Beneficios</a>
-        <a href="#planes" class="hover:text-white transition-colors">Planes</a>
-        <a href="#faq" class="hover:text-white transition-colors">Preguntas</a>
+      <nav class="hidden md:flex items-center gap-8 text-sm font-bold text-white/95">
+        <a href="#demo" class="hover:text-darktext transition-colors">Demo</a>
+        <a href="#beneficios" class="hover:text-darktext transition-colors">Beneficios</a>
+        <a href="#planes" class="hover:text-darktext transition-colors">Planes</a>
+        <a href="#faq" class="hover:text-darktext transition-colors">Preguntas</a>
       </nav>
 
       <a 
         href="https://wa.me/584240000000?text=Hola,%20quiero%20conocer%20los%20planes%20de%20Moofin" 
         target="_blank"
-        class="bg-darktext hover:bg-black text-white px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold shadow-md transition-all hover:scale-105 inline-flex items-center gap-2"
+        class="bg-white hover:bg-slate-100 text-darktext px-6 py-2.5 rounded-full text-xs sm:text-sm font-extrabold shadow-md transition-all hover:scale-105 inline-flex items-center gap-2"
       >
         <span>Ver Planes</span>
-        <svg class="w-3.5 h-3.5 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        <svg class="w-3.5 h-3.5 text-brand-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
       </a>
     </header>
 
-    <!-- ENCABEZADO Y CASOS DE USO -->
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 pt-6 text-center">
+    <!-- ENCABEZADO PRINCIPAL (BLANCO PURO) -->
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 pt-10 text-center relative z-10">
       
-      <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-darktext tracking-tight leading-tight sm:leading-none mb-3">
-        Sistema autónomo de IA para empresas
+      <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight sm:leading-none mb-4 drop-shadow-sm">
+        IA conversacional para empresas ágiles
       </h1>
       
-      <p class="text-base sm:text-xl font-medium text-subtext max-w-xl mx-auto mb-8 leading-relaxed">
+      <p class="text-base sm:text-xl font-medium text-white/90 max-w-xl mx-auto mb-9 leading-relaxed">
         Comprueba cómo responde el agente a situaciones reales de tu negocio.
       </p>
 
-      <!-- BOTONES DE CASOS DE USO (Fondo blanco, 100% redondeados, alto contraste) -->
-      <div id="demo" class="w-full max-w-lg mx-auto">
-        <p class="text-[11px] font-bold tracking-wider text-darktext/75 uppercase mb-3">
-          Selecciona un caso de uso para probar la interacción:
-        </p>
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
-          <button class="tab-pill active py-2.5 px-3 rounded-full text-xs font-bold" onclick="selectScenario('cita', this)">
-            Agendar Cita
-          </button>
-          <button class="tab-pill py-2.5 px-3 rounded-full text-xs font-bold" onclick="selectScenario('stock', this)">
-            Consultar Stock
-          </button>
-          <button class="tab-pill py-2.5 px-3 rounded-full text-xs font-bold" onclick="selectScenario('venta', this)">
-            Cierre de Venta
-          </button>
-          <button class="tab-pill py-2.5 px-3 rounded-full text-xs font-bold" onclick="selectScenario('info', this)">
-            Horarios & Info
-          </button>
+      <!-- CONTROL SEGMENTADO EN UNA SOLA PÍLDORA -->
+      <div id="demo" class="flex justify-center mb-4">
+        <div class="segmented-container overflow-x-auto max-w-full">
+          <button class="seg-item active" onclick="selectScenario('cita', this)">Agendar Cita</button>
+          <button class="seg-item" onclick="selectScenario('stock', this)">Consultar Stock</button>
+          <button class="seg-item" onclick="selectScenario('venta', this)">Cierre de Venta</button>
+          <button class="seg-item" onclick="selectScenario('info', this)">Horarios & Info</button>
         </div>
       </div>
 
     </div>
 
-    <!-- CURVA DE DIVISIÓN SVG (Transición suave turquesa a blanco) -->
-    <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none pointer-events-none">
-      <svg class="relative block w-full h-12 sm:h-20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-        <path d="M0,0 C300,90 900,90 1200,0 L1200,120 L0,120 Z" fill="#ffffff"></path>
+    <!-- CURVA DE DIVISIÓN SVG ORGÁNICA A ANCHO COMPLETO -->
+    <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none pointer-events-none z-10">
+      <svg class="relative block w-full h-16 sm:h-24 text-white" viewBox="0 0 1440 120" fill="none" preserveAspectRatio="none">
+        <path d="M0,40 C360,110 1080,110 1440,40 L1440,120 L0,120 Z" fill="currentColor"></path>
       </svg>
     </div>
 
   </div>
 
   <!-- ==================== SECCIÓN INFERIOR BLANCA ==================== -->
-  <div class="bg-white relative z-20 -mt-10 sm:-mt-16 pb-20">
-    
+  <div class="bg-white relative z-20 -mt-20 sm:-mt-28 pb-20">
     <div class="max-w-4xl mx-auto px-4">
       
-      <!-- SIMULADOR WHATSAPP BLANCO PURO CON RELIEVE Y SOMBRA NÍTIDA -->
-      <div class="w-full max-w-sm mx-auto rounded-[2.2rem] bg-white phone-shadow border-4 border-slate-100 overflow-hidden">
-        
-        <!-- Header WhatsApp Verde Oficial -->
-        <div class="bg-[#075E54] px-4 py-3 flex items-center justify-between text-white">
-          <div class="flex items-center gap-3">
-            <div class="relative">
-              <div class="w-9 h-9 rounded-full bg-brand flex items-center justify-center font-bold text-darktext text-xs shadow-inner">
-                M
+      <!-- MOCKUP DEL SMARTPHONE COMPLETO -->
+      <div class="phone-mockup mx-auto">
+        <div class="dynamic-island"></div>
+
+        <div class="phone-screen flex flex-col">
+          <!-- Barra de estado del móvil -->
+          <div class="pt-3 px-6 pb-2 flex justify-between items-center text-slate-800 text-[10px] font-bold bg-[#075E54] text-white">
+            <span>9:41</span>
+            <div class="flex items-center gap-1.5 opacity-90">
+              <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"/></svg>
+              <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M17.778 8.222c-4.296-4.296-11.26-4.296-15.556 0A1 1 0 01.808 6.808c5.076-5.077 13.308-5.077 18.384 0a1 1 0 01-1.414 1.414zM14.95 11.05a7 7 0 00-9.9 0 1 1 0 01-1.414-1.414 9 9 0 0112.728 0 1 1 0 01-1.414 1.414zM12.12 13.88a3 3 0 00-4.24 0 1 1 0 01-1.414-1.414 5 5 0 017.07 0 1 1 0 01-1.414 1.414zM9 16a1 1 0 112 0 1 1 0 01-2 0z" clip-rule="evenodd"/></svg>
+              <span class="text-[9px]">100%</span>
+            </div>
+          </div>
+
+          <!-- Cabecera de WhatsApp -->
+          <div class="bg-[#075E54] px-4 py-2.5 flex items-center justify-between text-white border-b border-[#054c44]">
+            <div class="flex items-center gap-3">
+              <div class="relative">
+                <div class="w-8 h-8 rounded-full bg-brand flex items-center justify-center font-bold text-darktext text-xs shadow-inner">
+                  M
+                </div>
+                <span class="absolute bottom-0 right-0 w-2 h-2 bg-emerald-400 border border-[#075E54] rounded-full"></span>
               </div>
-              <span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-400 border-2 border-[#075E54] rounded-full"></span>
+              <div class="text-left">
+                <p class="font-bold text-xs leading-tight text-white">Moofin Asistente</p>
+                <p class="text-[10px] text-emerald-200 font-medium">en línea</p>
+              </div>
             </div>
-            <div class="text-left">
-              <p class="font-bold text-sm leading-tight text-white">Moofin Asistente</p>
-              <p class="text-[11px] text-emerald-200 font-medium">en línea</p>
+            <div class="flex items-center gap-3 text-white/80">
+              <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 4V3z"/></svg>
+              <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
             </div>
           </div>
-          <div class="flex items-center gap-3 text-white/80">
-            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 4V3z"/></svg>
-            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
-          </div>
-        </div>
 
-        <!-- Ventana de Chat: Altura estrictamente fija de 360px -->
-        <div id="chat-box" class="chat-scroll p-4 space-y-2 bg-[#EFEAE2] h-[360px] overflow-y-auto flex flex-col justify-start text-left text-xs leading-relaxed">
-          <div id="placeholder-msg" class="my-auto text-center px-4 py-8 bg-white/80 rounded-2xl border border-dashed border-slate-300">
-            <div class="w-10 h-10 rounded-full bg-brand/20 text-brand-deep flex items-center justify-center font-bold mx-auto mb-2 text-base">
-              👆
+          <!-- Ventana de Chat (360px fijos) -->
+          <div id="chat-box" class="chat-scroll p-3.5 space-y-2.5 bg-[#EFEAE2] h-[360px] overflow-y-auto flex flex-col justify-start text-left text-xs leading-relaxed">
+            <div id="placeholder-msg" class="my-auto text-center px-4 py-8 bg-white/85 rounded-2xl border border-dashed border-slate-300">
+              <div class="w-9 h-9 rounded-full bg-brand/20 text-brand-deep flex items-center justify-center font-bold mx-auto mb-2 text-sm">
+                👆
+              </div>
+              <p class="font-bold text-slate-800 text-xs">Simulación lista</p>
+              <p class="text-slate-500 text-[11px] mt-1">Toca cualquiera de las opciones de arriba para ver al agente en acción.</p>
             </div>
-            <p class="font-bold text-slate-800 text-xs">Prueba en vivo</p>
-            <p class="text-slate-500 text-[11px] mt-1">Haz clic en uno de los botones para ver cómo la IA responde sin esperas.</p>
+          </div>
+
+          <!-- Indicador de tipeo fijo sin saltos -->
+          <div class="h-5 bg-[#EFEAE2] px-4 flex items-center">
+            <div id="typing-indicator" class="hidden text-slate-500 text-[10px] items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#075E54] animate-bounce"></span>
+              <span class="w-1.5 h-1.5 rounded-full bg-[#075E54] animate-bounce [animation-delay:0.2s]"></span>
+              <span class="w-1.5 h-1.5 rounded-full bg-[#075E54] animate-bounce [animation-delay:0.4s]"></span>
+              <span class="ml-1 text-[10px] text-slate-600 font-medium">Moofin está escribiendo...</span>
+            </div>
+          </div>
+
+          <!-- Barra de entrada inferior de WhatsApp -->
+          <div class="bg-[#F0F2F5] px-3 py-2 flex items-center gap-2 border-t border-slate-200">
+            <div class="flex-1 bg-white rounded-full px-3 py-1.5 text-slate-400 text-xs flex items-center justify-between border border-slate-200 shadow-inner">
+              <span>Mensaje...</span>
+              <svg class="w-3.5 h-3.5 text-slate-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 100-2 1 1 0 000 2zm7-1a1 1 0 11-2 0 1 1 0 012 0zm-.464 5.535a1 1 0 10-1.415-1.414 3 3 0 01-4.242 0 1 1 0 00-1.415 1.414 5 5 0 007.072 0z" clip-rule="evenodd"/></svg>
+            </div>
+            <div class="w-7 h-7 rounded-full bg-[#075E54] flex items-center justify-center text-white">
+              <svg class="w-3 h-3 transform rotate-45 -ml-0.5" fill="currentColor" viewBox="0 0 20 20"><path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"/></svg>
+            </div>
+          </div>
+
+          <!-- Home indicator inferior del teléfono -->
+          <div class="bg-[#F0F2F5] pb-2 pt-1 flex justify-center">
+            <div class="w-28 h-1 bg-slate-400 rounded-full"></div>
           </div>
         </div>
-
-        <!-- Indicador de tipeo fijo sin brincos -->
-        <div class="h-6 bg-[#EFEAE2] px-4 flex items-center">
-          <div id="typing-indicator" class="hidden text-slate-500 text-[11px] items-center gap-1.5">
-            <span class="w-1.5 h-1.5 rounded-full bg-[#075E54] animate-bounce"></span>
-            <span class="w-1.5 h-1.5 rounded-full bg-[#075E54] animate-bounce [animation-delay:0.2s]"></span>
-            <span class="w-1.5 h-1.5 rounded-full bg-[#075E54] animate-bounce [animation-delay:0.4s]"></span>
-            <span class="ml-1 text-[10px] text-slate-600 font-medium">escribiendo...</span>
-          </div>
-        </div>
-
-        <!-- Input estético -->
-        <div class="bg-[#F0F2F5] px-3 py-2.5 flex items-center gap-2 border-t border-slate-200">
-          <div class="flex-1 bg-white rounded-full px-3.5 py-1.5 text-slate-400 text-xs flex items-center justify-between border border-slate-200 shadow-inner">
-            <span>Escribe un mensaje...</span>
-            <svg class="w-3.5 h-3.5 text-slate-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 100-2 1 1 0 000 2zm7-1a1 1 0 11-2 0 1 1 0 012 0zm-.464 5.535a1 1 0 10-1.415-1.414 3 3 0 01-4.242 0 1 1 0 00-1.415 1.414 5 5 0 007.072 0z" clip-rule="evenodd"/></svg>
-          </div>
-          <div class="w-8 h-8 rounded-full bg-[#075E54] flex items-center justify-center text-white shadow">
-            <svg class="w-3.5 h-3.5 transform rotate-45 -ml-0.5" fill="currentColor" viewBox="0 0 20 20"><path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"/></svg>
-          </div>
-        </div>
-
       </div>
 
-      <!-- BADGE Y CTA PRINCIPAL -->
-      <div class="mt-8 flex flex-col items-center justify-center gap-3">
-        <div class="inline-flex items-center gap-2 bg-slate-50 text-slate-700 border border-slate-200 px-4 py-1.5 rounded-full text-xs font-semibold">
-          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-          <span>Implementación lista en 48 - 72 horas</span>
-        </div>
+      <!-- BADGE DE TEXTO LIMPIO Y CTA -->
+      <div class="mt-8 flex flex-col items-center justify-center gap-4 text-center">
+        <!-- Texto limpio con dot animado (sin píldora pesada) -->
+        <p class="inline-flex items-center gap-2 text-xs font-semibold text-slate-600">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+          <span>Implementación lista en 48 - 72 horas hábiles</span>
+        </p>
 
         <a 
           href="https://wa.me/584240000000?text=Hola,%20quiero%20solicitar%20un%20agente%20de%20Moofin%20para%20mi%20negocio" 
           target="_blank"
-          class="w-full sm:w-auto bg-darktext hover:bg-black text-white px-8 py-3.5 rounded-full font-bold text-sm sm:text-base shadow-xl transition-all hover:scale-105 flex items-center justify-center gap-2"
+          class="w-full sm:w-auto bg-darktext hover:bg-black text-white px-8 py-3.5 rounded-full font-extrabold text-sm sm:text-base shadow-xl transition-all hover:scale-105 flex items-center justify-center gap-2"
         >
           <span>Solicitar agente para mi negocio</span>
           <svg class="w-4 h-4 text-brand" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
@@ -260,7 +327,6 @@
       </div>
 
     </div>
-
   </div>
 
   <!-- SECCIÓN BENEFICIOS -->
@@ -556,7 +622,7 @@
     }
 
     function selectScenario(key, btn) {
-      document.querySelectorAll('.tab-pill').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.seg-item').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       renderScenario(key);
     }
