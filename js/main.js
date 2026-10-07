@@ -273,3 +273,39 @@ window.addEventListener('resize', () => {
   const activeBtn = document.querySelector('.pill-item.active');
   updateBubble(activeBtn);
 });
+
+// Rotación automática entre los chats del inbox
+let currentInboxIndex = 0;
+let inboxAutoRotateTimer = null;
+let inboxResumeTimeout = null;
+
+function startInboxAutoRotate() {
+  if (inboxAutoRotateTimer) clearInterval(inboxAutoRotateTimer);
+  inboxAutoRotateTimer = setInterval(() => {
+    currentInboxIndex = (currentInboxIndex + 1) % inboxChats.length;
+    const targetCard = document.querySelectorAll('.inbox-card')[currentInboxIndex];
+    loadInboxChat(currentInboxIndex, targetCard);
+  }, 4500);
+}
+
+// Modificar loadInboxChat para actualizar el índice y pausar/reiniciar rotación al clic manual
+const originalLoadInboxChat = loadInboxChat;
+loadInboxChat = function(index, element) {
+  currentInboxIndex = index;
+  originalLoadInboxChat(index, element);
+};
+
+// Pausar rotación si el usuario interactúa manualmente
+document.querySelectorAll('.inbox-card').forEach((card, idx) => {
+  card.addEventListener('click', () => {
+    clearInterval(inboxAutoRotateTimer);
+    if (inboxResumeTimeout) clearTimeout(inboxResumeTimeout);
+    // Reinicia el ciclo 8 segundos después del clic manual
+    inboxResumeTimeout = setTimeout(startInboxAutoRotate, 8000);
+  });
+});
+
+// Iniciar rotación en la carga
+window.addEventListener('DOMContentLoaded', () => {
+  startInboxAutoRotate();
+});
