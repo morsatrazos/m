@@ -8,13 +8,11 @@
   <meta name="keywords" content="chatbot whatsapp venezuela, agente ia empresas, agendamiento citas whatsapp, automatizar catálogo whatsapp, ia para negocios">
   <link rel="canonical" href="https://www.moofin.com.ve/">
   
-  <!-- Open Graph -->
   <meta property="og:title" content="Moofin | Sistema autónomo de IA para empresas">
   <meta property="og:description" content="Automatiza WhatsApp, catálogo y agendamiento de citas sin tareas repetitivas.">
   <meta property="og:url" content="https://www.moofin.com.ve/">
   <meta property="og:type" content="website">
   
-  <!-- Schema JSON-LD -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -35,7 +33,6 @@
   }
   </script>
 
-  <!-- Google Fonts & Tailwind -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
@@ -48,8 +45,9 @@
           colors: {
             brand: '#00e0ba',
             'brand-dark': '#00b899',
-            'brand-deep': '#004d40',
+            'brand-deep': '#003d33',
             darktext: '#04221e',
+            subtext: '#134e44',
           },
           fontFamily: {
             sans: ['"Plus Jakarta Sans"', 'sans-serif'],
@@ -62,199 +60,211 @@
 
   <style>
     body {
-      background-color: #00e0ba;
+      background-color: #ffffff;
       color: #04221e;
       overflow-x: hidden;
       font-family: 'Plus Jakarta Sans', sans-serif;
     }
 
-    .turquoise-canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: -1;
-      pointer-events: none;
-      background: radial-gradient(circle at 50% 15%, #2effda 0%, #00e0ba 50%, #00bfa0 100%);
+    /* Fondo degradado suave en la cabecera turquesa */
+    .hero-turquoise {
+      background: linear-gradient(180deg, #00e0ba 0%, #05d4b0 85%, #0ac7a5 100%);
     }
 
-    /* Pestañas 100% redondeadas */
-    .tab-btn {
-      transition: all 0.25s ease;
-      background: rgba(255, 255, 255, 0.45);
-      color: #03362e;
-      border: 1px solid rgba(255, 255, 255, 0.7);
+    /* Pestañas de casos de uso con contraste nítido */
+    .tab-pill {
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      background: #ffffff;
+      color: #04221e;
+      border: 2px solid transparent;
+      box-shadow: 0 4px 12px rgba(4, 34, 30, 0.08);
     }
-    .tab-btn:hover {
-      background: rgba(255, 255, 255, 0.75);
-      transform: translateY(-1px);
+    .tab-pill:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(4, 34, 30, 0.14);
     }
-    .tab-btn.active {
+    .tab-pill.active {
       background: #04221e;
       color: #ffffff;
       border-color: #04221e;
-      box-shadow: 0 4px 14px rgba(4, 34, 30, 0.25);
+      box-shadow: 0 6px 18px rgba(4, 34, 30, 0.25);
     }
 
-    /* Scroll interno del chat */
+    /* Scroll del chat */
     .chat-scroll::-webkit-scrollbar {
-      width: 5px;
+      width: 4px;
     }
     .chat-scroll::-webkit-scrollbar-thumb {
-      background: rgba(0, 0, 0, 0.2);
-      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.15);
+      border-radius: 8px;
+    }
+
+    /* Sombra suave y realista para el móvil */
+    .phone-shadow {
+      box-shadow: 0 25px 60px -15px rgba(0, 61, 51, 0.22), 0 10px 20px -8px rgba(0, 0, 0, 0.08);
     }
   </style>
 </head>
-<body class="relative min-h-screen">
+<body class="relative min-h-screen flex flex-col">
 
-  <canvas id="ambient-canvas" class="turquoise-canvas"></canvas>
-
-  <!-- NAVBAR -->
-  <header class="w-full py-6 px-6 sm:px-12 flex items-center justify-between relative z-50">
-    <div class="flex items-center gap-4">
+  <!-- ==================== SECCIÓN SUPERIOR TURQUESA ==================== -->
+  <div class="hero-turquoise relative z-10 pt-4 pb-20 sm:pb-28">
+    
+    <!-- NAVBAR -->
+    <header class="max-w-6xl mx-auto px-6 flex items-center justify-between">
       <a href="/" class="block transition-transform hover:scale-105">
         <img 
           src="https://xclczvqoggvuuzaualbs.supabase.co/storage/v1/object/public/content-media/White-Moofin.png" 
           alt="Moofin Logo" 
-          class="h-24 sm:h-28 w-auto object-contain filter drop-shadow-md"
+          class="h-16 sm:h-20 w-auto object-contain filter drop-shadow"
         >
       </a>
-    </div>
 
-    <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-darktext">
-      <a href="#demo" class="hover:text-black transition-colors">Demo</a>
-      <a href="#beneficios" class="hover:text-black transition-colors">Beneficios</a>
-      <a href="#planes" class="hover:text-black transition-colors">Planes</a>
-      <a href="#faq" class="hover:text-black transition-colors">Preguntas</a>
-    </nav>
+      <nav class="hidden md:flex items-center gap-8 text-sm font-bold text-darktext">
+        <a href="#demo" class="hover:text-white transition-colors">Demo</a>
+        <a href="#beneficios" class="hover:text-white transition-colors">Beneficios</a>
+        <a href="#planes" class="hover:text-white transition-colors">Planes</a>
+        <a href="#faq" class="hover:text-white transition-colors">Preguntas</a>
+      </nav>
 
-    <div>
       <a 
         href="https://wa.me/584240000000?text=Hola,%20quiero%20conocer%20los%20planes%20de%20Moofin" 
         target="_blank"
-        class="bg-darktext hover:bg-black text-white px-6 py-3 rounded-full text-sm font-bold shadow-lg transition-transform hover:-translate-y-0.5 active:translate-y-0 inline-flex items-center gap-2"
+        class="bg-darktext hover:bg-black text-white px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold shadow-md transition-all hover:scale-105 inline-flex items-center gap-2"
       >
         <span>Ver Planes</span>
-        <svg class="w-4 h-4 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        <svg class="w-3.5 h-3.5 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
       </a>
-    </div>
-  </header>
+    </header>
 
-  <!-- HERO SECTION -->
-  <main class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 pt-6 pb-20 text-center">
-    
-    <h1 class="text-4xl sm:text-6xl font-extrabold text-darktext tracking-tight max-w-3xl mx-auto leading-tight sm:leading-none mb-4">
-      Sistema autónomo de IA para empresas
-    </h1>
-    
-    <p class="text-lg sm:text-xl font-medium text-darktext/90 max-w-2xl mx-auto mb-10 leading-relaxed">
-      Comprueba cómo responde el agente a situaciones reales de tu negocio.
-    </p>
-
-    <!-- SELECTOR DE CASOS DE USO CON BORDES 100% REDONDEADOS -->
-    <div id="demo" class="w-full max-w-xl mx-auto mb-8">
-      <p class="text-xs font-bold tracking-wider text-darktext/75 uppercase mb-3 text-center">
-        Selecciona un caso de uso para probar la interacción:
-      </p>
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
-        <button class="tab-btn py-2.5 px-4 rounded-full text-xs sm:text-sm font-bold" onclick="selectScenario('cita', this)">
-          Agendar Cita
-        </button>
-        <button class="tab-btn py-2.5 px-4 rounded-full text-xs sm:text-sm font-bold" onclick="selectScenario('stock', this)">
-          Consultar Stock
-        </button>
-        <button class="tab-btn py-2.5 px-4 rounded-full text-xs sm:text-sm font-bold" onclick="selectScenario('venta', this)">
-          Cierre de Venta
-        </button>
-        <button class="tab-btn py-2.5 px-4 rounded-full text-xs sm:text-sm font-bold" onclick="selectScenario('info', this)">
-          Horarios & Info
-        </button>
-      </div>
-    </div>
-
-    <!-- SIMULADOR BLANCO PURO (ESTILO WHATSAPP REAL) CON ALTURA FIJA ANTI-REBOTES -->
-    <div class="w-full max-w-sm mx-auto shadow-2xl rounded-[2.5rem] bg-white overflow-hidden border-4 border-white/80">
+    <!-- ENCABEZADO Y CASOS DE USO -->
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 pt-6 text-center">
       
-      <!-- Barra superior oficial WhatsApp -->
-      <div class="bg-[#075E54] px-4 py-3.5 flex items-center justify-between text-white">
-        <div class="flex items-center gap-3">
-          <div class="relative">
-            <div class="w-9 h-9 rounded-full bg-brand flex items-center justify-center font-bold text-darktext text-sm shadow-inner">
-              M
+      <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-darktext tracking-tight leading-tight sm:leading-none mb-3">
+        Sistema autónomo de IA para empresas
+      </h1>
+      
+      <p class="text-base sm:text-xl font-medium text-subtext max-w-xl mx-auto mb-8 leading-relaxed">
+        Comprueba cómo responde el agente a situaciones reales de tu negocio.
+      </p>
+
+      <!-- BOTONES DE CASOS DE USO (Fondo blanco, 100% redondeados, alto contraste) -->
+      <div id="demo" class="w-full max-w-lg mx-auto">
+        <p class="text-[11px] font-bold tracking-wider text-darktext/75 uppercase mb-3">
+          Selecciona un caso de uso para probar la interacción:
+        </p>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+          <button class="tab-pill active py-2.5 px-3 rounded-full text-xs font-bold" onclick="selectScenario('cita', this)">
+            Agendar Cita
+          </button>
+          <button class="tab-pill py-2.5 px-3 rounded-full text-xs font-bold" onclick="selectScenario('stock', this)">
+            Consultar Stock
+          </button>
+          <button class="tab-pill py-2.5 px-3 rounded-full text-xs font-bold" onclick="selectScenario('venta', this)">
+            Cierre de Venta
+          </button>
+          <button class="tab-pill py-2.5 px-3 rounded-full text-xs font-bold" onclick="selectScenario('info', this)">
+            Horarios & Info
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- CURVA DE DIVISIÓN SVG (Transición suave turquesa a blanco) -->
+    <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none pointer-events-none">
+      <svg class="relative block w-full h-12 sm:h-20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M0,0 C300,90 900,90 1200,0 L1200,120 L0,120 Z" fill="#ffffff"></path>
+      </svg>
+    </div>
+
+  </div>
+
+  <!-- ==================== SECCIÓN INFERIOR BLANCA ==================== -->
+  <div class="bg-white relative z-20 -mt-10 sm:-mt-16 pb-20">
+    
+    <div class="max-w-4xl mx-auto px-4">
+      
+      <!-- SIMULADOR WHATSAPP BLANCO PURO CON RELIEVE Y SOMBRA NÍTIDA -->
+      <div class="w-full max-w-sm mx-auto rounded-[2.2rem] bg-white phone-shadow border-4 border-slate-100 overflow-hidden">
+        
+        <!-- Header WhatsApp Verde Oficial -->
+        <div class="bg-[#075E54] px-4 py-3 flex items-center justify-between text-white">
+          <div class="flex items-center gap-3">
+            <div class="relative">
+              <div class="w-9 h-9 rounded-full bg-brand flex items-center justify-center font-bold text-darktext text-xs shadow-inner">
+                M
+              </div>
+              <span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-400 border-2 border-[#075E54] rounded-full"></span>
             </div>
-            <span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-400 border-2 border-[#075E54] rounded-full"></span>
+            <div class="text-left">
+              <p class="font-bold text-sm leading-tight text-white">Moofin Asistente</p>
+              <p class="text-[11px] text-emerald-200 font-medium">en línea</p>
+            </div>
           </div>
-          <div class="text-left">
-            <p class="font-semibold text-sm leading-tight text-white">Moofin Asistente</p>
-            <p class="text-[11px] text-emerald-200 font-medium">en línea</p>
+          <div class="flex items-center gap-3 text-white/80">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 4V3z"/></svg>
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
           </div>
         </div>
-        <div class="flex items-center gap-3 text-white/80">
-          <svg class="w-4 h-4 cursor-pointer hover:text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 4V3z"/></svg>
-          <svg class="w-4 h-4 cursor-pointer hover:text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
+
+        <!-- Ventana de Chat: Altura estrictamente fija de 360px -->
+        <div id="chat-box" class="chat-scroll p-4 space-y-2 bg-[#EFEAE2] h-[360px] overflow-y-auto flex flex-col justify-start text-left text-xs leading-relaxed">
+          <div id="placeholder-msg" class="my-auto text-center px-4 py-8 bg-white/80 rounded-2xl border border-dashed border-slate-300">
+            <div class="w-10 h-10 rounded-full bg-brand/20 text-brand-deep flex items-center justify-center font-bold mx-auto mb-2 text-base">
+              👆
+            </div>
+            <p class="font-bold text-slate-800 text-xs">Prueba en vivo</p>
+            <p class="text-slate-500 text-[11px] mt-1">Haz clic en uno de los botones para ver cómo la IA responde sin esperas.</p>
+          </div>
         </div>
+
+        <!-- Indicador de tipeo fijo sin brincos -->
+        <div class="h-6 bg-[#EFEAE2] px-4 flex items-center">
+          <div id="typing-indicator" class="hidden text-slate-500 text-[11px] items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#075E54] animate-bounce"></span>
+            <span class="w-1.5 h-1.5 rounded-full bg-[#075E54] animate-bounce [animation-delay:0.2s]"></span>
+            <span class="w-1.5 h-1.5 rounded-full bg-[#075E54] animate-bounce [animation-delay:0.4s]"></span>
+            <span class="ml-1 text-[10px] text-slate-600 font-medium">escribiendo...</span>
+          </div>
+        </div>
+
+        <!-- Input estético -->
+        <div class="bg-[#F0F2F5] px-3 py-2.5 flex items-center gap-2 border-t border-slate-200">
+          <div class="flex-1 bg-white rounded-full px-3.5 py-1.5 text-slate-400 text-xs flex items-center justify-between border border-slate-200 shadow-inner">
+            <span>Escribe un mensaje...</span>
+            <svg class="w-3.5 h-3.5 text-slate-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 100-2 1 1 0 000 2zm7-1a1 1 0 11-2 0 1 1 0 012 0zm-.464 5.535a1 1 0 10-1.415-1.414 3 3 0 01-4.242 0 1 1 0 00-1.415 1.414 5 5 0 007.072 0z" clip-rule="evenodd"/></svg>
+          </div>
+          <div class="w-8 h-8 rounded-full bg-[#075E54] flex items-center justify-center text-white shadow">
+            <svg class="w-3.5 h-3.5 transform rotate-45 -ml-0.5" fill="currentColor" viewBox="0 0 20 20"><path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"/></svg>
+          </div>
+        </div>
+
       </div>
 
-      <!-- Ventana de Chat: Altura estrictamente fija de 390px -->
-      <div id="chat-box" class="chat-scroll p-4 space-y-2.5 bg-[#EFEAE2] h-[390px] overflow-y-auto flex flex-col justify-start text-left text-xs leading-relaxed">
-        <!-- Mensaje de bienvenida inicial -->
-        <div id="placeholder-msg" class="my-auto text-center px-4 py-6 bg-white/70 rounded-2xl border border-dashed border-slate-300">
-          <div class="w-10 h-10 rounded-full bg-brand/30 text-darktext flex items-center justify-center font-bold mx-auto mb-2 text-sm">
-            ☝️
-          </div>
-          <p class="font-bold text-slate-700 text-xs">Simulador listo</p>
-          <p class="text-slate-500 text-[11px] mt-1">Haz clic en cualquiera de los botones de arriba para iniciar la conversación en tiempo real.</p>
+      <!-- BADGE Y CTA PRINCIPAL -->
+      <div class="mt-8 flex flex-col items-center justify-center gap-3">
+        <div class="inline-flex items-center gap-2 bg-slate-50 text-slate-700 border border-slate-200 px-4 py-1.5 rounded-full text-xs font-semibold">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span>Implementación lista en 48 - 72 horas</span>
         </div>
-      </div>
 
-      <!-- Indicador de tipeo con altura fija para evitar saltos bruscos -->
-      <div class="h-6 bg-[#EFEAE2] px-4 flex items-center">
-        <div id="typing-indicator" class="hidden text-slate-500 text-[11px] items-center gap-1.5">
-          <span class="w-1.5 h-1.5 rounded-full bg-[#075E54] animate-bounce"></span>
-          <span class="w-1.5 h-1.5 rounded-full bg-[#075E54] animate-bounce [animation-delay:0.2s]"></span>
-          <span class="w-1.5 h-1.5 rounded-full bg-[#075E54] animate-bounce [animation-delay:0.4s]"></span>
-          <span class="ml-1 text-[10px] text-slate-600 font-medium">escribiendo...</span>
-        </div>
-      </div>
-
-      <!-- Input inferior clásico WhatsApp -->
-      <div class="bg-[#F0F2F5] px-3 py-2.5 flex items-center gap-2 border-t border-slate-200">
-        <div class="flex-1 bg-white rounded-full px-3 py-1.5 text-slate-400 text-xs flex items-center justify-between border border-slate-200 shadow-inner">
-          <span>Escribe un mensaje...</span>
-          <svg class="w-3.5 h-3.5 text-slate-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 100-2 1 1 0 000 2zm7-1a1 1 0 11-2 0 1 1 0 012 0zm-.464 5.535a1 1 0 10-1.415-1.414 3 3 0 01-4.242 0 1 1 0 00-1.415 1.414 5 5 0 007.072 0z" clip-rule="evenodd"/></svg>
-        </div>
-        <div class="w-8 h-8 rounded-full bg-[#075E54] flex items-center justify-center text-white shadow">
-          <svg class="w-3.5 h-3.5 transform rotate-45 -ml-0.5" fill="currentColor" viewBox="0 0 20 20"><path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"/></svg>
-        </div>
+        <a 
+          href="https://wa.me/584240000000?text=Hola,%20quiero%20solicitar%20un%20agente%20de%20Moofin%20para%20mi%20negocio" 
+          target="_blank"
+          class="w-full sm:w-auto bg-darktext hover:bg-black text-white px-8 py-3.5 rounded-full font-bold text-sm sm:text-base shadow-xl transition-all hover:scale-105 flex items-center justify-center gap-2"
+        >
+          <span>Solicitar agente para mi negocio</span>
+          <svg class="w-4 h-4 text-brand" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+        </a>
       </div>
 
     </div>
 
-    <!-- SECCIÓN DE ACCIÓN Y TIEMPO DE PUESTA EN MARCHA RESALTADO -->
-    <div class="mt-8 flex flex-col items-center justify-center gap-3">
-      <!-- Badge destacado -->
-      <div class="inline-flex items-center gap-2 bg-white/90 text-darktext border border-darktext/20 px-4 py-1.5 rounded-full shadow-sm text-xs font-bold">
-        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-        <span>⚡ Implementación lista en 48 - 72 horas</span>
-      </div>
+  </div>
 
-      <!-- CTA de conversión directa -->
-      <a 
-        href="https://wa.me/584240000000?text=Hola,%20quiero%20solicitar%20un%20agente%20de%20Moofin%20para%20mi%20negocio" 
-        target="_blank"
-        class="w-full sm:w-auto bg-darktext hover:bg-black text-white px-9 py-4 rounded-full font-extrabold text-sm sm:text-base shadow-xl transition-all hover:scale-105 flex items-center justify-center gap-2"
-      >
-        <span>Solicitar agente para mi negocio</span>
-        <svg class="w-4 h-4 text-brand" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
-      </a>
-    </div>
-
-  </main>
-
-  <!-- SECCIÓN: BENEFICIOS Y TAREAS MECÁNICAS -->
-  <section id="beneficios" class="bg-darktext text-white py-20 px-6 relative z-10">
+  <!-- SECCIÓN BENEFICIOS -->
+  <section id="beneficios" class="bg-slate-900 text-white py-20 px-6 relative z-10">
     <div class="max-w-5xl mx-auto">
       <div class="text-center max-w-2xl mx-auto mb-14">
         <span class="text-xs font-mono font-bold uppercase tracking-wider text-brand">Adiós al desgaste manual</span>
@@ -268,7 +278,7 @@
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         
-        <div class="bg-slate-900/60 border border-white/10 p-6 rounded-2xl">
+        <div class="bg-slate-800/60 border border-slate-700/60 p-6 rounded-2xl">
           <div class="w-10 h-10 rounded-xl bg-brand/20 text-brand flex items-center justify-center font-bold mb-4">
             01
           </div>
@@ -278,7 +288,7 @@
           </p>
         </div>
 
-        <div class="bg-slate-900/60 border border-white/10 p-6 rounded-2xl">
+        <div class="bg-slate-800/60 border border-slate-700/60 p-6 rounded-2xl">
           <div class="w-10 h-10 rounded-xl bg-brand/20 text-brand flex items-center justify-center font-bold mb-4">
             02
           </div>
@@ -288,7 +298,7 @@
           </p>
         </div>
 
-        <div class="bg-slate-900/60 border border-white/10 p-6 rounded-2xl">
+        <div class="bg-slate-800/60 border border-slate-700/60 p-6 rounded-2xl">
           <div class="w-10 h-10 rounded-xl bg-brand/20 text-brand flex items-center justify-center font-bold mb-4">
             03
           </div>
@@ -300,7 +310,7 @@
 
       </div>
 
-      <div class="mt-14 grid grid-cols-3 border-t border-white/10 pt-8 text-center">
+      <div class="mt-14 grid grid-cols-3 border-t border-slate-800 pt-8 text-center">
         <div>
           <p class="text-2xl sm:text-3xl font-extrabold text-brand">&lt; 3s</p>
           <p class="text-xs text-slate-400 mt-1">Tiempo de respuesta</p>
@@ -318,26 +328,26 @@
   </section>
 
   <!-- SECCIÓN PLANES -->
-  <section id="planes" class="py-20 px-6 relative z-10 max-w-5xl mx-auto">
+  <section id="planes" class="py-20 px-6 max-w-5xl mx-auto">
     <div class="text-center max-w-xl mx-auto mb-14">
-      <span class="text-xs font-mono font-bold uppercase tracking-wider text-darktext/70">Inversión clara</span>
+      <span class="text-xs font-mono font-bold uppercase tracking-wider text-slate-500">Inversión clara</span>
       <h2 class="text-3xl sm:text-4xl font-extrabold text-darktext mt-1">Planes sin sorpresas</h2>
-      <p class="text-darktext/80 text-sm mt-2">Tarifa fija mensual. Sin contratos forzosos ni comisiones por mensaje.</p>
+      <p class="text-slate-600 text-sm mt-2">Tarifa fija mensual. Sin contratos forzosos ni comisiones por mensaje.</p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
       
       <!-- PLAN STARTER ($49) -->
-      <div class="bg-white/80 rounded-3xl p-6 border border-darktext/10 shadow-lg flex flex-col justify-between">
+      <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-md flex flex-col justify-between">
         <div>
           <h3 class="text-base font-bold text-darktext">Starter</h3>
-          <p class="text-xs text-darktext/70 mt-0.5">Ideal para negocios locales y consultorios</p>
+          <p class="text-xs text-slate-500 mt-0.5">Ideal para negocios locales y consultorios</p>
           <div class="my-5">
             <span class="text-4xl font-extrabold text-darktext">$49</span>
-            <span class="text-xs text-darktext/60 font-semibold">/mes USD</span>
-            <p class="text-[11px] text-darktext/70 font-mono mt-1">+ Setup inicial de $99 USD</p>
+            <span class="text-xs text-slate-500 font-semibold">/mes USD</span>
+            <p class="text-[11px] text-slate-600 font-mono mt-1">+ Setup inicial de $99 USD</p>
           </div>
-          <ul class="space-y-2.5 text-xs text-darktext/80 mb-6">
+          <ul class="space-y-2.5 text-xs text-slate-600 mb-6">
             <li class="flex items-center gap-2"><span class="text-brand-dark font-bold">✓</span> 1 Canal (WhatsApp Oficial)</li>
             <li class="flex items-center gap-2"><span class="text-brand-dark font-bold">✓</span> Agendamiento de citas</li>
             <li class="flex items-center gap-2"><span class="text-brand-dark font-bold">✓</span> Preguntas frecuentes y catálogo</li>
@@ -347,14 +357,14 @@
         <a 
           href="https://wa.me/584240000000?text=Hola,%20me%20interesa%20el%20Plan%20Starter%20de%20$49" 
           target="_blank"
-          class="w-full text-center py-2.5 rounded-full bg-darktext text-white text-xs font-bold hover:bg-black transition-colors"
+          class="w-full text-center py-2.5 rounded-full bg-slate-900 text-white text-xs font-bold hover:bg-black transition-colors"
         >
           Elegir Starter
         </a>
       </div>
 
-      <!-- PLAN PRO ($149) RECOMENDADO -->
-      <div class="bg-darktext rounded-3xl p-6 border-2 border-darktext shadow-2xl text-white flex flex-col justify-between transform md:-translate-y-2 relative">
+      <!-- PLAN PRO ($149) -->
+      <div class="bg-slate-900 rounded-3xl p-6 border-2 border-slate-900 shadow-xl text-white flex flex-col justify-between transform md:-translate-y-2 relative">
         <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand text-darktext text-[10px] font-extrabold tracking-wider uppercase py-1 px-3 rounded-full shadow">
           Recomendado
         </div>
@@ -383,15 +393,15 @@
       </div>
 
       <!-- PLAN BUSINESS -->
-      <div class="bg-white/80 rounded-3xl p-6 border border-darktext/10 shadow-lg flex flex-col justify-between">
+      <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-md flex flex-col justify-between">
         <div>
           <h3 class="text-base font-bold text-darktext">Business</h3>
-          <p class="text-xs text-darktext/70 mt-0.5">Empresas con múltiples sucursales</p>
+          <p class="text-xs text-slate-500 mt-0.5">Empresas con múltiples sucursales</p>
           <div class="my-5">
             <span class="text-3xl font-extrabold text-darktext">A Medida</span>
-            <p class="text-[11px] text-darktext/70 font-mono mt-1">Cotización personalizada</p>
+            <p class="text-[11px] text-slate-600 font-mono mt-1">Cotización personalizada</p>
           </div>
-          <ul class="space-y-2.5 text-xs text-darktext/80 mb-6">
+          <ul class="space-y-2.5 text-xs text-slate-600 mb-6">
             <li class="flex items-center gap-2"><span class="text-brand-dark font-bold">✓</span> Múltiples números y canales</li>
             <li class="flex items-center gap-2"><span class="text-brand-dark font-bold">✓</span> Integración API con CRM o ERP</li>
             <li class="flex items-center gap-2"><span class="text-brand-dark font-bold">✓</span> Entrenamientos a medida para el equipo</li>
@@ -401,7 +411,7 @@
         <a 
           href="https://wa.me/584240000000?text=Hola,%20solicito%20cotización%20del%20Plan%20Business" 
           target="_blank"
-          class="w-full text-center py-2.5 rounded-full bg-darktext text-white text-xs font-bold hover:bg-black transition-colors"
+          class="w-full text-center py-2.5 rounded-full bg-slate-900 text-white text-xs font-bold hover:bg-black transition-colors"
         >
           Solicitar Cotización
         </a>
@@ -411,27 +421,27 @@
   </section>
 
   <!-- PREGUNTAS FRECUENTES -->
-  <section id="faq" class="py-12 px-6 max-w-3xl mx-auto relative z-10">
+  <section id="faq" class="py-12 px-6 max-w-3xl mx-auto">
     <h2 class="text-2xl sm:text-3xl font-extrabold text-darktext text-center mb-8">Preguntas Frecuentes</h2>
     
     <div class="space-y-3">
-      <details class="bg-white/70 rounded-2xl p-4 cursor-pointer border border-darktext/10 shadow-sm">
+      <details class="bg-slate-50 rounded-2xl p-4 cursor-pointer border border-slate-200">
         <summary class="font-bold text-xs sm:text-sm text-darktext">¿Es un chatbot de botones o responde con lenguaje natural?</summary>
-        <p class="text-xs text-darktext/80 mt-2 leading-relaxed">
+        <p class="text-xs text-slate-600 mt-2 leading-relaxed">
           Comprende lenguaje coloquial, audios, fotos y preguntas abiertas. Responde como un humano capacitado siguiendo únicamente las políticas y datos reales de tu negocio.
         </p>
       </details>
 
-      <details class="bg-white/70 rounded-2xl p-4 cursor-pointer border border-darktext/10 shadow-sm">
+      <details class="bg-slate-50 rounded-2xl p-4 cursor-pointer border border-slate-200">
         <summary class="font-bold text-xs sm:text-sm text-darktext">¿Qué pasa si el cliente pide algo que el agente no sabe?</summary>
-        <p class="text-xs text-darktext/80 mt-2 leading-relaxed">
+        <p class="text-xs text-slate-600 mt-2 leading-relaxed">
           Nunca inventa datos. Si la consulta se sale del manual o del stock, avisa al usuario amablemente y transfiere la conversación en segundos a un asesor humano de tu equipo con todo el resumen del chat.
         </p>
       </details>
 
-      <details class="bg-white/70 rounded-2xl p-4 cursor-pointer border border-darktext/10 shadow-sm">
+      <details class="bg-slate-50 rounded-2xl p-4 cursor-pointer border border-slate-200">
         <summary class="font-bold text-xs sm:text-sm text-darktext">¿Cuánto tarda la puesta en marcha?</summary>
-        <p class="text-xs text-darktext/80 mt-2 leading-relaxed">
+        <p class="text-xs text-slate-600 mt-2 leading-relaxed">
           Una vez recibido tu catálogo o lista de preguntas frecuentes, configuramos y dejamos activo el agente en tu WhatsApp en un plazo de 48 a 72 horas hábiles.
         </p>
       </details>
@@ -439,15 +449,15 @@
   </section>
 
   <!-- FOOTER -->
-  <footer class="py-12 px-6 border-t border-darktext/10 text-center text-xs text-darktext/80 relative z-10">
+  <footer class="py-12 px-6 border-t border-slate-200 text-center text-xs text-slate-600">
     <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
       <img 
         src="https://xclczvqoggvuuzaualbs.supabase.co/storage/v1/object/public/content-media/White-Moofin.png" 
         alt="Moofin" 
-        class="h-10 w-auto brightness-0"
+        class="h-9 w-auto brightness-0"
       >
       <p>Moofin &copy; 2026. Soluciones de Inteligencia Artificial para empresas en Venezuela y Latinoamérica.</p>
-      <div class="flex gap-4 font-semibold">
+      <div class="flex gap-4 font-semibold text-slate-800">
         <a href="#demo" class="hover:underline">Demo</a>
         <a href="#planes" class="hover:underline">Planes</a>
         <a href="https://wa.me/584240000000" target="_blank" class="hover:underline">WhatsApp</a>
@@ -455,7 +465,7 @@
     </div>
   </footer>
 
-  <!-- SCRIPT CON CONTROL MANUAL Y PAUSA DE LECTURA (1s MÁS) -->
+  <!-- SCRIPT DE INTERACCIÓN -->
   <script>
     const scenarios = {
       cita: [
@@ -514,19 +524,16 @@
         if (msg.sender === 'bot') {
           typingIndicator.classList.remove('hidden');
           typingIndicator.classList.add('flex');
-          // Espera 2.1 segundos de tipeo (1 segundo más de lectura pausada)
           currentTimeout = setTimeout(() => {
             typingIndicator.classList.add('hidden');
             typingIndicator.classList.remove('flex');
             appendMsg(msg);
             index++;
-            // Pausa de 2.4 segundos antes de la siguiente réplica
             currentTimeout = setTimeout(step, 2400);
           }, 2100);
         } else {
           appendMsg(msg);
           index++;
-          // Pausa de 1.8 segundos antes de que el bot empiece a escribir
           currentTimeout = setTimeout(step, 1800);
         }
       }
@@ -539,10 +546,8 @@
       const div = document.createElement('div');
       
       if (msg.sender === 'user') {
-        // Globo de usuario estilo WhatsApp (Verde claro #D9FDD3)
         div.className = 'ml-auto bg-[#D9FDD3] text-slate-800 p-2.5 rounded-2xl rounded-tr-none max-w-[85%] shadow-sm text-xs border border-[#c4e8be]';
       } else {
-        // Globo de respuesta del bot estilo WhatsApp (Blanco #FFFFFF)
         div.className = 'mr-auto bg-white text-slate-800 p-2.5 rounded-2xl rounded-tl-none max-w-[85%] shadow-sm text-xs border border-slate-200';
       }
       div.innerText = msg.text;
@@ -551,54 +556,9 @@
     }
 
     function selectScenario(key, btn) {
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-pill').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       renderScenario(key);
-    }
-
-    // Inicializar sólo canvas; no arranca el chat en automático
-    window.addEventListener('DOMContentLoaded', () => {
-      initCanvas();
-    });
-
-    function initCanvas() {
-      const canvas = document.getElementById('ambient-canvas');
-      const ctx = canvas.getContext('2d');
-      let w = canvas.width = window.innerWidth;
-      let h = canvas.height = window.innerHeight;
-
-      window.addEventListener('resize', () => {
-        w = canvas.width = window.innerWidth;
-        h = canvas.height = window.innerHeight;
-      });
-
-      const dots = Array.from({ length: 24 }, () => ({
-        x: Math.random() * w,
-        y: Math.random() * h,
-        radius: Math.random() * 2 + 1,
-        vx: (Math.random() - 0.5) * 0.3,
-        vy: (Math.random() - 0.5) * 0.3,
-        alpha: Math.random() * 0.4 + 0.2
-      }));
-
-      function render() {
-        ctx.clearRect(0, 0, w, h);
-        dots.forEach(d => {
-          d.x += d.vx;
-          d.y += d.vy;
-          if (d.x < 0) d.x = w;
-          if (d.x > w) d.x = 0;
-          if (d.y < 0) d.y = h;
-          if (d.y > h) d.y = 0;
-
-          ctx.beginPath();
-          ctx.arc(d.x, d.y, d.radius, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(255, 255, 255, ${d.alpha})`;
-          ctx.fill();
-        });
-        requestAnimationFrame(render);
-      }
-      render();
     }
   </script>
 </body>
