@@ -247,6 +247,19 @@ function setBillingPeriod(period, btn) {
   document.getElementById('note-business').innerText = data.business.note;
 }
 
+// Control del botón flotante para volver arriba
+window.addEventListener('scroll', () => {
+  const btnScrollTop = document.getElementById('btn-scroll-top');
+  if (!btnScrollTop) return;
+  if (window.scrollY > 450) {
+    btnScrollTop.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
+    btnScrollTop.classList.add('opacity-100', 'translate-y-0');
+  } else {
+    btnScrollTop.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
+    btnScrollTop.classList.remove('opacity-100', 'translate-y-0');
+  }
+});
+
 // ==================== INICIALIZACIÓN ====================
 window.addEventListener('DOMContentLoaded', () => {
   const activeBtn = document.querySelector('.pill-item.active');
