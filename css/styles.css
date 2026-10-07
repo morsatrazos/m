@@ -1,4 +1,4 @@
-/* Bloqueo estricto contra desbordamiento horizontal */
+/* Bloqueo estricto de overflow horizontal */
 html, body {
   max-width: 100%;
   overflow-x: hidden !important;
@@ -8,7 +8,7 @@ html, body {
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Fondo degradado continuo: Turquesa vibrante a Blanco */
+/* ==================== HERO TURQUESA ==================== */
 .hero-turquoise-glow {
   position: relative;
   background: linear-gradient(
@@ -23,7 +23,6 @@ html, body {
   overflow: hidden;
 }
 
-/* Aura ambiental animada */
 .ambient-aurora {
   position: absolute;
   top: -30%;
@@ -42,7 +41,6 @@ html, body {
   100% { transform: translateX(-48%) scale(1.05); opacity: 0.95; }
 }
 
-/* Tipografía y jerarquía */
 .hero-title {
   color: #021f1a;
   font-weight: 900;
@@ -54,7 +52,12 @@ html, body {
   font-weight: 700;
 }
 
-/* Píldoras con cápsula interactiva */
+/* Filtro exacto para que el logo blanco tome el color petróleo #021f1a de los textos */
+.logo-dark-match {
+  filter: brightness(0) saturate(100%) invert(8%) sepia(21%) saturate(2329%) hue-rotate(124deg) brightness(97%) contrast(98%);
+}
+
+/* Cápsula deslizante del Hero */
 .pills-container {
   position: relative;
   background: #ffffff;
@@ -101,24 +104,102 @@ html, body {
   font-weight: 800;
 }
 
-/* Utilidades de scrollbar y sombras del mockup */
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-.no-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
 .phone-shadow {
   box-shadow: 
     0 25px 60px -15px rgba(0, 140, 116, 0.28),
     0 10px 25px -10px rgba(0, 0, 0, 0.08);
 }
 
-/* Estados del Inbox Card */
+/* ==================== CINTILLO LOGOS MARQUEE ==================== */
+.marquee-wrapper {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+}
+
+.marquee-content {
+  display: flex;
+  gap: 3.5rem;
+  width: max-content;
+  animation: marqueeScroll 24s linear infinite;
+}
+
+.marquee-wrapper:hover .marquee-content {
+  animation-play-state: paused;
+}
+
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.client-logo {
+  height: 42px;
+  width: auto;
+  object-contain: contain;
+  filter: grayscale(100%) opacity(65%);
+  transition: all 0.3s ease;
+}
+
+.client-logo:hover {
+  filter: grayscale(0%) opacity(100%) drop-shadow(0 4px 12px rgba(0, 224, 186, 0.35));
+  transform: scale(1.08);
+}
+
+/* ==================== AMBIENTES TURQUESA Y FUCSIA ==================== */
+.glow-turq-bg {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(0, 224, 186, 0.18) 0%, rgba(0, 224, 186, 0) 70%);
+  border-radius: 9999px;
+  pointer-events: none;
+}
+
+/* Difuminado Fucsia / Neón en Planes */
+.fuchsia-diffuse-bg {
+  position: relative;
+  background: radial-gradient(100% 70% at 50% 10%, rgba(244, 63, 150, 0.12) 0%, rgba(217, 4, 142, 0.05) 50%, #ffffff 100%);
+}
+
+.fuchsia-orb {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 650px;
+  height: 380px;
+  background: radial-gradient(circle, rgba(236, 72, 153, 0.22) 0%, rgba(219, 39, 119, 0.08) 50%, transparent 75%);
+  filter: blur(40px);
+  pointer-events: none;
+}
+
+/* ==================== BENTO GRID & ESTILOS DASHBOARD ==================== */
+.bento-card {
+  background: #ffffff;
+  border: 1px solid rgba(0, 224, 186, 0.25);
+  box-shadow: 0 10px 30px -10px rgba(0, 77, 64, 0.06);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bento-card:hover {
+  border-color: #00e0ba;
+  transform: translateY(-3px);
+  box-shadow: 0 16px 36px -12px rgba(0, 224, 186, 0.2);
+}
+
 .inbox-card.active {
   background-color: #ffffff;
   border-color: #00e0ba;
-  box-shadow: 0 4px 12px rgba(0, 224, 186, 0.15);
+  box-shadow: 0 4px 16px rgba(0, 224, 186, 0.2);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
