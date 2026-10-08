@@ -158,14 +158,14 @@ function initMetricsAnimation() {
 // ==================== TOGGLE DE PRECIOS MENSUAL / ANUAL ====================
 const pricingData = {
   monthly: {
-    starter: { price: '$49', period: '/mes USD', note: '+ Setup inicial de $99 USD' },
-    pro: { price: '$149', period: '/mes USD', note: '+ Setup inicial de $249 USD' },
-    business: { price: '$299', period: '/mes USD', note: '+ Setup inicial de $599 USD' }
+    starter: { price: '$49', period: '/mes USD', oldPrice: '', annualNote: '', note: '+ Setup inicial de $99 USD' },
+    pro: { price: '$149', period: '/mes USD', oldPrice: '', annualNote: '', note: '+ Setup inicial de $249 USD' },
+    business: { price: '$299', period: '/mes USD', oldPrice: '', annualNote: '', note: '+ Setup inicial de $599 USD' }
   },
   annual: {
-    starter: { price: '$40', period: '/mes USD ($490 al año)', note: '2 meses gratis • Setup bonificado' },
-    pro: { price: '$124', period: '/mes USD ($1.490 al año)', note: '2 meses gratis • Setup bonificado' },
-    business: { price: '$249', period: '/mes USD ($2.990 al año)', note: '2 meses gratis • Setup bonificado' }
+    starter: { price: '$40', period: '/mes USD', oldPrice: '$49/mes', annualNote: 'Facturado anualmente ($490 USD/año)', note: '+ Setup inicial de $99 USD' },
+    pro: { price: '$124', period: '/mes USD', oldPrice: '$149/mes', annualNote: 'Facturado anualmente ($1.490 USD/año)', note: '+ Setup inicial de $249 USD' },
+    business: { price: '$249', period: '/mes USD', oldPrice: '$299/mes', annualNote: 'Facturado anualmente ($2.990 USD/año)', note: '+ Setup inicial de $599 USD' }
   }
 };
 
@@ -174,17 +174,24 @@ function setBillingPeriod(period, btn) {
   btn.classList.add('active');
 
   const data = pricingData[period];
-  document.getElementById('price-starter').innerText = data.starter.price;
-  document.getElementById('period-starter').innerText = data.starter.period;
-  document.getElementById('note-starter').innerText = data.starter.note;
+  ['starter', 'pro', 'business'].forEach(plan => {
+    const planData = data[plan];
+    document.getElementById(`price-${plan}`).innerText = planData.price;
+    document.getElementById(`period-${plan}`).innerText = planData.period;
+    document.getElementById(`note-${plan}`).innerText = planData.note;
 
-  document.getElementById('price-pro').innerText = data.pro.price;
-  document.getElementById('period-pro').innerText = data.pro.period;
-  document.getElementById('note-pro').innerText = data.pro.note;
+    const oldPriceEl = document.getElementById(`old-price-${plan}`);
+    if (oldPriceEl) {
+      oldPriceEl.innerText = planData.oldPrice;
+      oldPriceEl.classList.toggle('hidden', !planData.oldPrice);
+    }
 
-  document.getElementById('price-business').innerText = data.business.price;
-  document.getElementById('period-business').innerText = data.business.period;
-  document.getElementById('note-business').innerText = data.business.note;
+    const annualNoteEl = document.getElementById(`annual-note-${plan}`);
+    if (annualNoteEl) {
+      annualNoteEl.innerText = planData.annualNote;
+      annualNoteEl.classList.toggle('hidden', !planData.annualNote);
+    }
+  });
 }
 
 // Control del botón flotante para volver arriba
@@ -204,7 +211,7 @@ window.addEventListener('scroll', () => {
 window.addEventListener('DOMContentLoaded', () => {
   const activeBtn = document.querySelector('.pill-item.active');
   updateBubble(activeBtn);
-  renderScenario('cita');
+  renderScenario('stock');
   initMetricsAnimation();
 });
 

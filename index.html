@@ -70,30 +70,30 @@
 
       <!-- 2. Encabezado principal -->
       <h1 class="hero-title text-4xl sm:text-6xl lg:text-7xl tracking-tight leading-[1.08] mb-4">
-        IA conversacional para empresas ágiles
+        IA conversacional para responder por ti
       </h1>
 
       <!-- 3. Subtítulo directamente debajo del encabezado -->
       <p class="hero-subtitle text-base sm:text-xl max-w-xl mx-auto mb-7 leading-relaxed">
-        Comprueba cómo responde la IA a situaciones reales de tu negocio.
+        Resuelve dudas repetitivas, consulta inventario y agenda citas en segundos sin intervención manual.
+      </p>
+
+      <!-- Micro-texto sutil con punto pulsante tecnológico -->
+      <p class="text-[11px] font-bold text-[#04332b]/80 uppercase tracking-wider text-center mb-2.5 flex items-center justify-center gap-1.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-[#021f1a] animate-pulse"></span>
+        <span>Pruébalo en tiempo real:</span>
       </p>
 
       <!-- 4. Píldora de acciones con cápsula interactiva y shimmer-border -->
-      <div class="w-full flex justify-center">
+      <div class="w-full flex justify-center mb-8">
         <div class="pills-container shimmer-border inline-flex max-w-full overflow-x-auto no-scrollbar gap-1" id="pills-wrapper">
           <div id="tab-bubble"></div>
-          <button class="pill-item active text-xs sm:text-sm" onclick="selectScenario('cita', this)">Agendar Cita</button>
-          <button class="pill-item text-xs sm:text-sm" onclick="selectScenario('stock', this)">Consultar Stock</button>
+          <button class="pill-item active text-xs sm:text-sm" onclick="selectScenario('stock', this)">Consultar Stock</button>
+          <button class="pill-item text-xs sm:text-sm" onclick="selectScenario('cita', this)">Agendar Cita</button>
+          <button class="pill-item text-xs sm:text-sm" onclick="selectScenario('info', this)">Horarios & Info</button>
           <button class="pill-item text-xs sm:text-sm" onclick="selectScenario('venta', this)">Cierre de Venta</button>
-          <button class="pill-item text-xs sm:text-sm" onclick="selectScenario('info', this)">Horarios e Info</button>
         </div>
       </div>
-
-      <!-- Micro-texto sutil con punto pulsante tecnológico -->
-      <p class="text-[11px] font-bold text-[#04332b]/80 uppercase tracking-wider text-center mt-2.5 mb-8 flex items-center justify-center gap-1.5">
-        <span class="w-1.5 h-1.5 rounded-full bg-[#021f1a] animate-pulse"></span>
-        <span>Haz clic en una opción para ver la respuesta en tiempo real</span>
-      </p>
     </div>
 
     <!-- CONTENEDOR DEL SMARTPHONE CON BURBUJAS FLOTANTES TRASERAS Y PANTALLA DE 590px -->
@@ -391,17 +391,17 @@
         <div class="mt-7 inline-flex items-center bg-white p-1.5 rounded-full border border-slate-200 shadow-sm">
           <button 
             type="button"
-            class="billing-toggle-btn active text-xs sm:text-sm font-extrabold px-5 py-2 rounded-full text-[#021f1a]"
+            class="billing-toggle-btn text-xs sm:text-sm font-extrabold px-5 py-2 rounded-full text-[#021f1a]"
             onclick="setBillingPeriod('monthly', this)"
           >
             Facturación Mensual
           </button>
           <button 
             type="button"
-            class="billing-toggle-btn text-xs sm:text-sm font-extrabold px-5 py-2 rounded-full text-[#021f1a]"
+            class="billing-toggle-btn active text-xs sm:text-sm font-extrabold px-5 py-2 rounded-full text-[#021f1a]"
             onclick="setBillingPeriod('annual', this)"
           >
-            Facturación Anual (2 Meses Gratis)
+            Facturación Anual (Ahorra ~20% + 2 Meses Gratis)
           </button>
         </div>
       </div>
@@ -411,17 +411,21 @@
         <!-- Starter -->
         <div class="pricing-plan-card bg-white rounded-3xl p-7 border border-slate-200 shadow-xl flex flex-col justify-between">
           <div>
-            <h3 class="text-base font-extrabold text-slate-900">Starter</h3>
-            <p class="text-xs text-slate-500 mt-1">Ideal para negocios locales y consultorios</p>
+            <h3 class="text-[21px] font-extrabold text-slate-900">Starter</h3>
+            <p class="text-xs text-slate-500 mt-1">Ideal para negocios locales y profesionales independientes</p>
             <div class="my-6">
-              <span id="price-starter" class="text-4xl font-black text-slate-900">$49</span>
-              <span id="period-starter" class="text-xs text-slate-500 font-bold">/mes USD</span>
-              <p id="note-starter" class="text-[11px] text-slate-500 font-mono mt-1.5">+ Setup inicial de $99 USD</p>
+              <div class="flex items-baseline gap-2">
+                <span id="price-starter" class="text-4xl font-black text-slate-900">$40</span>
+                <span id="period-starter" class="text-xs text-slate-500 font-bold">/mes USD</span>
+                <span id="old-price-starter" class="text-sm text-slate-400 line-through font-semibold">$49/mes</span>
+              </div>
+              <p id="annual-note-starter" class="text-[11px] text-slate-500 font-medium mt-1">Facturado anualmente ($490 USD/año)</p>
+              <p id="note-starter" class="text-[11px] text-slate-500 font-mono mt-1">+ Setup inicial de $99 USD</p>
             </div>
             <ul class="space-y-3 text-xs text-slate-700 mb-8 font-medium">
-              <li class="flex items-center gap-2"><span class="text-[#008770] font-bold">✓</span> 1 Canal (WhatsApp Oficial)</li>
-              <li class="flex items-center gap-2"><span class="text-[#008770] font-bold">✓</span> Agendamiento de citas</li>
-              <li class="flex items-center gap-2"><span class="text-[#008770] font-bold">✓</span> Preguntas frecuentes y catálogo</li>
+              <li class="flex items-center gap-2"><span class="text-[#008770] font-bold">✓</span> 1 canal a elegir (WhatsApp, Instagram o Webchat)</li>
+              <li class="flex items-center gap-2"><span class="text-[#008770] font-bold">✓</span> Agendamiento automatizado de citas</li>
+              <li class="flex items-center gap-2"><span class="text-[#008770] font-bold">✓</span> Preguntas frecuentes y catálogo interactivo</li>
               <li class="flex items-center gap-2"><span class="text-[#008770] font-bold">✓</span> Soporte técnico continuo</li>
             </ul>
           </div>
@@ -440,18 +444,22 @@
             Recomendado
           </div>
           <div>
-            <h3 class="text-base font-extrabold text-white">Plan Pro</h3>
-            <p class="text-xs text-slate-400 mt-1">Para negocios con alto flujo comercial</p>
+            <h3 class="text-[21px] font-extrabold text-white">Plan Pro</h3>
+            <p class="text-xs text-slate-400 mt-1">Para negocios con alto flujo comercial y ventas activas</p>
             <div class="my-6">
-              <span id="price-pro" class="text-4xl font-black text-[#00e0ba]">$149</span>
-              <span id="period-pro" class="text-xs text-slate-300 font-bold">/mes USD</span>
-              <p id="note-pro" class="text-[11px] text-[#00e0ba]/80 font-mono mt-1.5">+ Setup inicial de $249 USD</p>
+              <div class="flex items-baseline gap-2">
+                <span id="price-pro" class="text-4xl font-black text-[#00e0ba]">$124</span>
+                <span id="period-pro" class="text-xs text-slate-300 font-bold">/mes USD</span>
+                <span id="old-price-pro" class="text-sm text-slate-400 line-through font-semibold">$149/mes</span>
+              </div>
+              <p id="annual-note-pro" class="text-[11px] text-slate-300 font-medium mt-1">Facturado anualmente ($1.490 USD/año)</p>
+              <p id="note-pro" class="text-[11px] text-[#00e0ba]/80 font-mono mt-1">+ Setup inicial de $249 USD</p>
             </div>
             <ul class="space-y-3 text-xs text-slate-300 mb-8 font-medium">
-              <li class="flex items-center gap-2"><span class="text-[#00e0ba] font-bold">✓</span> WhatsApp + Instagram Direct</li>
+              <li class="flex items-center gap-2"><span class="text-[#00e0ba] font-bold">✓</span> 2 canales sincronizados (WhatsApp + Instagram o Web)</li>
               <li class="flex items-center gap-2"><span class="text-[#00e0ba] font-bold">✓</span> Stock en tiempo real (Google Sheets / DB)</li>
-              <li class="flex items-center gap-2"><span class="text-[#00e0ba] font-bold">✓</span> Agendamiento y recordatorios</li>
-              <li class="flex items-center gap-2"><span class="text-[#00e0ba] font-bold">✓</span> Derivación con historial a ventas</li>
+              <li class="flex items-center gap-2"><span class="text-[#00e0ba] font-bold">✓</span> Agendamiento y recordatorios automáticos</li>
+              <li class="flex items-center gap-2"><span class="text-[#00e0ba] font-bold">✓</span> Derivación inteligente con historial a ventas humanas</li>
             </ul>
           </div>
           <a 
@@ -466,18 +474,22 @@
         <!-- Business -->
         <div class="pricing-plan-card bg-white rounded-3xl p-7 border border-slate-200 shadow-xl flex flex-col justify-between">
           <div>
-            <h3 class="text-base font-extrabold text-slate-900">Business</h3>
-            <p class="text-xs text-slate-500 mt-1">Empresas con múltiples sucursales</p>
+            <h3 class="text-[21px] font-extrabold text-slate-900">Business</h3>
+            <p class="text-xs text-slate-500 mt-1">Empresas con múltiples sucursales o alto volumen operativo</p>
             <div class="my-6">
-              <span id="price-business" class="text-4xl font-black text-slate-900">$299</span>
-              <span id="period-business" class="text-xs text-slate-500 font-bold">/mes USD</span>
-              <p id="note-business" class="text-[11px] text-slate-500 font-mono mt-1.5">+ Setup inicial de $599 USD</p>
+              <div class="flex items-baseline gap-2">
+                <span id="price-business" class="text-4xl font-black text-slate-900">$249</span>
+                <span id="period-business" class="text-xs text-slate-500 font-bold">/mes USD</span>
+                <span id="old-price-business" class="text-sm text-slate-400 line-through font-semibold">$299/mes</span>
+              </div>
+              <p id="annual-note-business" class="text-[11px] text-slate-500 font-medium mt-1">Facturado anualmente ($2.990 USD/año)</p>
+              <p id="note-business" class="text-[11px] text-slate-500 font-mono mt-1">+ Setup inicial de $599 USD</p>
             </div>
             <ul class="space-y-3 text-xs text-slate-700 mb-8 font-medium">
-              <li class="flex items-center gap-2"><span class="text-[#008770] font-bold">✓</span> Múltiples números y canales</li>
-              <li class="flex items-center gap-2"><span class="text-[#008770] font-bold">✓</span> Integración API con CRM o ERP</li>
-              <li class="flex items-center gap-2"><span class="text-[#008770] font-bold">✓</span> Entrenamientos a medida para el equipo</li>
-              <li class="flex items-center gap-2"><span class="text-[#008770] font-bold">✓</span> Acuerdo SLA prioritario</li>
+              <li class="flex items-center gap-2"><span class="text-[#008770] font-bold">✓</span> Multicanal completo (Múltiples líneas de WhatsApp, Instagram y Web)</li>
+              <li class="flex items-center gap-2"><span class="text-[#008770] font-bold">✓</span> Integración directa vía API con CRM o ERP</li>
+              <li class="flex items-center gap-2"><span class="text-[#008770] font-bold">✓</span> Flujos avanzados y entrenamiento a medida del equipo</li>
+              <li class="flex items-center gap-2"><span class="text-[#008770] font-bold">✓</span> Soporte y acuerdo SLA prioritario</li>
             </ul>
           </div>
           <a 
@@ -491,8 +503,9 @@
 
       </div>
 
-      <p class="text-center text-xs font-bold text-[#021f1a]/70 mt-6">
-        ✓ Todo incluido: infraestructura, tokens de IA y mensajería oficial. Cero cobros sorpresa.
+      <!-- Nota aclaratoria de transparencia Meta -->
+      <p class="text-center text-xs text-[#021f1a] font-bold mt-8 max-w-2xl mx-auto">
+        * Transparencia total: Los costos oficiales por conversación de Meta (WhatsApp Cloud API) se abonan directo a tu Business Manager sin recargo de Moofin.
       </p>
 
     </div>
