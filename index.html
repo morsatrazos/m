@@ -388,21 +388,24 @@
         <p class="text-[#021f1a]/80 text-sm font-semibold mt-2">Tarifa fija. Sin contratos forzosos ni comisiones ocultas.</p>
 
         <!-- Toggle interactivo de facturación -->
-        <div class="mt-7 inline-flex items-center bg-white p-1.5 rounded-full border border-slate-200 shadow-sm">
-          <button 
-            type="button"
-            class="billing-toggle-btn text-xs sm:text-sm font-extrabold px-5 py-2 rounded-full text-[#021f1a]"
-            onclick="setBillingPeriod('monthly', this)"
-          >
-            Facturación Mensual
-          </button>
-          <button 
-            type="button"
-            class="billing-toggle-btn active text-xs sm:text-sm font-extrabold px-5 py-2 rounded-full text-[#021f1a]"
-            onclick="setBillingPeriod('annual', this)"
-          >
-            Facturación Anual (Ahorra ~20% + 2 Meses Gratis)
-          </button>
+        <div class="flex justify-center mt-7 mb-2">
+          <div class="billing-pill-container" id="billing-wrapper">
+            <!-- Píldora deslizante animada -->
+            <div id="billing-bubble"></div>
+
+            <button 
+              class="billing-toggle-btn text-xs sm:text-sm" 
+              onclick="setBillingPeriod('monthly', this)"
+            >
+              Facturación Mensual
+            </button>
+            <button 
+              class="billing-toggle-btn active text-xs sm:text-sm" 
+              onclick="setBillingPeriod('annual', this)"
+            >
+              Facturación Anual (Ahorra ~20% + 2 Meses Gratis)
+            </button>
+          </div>
         </div>
       </div>
 

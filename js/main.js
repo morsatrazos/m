@@ -169,16 +169,40 @@ const pricingData = {
   }
 };
 
+// Actualización del deslizador de facturación
+function updateBillingBubble(targetBtn) {
+  const bubble = document.getElementById('billing-bubble');
+  if (!bubble || !targetBtn) return;
+  bubble.style.width = `${targetBtn.offsetWidth}px`;
+  bubble.style.left = `${targetBtn.offsetLeft}px`;
+}
+
+// Alternar entre mensual y anual con micro-animación en los números
 function setBillingPeriod(period, btn) {
   document.querySelectorAll('.billing-toggle-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
+  updateBillingBubble(btn);
 
   const data = pricingData[period];
+  const priceElements = [
+    { el: document.getElementById('price-starter'), val: data.starter.price },
+    { el: document.getElementById('price-pro'), val: data.pro.price },
+    { el: document.getElementById('price-business'), val: data.business.price }
+  ];
+
+  priceElements.forEach(item => {
+    if (item.el) {
+      item.el.classList.remove('price-pop');
+      void item.el.offsetWidth; // Forzar reflujo para reiniciar la animación
+      item.el.innerText = item.val;
+      item.el.classList.add('price-pop');
+    }
+  });
+
   ['starter', 'pro', 'business'].forEach(plan => {
     const planData = data[plan];
-    document.getElementById(`price-${plan}`).innerText = planData.price;
-    document.getElementById(`period-${plan}`).innerText = planData.period;
-    document.getElementById(`note-${plan}`).innerText = planData.note;
+    if (document.getElementById(`period-${plan}`)) document.getElementById(`period-${plan}`).innerText = planData.period;
+    if (document.getElementById(`note-${plan}`)) document.getElementById(`note-${plan}`).innerText = planData.note;
 
     const oldPriceEl = document.getElementById(`old-price-${plan}`);
     if (oldPriceEl) {
@@ -211,6 +235,12 @@ window.addEventListener('scroll', () => {
 window.addEventListener('DOMContentLoaded', () => {
   const activeBtn = document.querySelector('.pill-item.active');
   updateBubble(activeBtn);
+
+  const activeBillingBtn = document.querySelector('.billing-toggle-btn.active');
+  if (activeBillingBtn) {
+    updateBillingBubble(activeBillingBtn);
+  }
+
   renderScenario('stock');
   initMetricsAnimation();
 });
@@ -218,4 +248,9 @@ window.addEventListener('DOMContentLoaded', () => {
 window.addEventListener('resize', () => {
   const activeBtn = document.querySelector('.pill-item.active');
   updateBubble(activeBtn);
+
+  const activeBillingBtn = document.querySelector('.billing-toggle-btn.active');
+  if (activeBillingBtn) {
+    updateBillingBubble(activeBillingBtn);
+  }
 });
