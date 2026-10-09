@@ -468,13 +468,43 @@ html, body {
   100% { transform: translate(-20%, 30%) scale(1); opacity: 0.6; }
 }
 
-/* ==================== FLUJO CONTINUO Y DEGRADADO ORGÁNICO ==================== */
+/* ==================== FLUJO CONTINUO HERO A BENEFICIOS ==================== */
 
-/* 1. Sección Beneficios: Termina difuminando suavemente hacia blanco puro */
-.flow-section-beneficios {
-  background: linear-gradient(180deg, #ecfdfa 0%, #ffffff 85%, #ffffff 100%);
+/* 1. Hero: Desciende de turquesa a blanco puro en la base */
+.hero-turquoise-glow {
+  background: linear-gradient(180deg, #00e0ba 0%, #15e8c4 35%, #76f3de 70%, #ffffff 100%) !important;
   border: none !important;
 }
+
+/* 2. Cintillo de Clientes: Transición suave de blanco puro hacia menta claro */
+.flow-section-clients {
+  background: linear-gradient(180deg, #ffffff 0%, #ffffff 30%, #f0fdfa 70%, #d5f7f0 100%) !important;
+  border: none !important;
+}
+
+/* 3. Dashboard / Métricas: Conecta con el menta y profundiza en turquesa Moofin */
+.flow-section-dashboard {
+  background: linear-gradient(180deg, #d5f7f0 0%, #5df6de 40%, #00e0ba 75%, #00d2ad 100%) !important;
+  border: none !important;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 4. Eficiencia Comercial (Beneficios): Transiciona del turquesa hacia blanco puro */
+.flow-section-beneficios {
+  background: linear-gradient(180deg, #00d2ad 0%, #5df6de 30%, #e0faf4 70%, #ffffff 100%) !important;
+  border: none !important;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Eliminación de cualquier línea divisoria física residual */
+#dashboard, #beneficios, .flow-section-clients {
+  border-top: none !important;
+  border-bottom: none !important;
+}
+
+/* ==================== FLUJO CONTINUO Y DEGRADADO ORGÁNICO ==================== */
 
 /* 2. Sección Planes: Conecta con el blanco superior y desciende hacia el turquesa Moofin */
 .flow-section-planes {
