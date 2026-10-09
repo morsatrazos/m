@@ -468,9 +468,34 @@ html, body {
   100% { transform: translate(-20%, 30%) scale(1); opacity: 0.6; }
 }
 
-/* Fusión continua de degradados entre secciones */
-.seamless-turquoise-flow {
-  background: linear-gradient(180deg, #ffffff 0%, #c4fcf3 20%, #00e0ba 50%, #00c9a7 80%, #00b395 100%);
+/* ==================== FLUJO CONTINUO Y DEGRADADO ORGÁNICO ==================== */
+
+/* 1. Sección Beneficios: Termina difuminando suavemente hacia blanco puro */
+.flow-section-beneficios {
+  background: linear-gradient(180deg, #ecfdfa 0%, #ffffff 85%, #ffffff 100%);
+  border: none !important;
+}
+
+/* 2. Sección Planes: Conecta con el blanco superior y desciende hacia el turquesa Moofin */
+.flow-section-planes {
+  background: linear-gradient(180deg, #ffffff 0%, #e0faf4 25%, #76f3de 65%, #00e0ba 100%);
+  border: none !important;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 3. Sección FAQ: Mantiene el turquesa en la cabecera y desvanece suave hacia blanco en el pie */
+.flow-section-faq {
+  background: linear-gradient(180deg, #00e0ba 0%, #22e6c4 30%, #a2f8eb 75%, #ffffff 100%);
+  border: none !important;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Eliminación forzada de cualquier línea divisoria entre estas secciones */
+#beneficios, #planes, #faq {
+  border-top: none !important;
+  border-bottom: none !important;
 }
 
 /* ==================== PREGUNTAS FRECUENTES ESTILO TARJETA MODERNA ==================== */
